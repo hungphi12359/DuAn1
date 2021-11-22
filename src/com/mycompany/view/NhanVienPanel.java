@@ -306,7 +306,7 @@ chonAnh();        // TODO add your handling code here:
                     nv.getEmail(),
                     nv.getDiaChi(),
                     nv.getNgaySinh(),
-                    nv.isGioiTinh(),
+                    nv.isGioiTinh()? "Nam" : "Nữ",
                     nv.getMaChuyenNganh(),
                     nv.getHinh()               
                 };
@@ -330,7 +330,7 @@ chonAnh();        // TODO add your handling code here:
                     nv.getEmail(),
                     nv.getDiaChi(),
                     nv.getNgaySinh(),
-                    nv.isGioiTinh(),
+                    nv.isGioiTinh()? "Nam" : "Nữ",
                     nv.getMaChuyenNganh(),
                     nv.getHinh()               
                 };

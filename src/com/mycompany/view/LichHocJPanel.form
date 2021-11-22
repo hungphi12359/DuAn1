@@ -33,20 +33,20 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="tabs" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jTabbedPane1" min="-2" pref="618" max="-2" attributes="0"/>
+                  <Component id="tabs" min="-2" pref="618" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+        <Container class="javax.swing.JTabbedPane" name="tabs">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -117,14 +117,16 @@
                     <Component class="rojeru_san.complementos.RSTableMetro" name="tblLichHoc">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="9">
-                            <Column editable="false" title="STT" type="java.lang.Object"/>
+                          <Table columnCount="9" rowCount="9">
+                            <Column editable="false" title="M&#xe3; L&#x1ecb;ch H&#x1ecd;c" type="java.lang.Object"/>
                             <Column editable="false" title="Ng&#xe0;y" type="java.lang.Object"/>
                             <Column editable="false" title="Th&#x1edd;i Gian" type="java.lang.Object"/>
-                            <Column editable="false" title="Gi&#x1ea3;ng &#x110;&#x1b0;&#x1edd;ng" type="java.lang.Object"/>
-                            <Column editable="false" title="L&#x1edb;p" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; M&#xf4;n H&#x1ecd;c" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; L&#x1edb;p H&#x1ecd;c" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; Chuy&#xea;n Ng&#xe0;nh" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; Nh&#xe2;n Vi&#xea;n" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; Ph&#xf2;ng H&#x1ecd;c" type="java.lang.Object"/>
                             <Column editable="false" title="T&#xea;n M&#xf4;n H&#x1ecd;c" type="java.lang.Object"/>
-                            <Column editable="false" title="T&#xea;n Gi&#x1ea3;ng Vi&#xea;n" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -167,6 +169,16 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -189,6 +201,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLichHocMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -278,12 +293,20 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jctFindActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel4">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Th&#xea;m L&#x1ecb;ch H&#x1ecd;c">
@@ -295,15 +318,112 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1095" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="maMonHoc1" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
+                              <Component id="ngay1" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
+                              <Component id="cbbmachuyennganh" min="-2" pref="378" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="thoiGian1" max="32767" attributes="0"/>
+                              <Component id="maPhongHoc1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="maLopHoc1" alignment="0" pref="418" max="32767" attributes="0"/>
+                              <Component id="maNhanVien2" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="166" max="32767" attributes="0"/>
+                          <Component id="rSButtonHover4" min="-2" pref="143" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="rSButtonHover3" min="-2" pref="143" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                          <Component id="rSButtonHover1" min="-2" pref="143" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <Component id="rSButtonHover2" min="-2" pref="143" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="590" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="maLopHoc1" pref="51" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="cbbmachuyennganh" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ngay1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="maNhanVien2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="maMonHoc1" min="-2" max="-2" attributes="0"/>
+                              <Component id="maPhongHoc1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="thoiGian1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="rSButtonHover4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rSButtonHover3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rSButtonHover1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rSButtonHover2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="220" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="textfield.Ngay" name="ngay1">
+                </Component>
+                <Component class="textfield.ThoiGian" name="thoiGian1">
+                </Component>
+                <Component class="textfield.MaPhongHoc" name="maPhongHoc1">
+                </Component>
+                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
+                  </Properties>
+                </Component>
+                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+                  </Properties>
+                </Component>
+                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
+                  </Properties>
+                </Component>
+                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
+                  </Properties>
+                </Component>
+                <Component class="combobox.CBBMaChuyenNganh" name="cbbmachuyennganh">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbmachuyennganhActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="combobox.MaMonHoc" name="maMonHoc1">
+                </Component>
+                <Component class="combobox.CBBMaLopHoc" name="maLopHoc1">
+                </Component>
+                <Component class="combobox.MaNhanVien" name="maNhanVien2">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maNhanVien2ActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>

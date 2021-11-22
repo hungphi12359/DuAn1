@@ -127,7 +127,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Môn Học", "Tên Môn Học", "Ngày Bắt Đầu", "Ngày Kết Thúc", "Mã Chuyên Ngành", "Mã Nhân Viên", "Học Kỳ", "Học Phí"
+                "Mã Môn Học", "Tên Môn Học", "Ngày Bắt Đầu", "Ngày Kết Thúc", "Mã Chuyên Ngành", "Mã Nhân Viên", "Học Phí", "Học Kỳ"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -23,6 +23,7 @@ final String UPDATE_SQL = "UPDATE [dbo].[MonHoc] SET [TenMonHoc] = ?,[NgayBatDau
 final String DELETE_SQL = "DELETE FROM [dbo].[MonHoc] WHERE [MaMonHoc] = ?  ";
 final String SELECT_ALL_SQL = "SELECT*FroM [dbo].[MonHoc]";
 final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[MonHoc] WHERE [MaMonHoc] = ? ";
+final String SELECT_BY_ID_MaChuyenNganh = "select * from MonHoc where MaChuyenNganh like ?";
     @Override
     public void insert(MonHoc entity) {
        XJdbc.update(INSERT_SQL, entity.getMaMonHoc(), entity.getTenMonHoc()
@@ -101,14 +102,10 @@ final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[MonHoc] WHERE [MaMonHoc] =
         return list;
         
     }
-///cái hàm này ông lấy đâu ra vậy
-    // k biet sao no o do luon ??
-    //tui sủa lại nha ok
-    // chắc do lúc tạo cái này á
-    //tui nghi ông tạo sai tên
-    //xong netbeans nó tu tạo cho ông
-    //ok tui sửa nha, 
-    
+  public List<MonHoc> selectByChuyenNganh(String MaCN){
+        String sql="select * from MonHoc where MaChuyenNganh like ?";
+        return this.selectBySql(sql, MaCN);
+    }
     
     
 }

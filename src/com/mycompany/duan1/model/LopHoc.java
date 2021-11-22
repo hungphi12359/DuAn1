@@ -68,5 +68,11 @@ public class LopHoc {
         this.NgayDangKy = NgayDangKy;
     }
 
+    @Override
+    public String toString() {
+        return MaLopHoc ;
+    }
+    
+
    
 }

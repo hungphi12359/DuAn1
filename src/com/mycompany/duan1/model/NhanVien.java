@@ -112,4 +112,14 @@ public class NhanVien {
         this.Hinh = Hinh;
     }
 
+    @Override
+    public String toString() {
+        return  MaNhanVien + "-_-" + TenNhanVien ;
+    }
+
+   
+
+
+  
+
 }

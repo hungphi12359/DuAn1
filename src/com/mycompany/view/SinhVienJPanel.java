@@ -1521,6 +1521,12 @@ private List<SinhVien> sinhvien;
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 120, 170));
         jPanel1.add(txtMaSinhVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 260, -1));
         jPanel1.add(txtHoTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 260, -1));
+
+        cbbmachuyennganh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbmachuyennganhActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbbmachuyennganh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 260, -1));
         jPanel1.add(cbbmalophoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 270, -1));
         jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 270, -1));
@@ -1668,6 +1674,10 @@ if(txtSeach.getText().length() == 0){
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 delete();        // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbmachuyennganhActionPerformed
    
     void fixTable(){
         Scrollbar.getViewport().setBackground(Color.WHITE);
@@ -1766,7 +1776,7 @@ void filltable(){
               sv.getEmail(),
               sv.getSDT(),
               sv.getDiaChi(),
-              sv.isGioiTinh(),
+              sv.isGioiTinh()? "Nam" : "Nữ",
               sv.getMaChuyenNganh(),
               sv.getMaLopHoc(),
               sv.getHinh()
@@ -1867,7 +1877,7 @@ void fillTableSelectByMa(){
                 nh.getEmail(),
                 nh.getSDT(),
                 nh.getDiaChi(),
-                nh.isGioiTinh(),
+                nh.isGioiTinh()? "Nam" : "Nữ",
                   nh.getMaChuyenNganh(),
                     nh.getMaLopHoc(),
                       nh.getHinh(),

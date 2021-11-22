@@ -101,5 +101,9 @@ entity.getHinh());
         }
         return list;
     }
+  public List<NhanVien> selectTnByMaNV(String id) {
+           String sql="  select TenNhanVien from NhanVien where MaNhanVien like ?";
+       return this.selectBySql(sql, "%"+id+"%");
+    }
     
 }

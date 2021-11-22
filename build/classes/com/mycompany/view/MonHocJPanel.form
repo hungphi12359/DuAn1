@@ -200,8 +200,8 @@
                         <Column editable="false" title="Ng&#xe0;y K&#x1ebf;t Th&#xfa;c" type="java.lang.Object"/>
                         <Column editable="false" title="M&#xe3; Chuy&#xea;n Ng&#xe0;nh" type="java.lang.Object"/>
                         <Column editable="false" title="M&#xe3; Nh&#xe2;n Vi&#xea;n" type="java.lang.Object"/>
-                        <Column editable="false" title="H&#x1ecd;c K&#x1ef3;" type="java.lang.Object"/>
                         <Column editable="false" title="H&#x1ecd;c Ph&#xed;" type="java.lang.Object"/>
+                        <Column editable="false" title="H&#x1ecd;c K&#x1ef3;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

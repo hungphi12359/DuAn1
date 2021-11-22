@@ -43,12 +43,14 @@ public class LichHocDao extends EduSysDAO<LichHoc, String>{
 
     @Override
     public LichHoc selectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        String sql="SELECT * FROM LichHoc where MaLopHoc = ? ";
+     List<LichHoc> list = this.selectBySql(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
     public List<LichHoc> selectAll() {
-                    String sql="SELECT Ngay,ThoiGian,TenPhongHoc,TenMonHoc,TenLopHoc,TenNhanVien FROM LichHoc INNER JOIN MonHoc ON LichHoc.MaMonHoc = MonHoc.MaMonHoc INNER JOIN LopHoc   ON LichHoc.MaLopHoc = LopHoc.MaLopHoc INNER JOIN PhongHoc   ON LichHoc.MaPhongHoc = PhongHoc.MaPhongHoc INNER JOIN NhanVien  ON LichHoc.MaNhanVien = NhanVien.MaNhanVien";
+                    String sql="select * from LichHoc";
         return this.selectBySql(sql);
     }
 
@@ -61,12 +63,15 @@ public class LichHocDao extends EduSysDAO<LichHoc, String>{
                 rs = XJdbc.query(sql, args);
                 while(rs.next()){
                     LichHoc entity=new LichHoc();
-                    entity.setNgay(rs.getDate("Ngay"));
+                     entity.setMaLichHoc(rs.getInt("MaLichHoc"));
+                    entity.setNgay(rs.getString("Ngay"));
                     entity.setThoiGian(rs.getString("ThoiGian"));
-                    entity.setTenPhongHoc(rs.getString("TenPhongHoc"));
+                    entity.setMaMonHoc(rs.getString("MaMonHoc"));
+                    entity.setMaLopHoc(rs.getString("MaLopHoc"));
+                    entity.setMaChuyenNganh(rs.getString("MaChuyenNganh"));
+                    entity.setMaNhanVien(rs.getString("MaNhanVien"));
+                    entity.setMaPhongHoc(rs.getString("MaPhongHoc"));
                     entity.setTenMonHoc(rs.getString("TenMonHoc"));
-                    entity.setTenLopHoc(rs.getString("TenLopHoc"));
-                    entity.setTenNhanVien(rs.getString("TenNhanVien"));
                     
                     list.add(entity);
                 }
@@ -81,8 +86,21 @@ public class LichHocDao extends EduSysDAO<LichHoc, String>{
         }
         return list;
     }
-     public List<LichHoc> selectByTenLopHoc(String tenlophoc){
-        String sql="SELECT Ngay,ThoiGian,TenPhongHoc,TenMonHoc,TenLopHoc,TenNhanVien FROM LichHoc INNER JOIN MonHoc ON LichHoc.MaMonHoc = MonHoc.MaMonHoc INNER JOIN LopHoc   ON LichHoc.MaLopHoc = LopHoc.MaLopHoc INNER JOIN PhongHoc   ON LichHoc.MaPhongHoc = PhongHoc.MaPhongHoc INNER JOIN NhanVien  ON LichHoc.MaNhanVien = NhanVien.MaNhanVien WHERE TenLopHoc LIKE ?";
-        return this.selectBySql(sql, tenlophoc);
+   
+      public LichHoc selectByMaLH(Integer MaLH){
+        String sql="select * from LichHoc where MaLichHoc like ?";
+           List<LichHoc> list = this.selectBySql(sql, MaLH);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+        public LichHoc selectByThoiGian(String thoigian){
+        String sql="select * from LichHoc where ThoiGian like  ?";
+           List<LichHoc> list = this.selectBySql(sql, thoigian);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+
+
+          public List<LichHoc> selectByMaLopHoc(String id) {
+           String sql="select * from LichHoc where MaLopHoc like ?";
+        return this.selectBySql(sql, "%"+id+"%");
     }
 }

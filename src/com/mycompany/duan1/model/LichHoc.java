@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class LichHoc {
     private int MaLichHoc;
-    private Date Ngay;
+    private String Ngay;
     private String ThoiGian;
     private String MaMonHoc;
     private String MaLopHoc;
@@ -25,6 +25,25 @@ public class LichHoc {
     private String TenNhanVien;
     private String TenMaMonHoc;
 
+    public LichHoc() {
+    }
+
+    public LichHoc(int MaLichHoc, String Ngay, String ThoiGian, String MaMonHoc, String MaLopHoc, String MaChuyenNganh, String MaNhanVien, String MaPhongHoc, String TenPhongHoc, String TenMonHoc, String TenLopHoc, String TenNhanVien, String TenMaMonHoc) {
+        this.MaLichHoc = MaLichHoc;
+        this.Ngay = Ngay;
+        this.ThoiGian = ThoiGian;
+        this.MaMonHoc = MaMonHoc;
+        this.MaLopHoc = MaLopHoc;
+        this.MaChuyenNganh = MaChuyenNganh;
+        this.MaNhanVien = MaNhanVien;
+        this.MaPhongHoc = MaPhongHoc;
+        this.TenPhongHoc = TenPhongHoc;
+        this.TenMonHoc = TenMonHoc;
+        this.TenLopHoc = TenLopHoc;
+        this.TenNhanVien = TenNhanVien;
+        this.TenMaMonHoc = TenMaMonHoc;
+    }
+
     public int getMaLichHoc() {
         return MaLichHoc;
     }
@@ -33,11 +52,11 @@ public class LichHoc {
         this.MaLichHoc = MaLichHoc;
     }
 
-    public Date getNgay() {
+    public String getNgay() {
         return Ngay;
     }
 
-    public void setNgay(Date Ngay) {
+    public void setNgay(String Ngay) {
         this.Ngay = Ngay;
     }
 
@@ -129,23 +148,5 @@ public class LichHoc {
         this.TenMaMonHoc = TenMaMonHoc;
     }
 
-    public LichHoc(int MaLichHoc, Date Ngay, String ThoiGian, String MaMonHoc, String MaLopHoc, String MaChuyenNganh, String MaNhanVien, String MaPhongHoc, String TenPhongHoc, String TenMonHoc, String TenLopHoc, String TenNhanVien, String TenMaMonHoc) {
-        this.MaLichHoc = MaLichHoc;
-        this.Ngay = Ngay;
-        this.ThoiGian = ThoiGian;
-        this.MaMonHoc = MaMonHoc;
-        this.MaLopHoc = MaLopHoc;
-        this.MaChuyenNganh = MaChuyenNganh;
-        this.MaNhanVien = MaNhanVien;
-        this.MaPhongHoc = MaPhongHoc;
-        this.TenPhongHoc = TenPhongHoc;
-        this.TenMonHoc = TenMonHoc;
-        this.TenLopHoc = TenLopHoc;
-        this.TenNhanVien = TenNhanVien;
-        this.TenMaMonHoc = TenMaMonHoc;
-    }
-
-    public LichHoc() {
-    }
 
 }
