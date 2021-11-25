@@ -245,20 +245,21 @@ public class QLTKPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnLamMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 100, 100, 40));
 
+        tbltaikhoan.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 51)));
         tbltaikhoan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã tài khoản", "Mật khẩu", "Vai trò"
+                "Mã tài khoản", "Tên Đăng Nhập", "Mật Khẩu", "Vai trò"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

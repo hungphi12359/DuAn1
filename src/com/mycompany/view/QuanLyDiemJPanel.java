@@ -383,7 +383,7 @@ void fixTable(){
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm Kiếm"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 0, 0))); // NOI18N
         jPanel3.setForeground(new java.awt.Color(0, 0, 204));
 
         jButton3.setText("Tìm Kiếm");
@@ -393,7 +393,7 @@ void fixTable(){
             }
         });
 
-        txtMaSinhVien.setBorder(new javax.swing.border.MatteBorder(null));
+        txtMaSinhVien.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(0, 0, 0)));
         txtMaSinhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaSinhVienActionPerformed(evt);
@@ -439,6 +439,12 @@ void fixTable(){
                 return canEdit [columnIndex];
             }
         });
+        tblStudent.setColorBackgoundHead(new java.awt.Color(204, 0, 51));
+        tblStudent.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tblStudent.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tblStudent.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tblStudent.setColorSelBackgound(new java.awt.Color(0, 0, 0));
+        tblStudent.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblStudent.setRowHeight(40);
         tblStudent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -479,7 +485,7 @@ void fixTable(){
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         tabs.addTab("Thông Tin Sinh Viên", jPanel2);
@@ -682,7 +688,6 @@ int i = 1;
          String maSV = (String) tblStudent.getValueAt(this.row, 0);
          SinhVien sv = svdao.selectById(maSV);
          this.setForm(sv);
-     
          tabs.setSelectedIndex(0);
     }
 

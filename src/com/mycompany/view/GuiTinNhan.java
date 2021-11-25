@@ -258,7 +258,7 @@ void sendmail() {
           try {
            MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(FromEmail));
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+
         message.setSubject(Subject);
         message.setText(txtmessage.getText());
         Transport.send(message);

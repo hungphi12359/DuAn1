@@ -20,6 +20,7 @@ import com.mycompany.view.QuanLyDiemJPanel;
 import com.mycompany.view.QuanLyLopHoc;
 import com.mycompany.view.Quanlythanhtoan;
 import com.mycompany.view.SinhVienJPanel;
+import com.mycompany.view.ThanhToanDichVu;
 import com.mycompany.view.ThongKeDuLieu;
 
 
@@ -105,7 +106,7 @@ this.listItem = listItem;
                   node = new MonHocJPanel();
                   break;
                     case "TTDV":
-                  node = new Quanlythanhtoan();
+                  node = new ThanhToanDichVu();
                   break;
                     case "LichHoc":
                   node = new LichHocJPanel();

@@ -169,7 +169,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -321,16 +321,16 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="maMonHoc1" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
-                              <Component id="ngay1" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
+                              <Component id="cbb_Mamonhoc" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
+                              <Component id="txt_Ngay" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
                               <Component id="cbbmachuyennganh" min="-2" pref="378" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="thoiGian1" max="32767" attributes="0"/>
-                              <Component id="maPhongHoc1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="maLopHoc1" alignment="0" pref="418" max="32767" attributes="0"/>
-                              <Component id="maNhanVien2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_Thoigian" max="32767" attributes="0"/>
+                              <Component id="txt_Maphonghoc" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cbb_Malop" alignment="0" pref="418" max="32767" attributes="0"/>
+                              <Component id="cbb_Manhanvien" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -352,7 +352,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="maLopHoc1" pref="51" max="32767" attributes="0"/>
+                              <Component id="cbb_Malop" pref="51" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="cbbmachuyennganh" min="-2" max="-2" attributes="0"/>
@@ -360,16 +360,16 @@
                           </Group>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="ngay1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="maNhanVien2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_Ngay" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbb_Manhanvien" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="maMonHoc1" min="-2" max="-2" attributes="0"/>
-                              <Component id="maPhongHoc1" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbb_Mamonhoc" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_Maphonghoc" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="thoiGian1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_Thoigian" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="rSButtonHover4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -383,11 +383,11 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="textfield.Ngay" name="ngay1">
+                <Component class="textfield.Ngay" name="txt_Ngay">
                 </Component>
-                <Component class="textfield.ThoiGian" name="thoiGian1">
+                <Component class="textfield.ThoiGian" name="txt_Thoigian">
                 </Component>
-                <Component class="textfield.MaPhongHoc" name="maPhongHoc1">
+                <Component class="textfield.MaPhongHoc" name="txt_Maphonghoc">
                 </Component>
                 <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover1">
                   <Properties>
@@ -414,13 +414,13 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbmachuyennganhActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="combobox.MaMonHoc" name="maMonHoc1">
+                <Component class="combobox.MaMonHoc" name="cbb_Mamonhoc">
                 </Component>
-                <Component class="combobox.CBBMaLopHoc" name="maLopHoc1">
+                <Component class="combobox.CBBMaLopHoc" name="cbb_Malop">
                 </Component>
-                <Component class="combobox.MaNhanVien" name="maNhanVien2">
+                <Component class="combobox.MaNhanVien" name="cbb_Manhanvien">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maNhanVien2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_ManhanvienActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

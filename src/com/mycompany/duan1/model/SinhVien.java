@@ -122,6 +122,11 @@ public class SinhVien {
         this.Hinh = Hinh;
     }
 
+    @Override
+    public String toString() {
+        return  MaSinhVien ;
+    }
+
     
     
 }

@@ -18,7 +18,7 @@ import java.sql.ResultSet;
  * @author Admin
  */
 public class MonHocDao extends EduSysDAO<MonHoc, String>{
-final String INSERT_SQL = "insert into [dbo].[MonHoc]([MaMonHoc],[TenMonHoc],[NgayBatDau],[NgayKetThuc],[MaChuyenNganh],[MaNhanVien],[HocPhi],[HocKy]) values (?,?,?,?,?,?,?,?)";
+final String INSERT_SQL = "INSERT INTO [dbo].[MonHoc]([MaMonHoc],[TenMonHoc],[NgayBatDau],[NgayKetThuc],[MaChuyenNganh],[MaNhanVien] ,[HocPhi],[HocKy])VALUES(? ,?,?,? ,? ,?,?,?)";
 final String UPDATE_SQL = "UPDATE [dbo].[MonHoc] SET [TenMonHoc] = ?,[NgayBatDau]=?,[NgayKetThuc]=?,[MaChuyenNganh]=?,[MaNhanVien]=?,[HocPhi]=?,[HocKy]=? WHERE [MaMonHoc] = ?";
 final String DELETE_SQL = "DELETE FROM [dbo].[MonHoc] WHERE [MaMonHoc] = ?  ";
 final String SELECT_ALL_SQL = "SELECT*FroM [dbo].[MonHoc]";

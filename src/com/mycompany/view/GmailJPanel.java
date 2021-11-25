@@ -34,7 +34,7 @@ public class GmailJPanel extends javax.swing.JPanel {
 void sendmail(){
     String toEmail = txtto.getText();
     String FromEmail = txtFrom.getText();
-    String FromEmailPassword = "thuatien500";
+    String FromEmailPassword = "Hungphi12a10";
     String Subject = txtsubject.getText();
     
     Properties properties = new Properties();

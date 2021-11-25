@@ -114,7 +114,7 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return  MaNhanVien + "-_-" + TenNhanVien ;
+        return  MaNhanVien ;
     }
 
    

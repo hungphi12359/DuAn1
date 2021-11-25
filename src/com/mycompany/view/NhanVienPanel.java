@@ -34,6 +34,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
         initComponents();
         load();
         fixTable();
+          lblhinh.setIcon(XImage.read("noImage.png"));
     }
     NhanVienDao dao = new NhanVienDao();
     NhanVien nv = new NhanVien();
@@ -114,17 +115,17 @@ public class NhanVienPanel extends javax.swing.JPanel {
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã NV", "Tên NV", "Số điện thoại", "Email", "Địa chỉ", "Ngày Sinh", "Giới Tính", "Mã CN", "Hình"
+                "Mã NV", "Tên NV", "Số điện thoại", "Mã CN"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -303,12 +304,9 @@ chonAnh();        // TODO add your handling code here:
                     nv.getMaNhanVien(),
                     nv.getTenNhanVien(),
                     nv.getSDT(),
-                    nv.getEmail(),
-                    nv.getDiaChi(),
-                    nv.getNgaySinh(),
-                    nv.isGioiTinh()? "Nam" : "Nữ",
+
                     nv.getMaChuyenNganh(),
-                    nv.getHinh()               
+                
                 };
                 model.addRow(row);
             }
@@ -327,12 +325,9 @@ chonAnh();        // TODO add your handling code here:
                     nv.getMaNhanVien(),
                     nv.getTenNhanVien(),
                     nv.getSDT(),
-                    nv.getEmail(),
-                    nv.getDiaChi(),
-                    nv.getNgaySinh(),
-                    nv.isGioiTinh()? "Nam" : "Nữ",
-                    nv.getMaChuyenNganh(),
-                    nv.getHinh()               
+  
+                    nv.getMaChuyenNganh()
+                           
                 };
                 model.addRow(row);
             }
@@ -377,6 +372,7 @@ chonAnh();        // TODO add your handling code here:
          txtEmail.setText(nv.getEmail());
          txtDiaChi.setText(nv.getDiaChi());
          txtMaCN1.setText(nv.getMaChuyenNganh());
+    
          if(nv.getHinh()!= null){
              lblhinh.setToolTipText(nv.getHinh());
              lblhinh.setIcon(XImage.read(nv.getHinh()));

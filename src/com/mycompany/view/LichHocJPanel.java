@@ -33,38 +33,45 @@ public class LichHocJPanel extends javax.swing.JPanel {
      */
     public List<LichHoc> lichhoc;
     private  DefaultTableModel tblModel;
+        int row = -1;
     public LichHocJPanel() {
         initComponents();
   
         init();
    }
    
-     ChuyenNganhDao cndao = new ChuyenNganhDao();
+    ChuyenNganhDao cndao = new ChuyenNganhDao();
     MonHocDao mhdao = new MonHocDao();
     LopHocDAO lopHocDAO = new LopHocDAO();
     LichHocDao lichhdao = new LichHocDao();
     NhanVienDao nhanVienDao = new NhanVienDao();
-      int row = -1;
-        int i = 1;
-void  filltable(){
-    DefaultTableModel model = (DefaultTableModel)tblLichHoc.getModel();
-    model.setRowCount(0);
-    try {
-               String keyword = jctFind.getText();
-            List<LichHoc> list = lichhdao.selectAll();
 
-    for (LichHoc lh : list) {
-        Object [] row = { i++,lh.getMaLichHoc(),
-        lh.getNgay(),lh.getThoiGian(),lh.getMaMonHoc(),lh.getMaChuyenNganh(),lh.getMaNhanVien(),lh.getMaPhongHoc(),lh.getTenMonHoc()
-        };
-        model.addRow(row);
+
+    void filltable() {
+        DefaultTableModel model = (DefaultTableModel) tblLichHoc.getModel();
+        model.setRowCount(0);
+        try {
+            List<LichHoc> list = lichhdao.selectAll();
+            for (LichHoc lh : list) {
+//                String TenMH = mhdao.selectById(lh.getMaLopHoc()).getTenMonHoc();
+                Object[] row = {
+                    lh.getMaLichHoc(),
+                    lh.getNgay(),
+                    lh.getThoiGian(),
+                    lh.getMaMonHoc(),
+                    lh.getMaLopHoc(),
+                    lh.getMaChuyenNganh(),
+                    lh.getMaNhanVien(),
+                    lh.getMaPhongHoc(),
+
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
-    } catch (Exception e) {
-   
-              
-    }
-  
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,17 +91,17 @@ void  filltable(){
         jButton1 = new javax.swing.JButton();
         jctFind = new app.bolivia.swing.JCTextField();
         jPanel4 = new javax.swing.JPanel();
-        ngay1 = new textfield.Ngay();
-        thoiGian1 = new textfield.ThoiGian();
-        maPhongHoc1 = new textfield.MaPhongHoc();
+        txt_Ngay = new textfield.Ngay();
+        txt_Thoigian = new textfield.ThoiGian();
+        txt_Maphonghoc = new textfield.MaPhongHoc();
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover3 = new rojeru_san.complementos.RSButtonHover();
         rSButtonHover4 = new rojeru_san.complementos.RSButtonHover();
         cbbmachuyennganh = new combobox.CBBMaChuyenNganh();
-        maMonHoc1 = new combobox.MaMonHoc();
-        maLopHoc1 = new combobox.CBBMaLopHoc();
-        maNhanVien2 = new combobox.MaNhanVien();
+        cbb_Mamonhoc = new combobox.MaMonHoc();
+        cbb_Malop = new combobox.CBBMaLopHoc();
+        cbb_Manhanvien = new combobox.MaNhanVien();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -144,9 +151,6 @@ void  filltable(){
             }
         });
         jScrollPane1.setViewportView(tblLichHoc);
-        if (tblLichHoc.getColumnModel().getColumnCount() > 0) {
-            tblLichHoc.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         jPanel3.setBackground(new java.awt.Color(0, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -240,9 +244,9 @@ void  filltable(){
             }
         });
 
-        maNhanVien2.addActionListener(new java.awt.event.ActionListener() {
+        cbb_Manhanvien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maNhanVien2ActionPerformed(evt);
+                cbb_ManhanvienActionPerformed(evt);
             }
         });
 
@@ -253,15 +257,15 @@ void  filltable(){
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(maMonHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ngay1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbb_Mamonhoc, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Ngay, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbmachuyennganh, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(thoiGian1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(maPhongHoc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(maLopHoc1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                    .addComponent(maNhanVien2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_Thoigian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_Maphonghoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbb_Malop, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                    .addComponent(cbb_Manhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(166, Short.MAX_VALUE)
@@ -279,20 +283,20 @@ void  filltable(){
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(maLopHoc1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(cbb_Malop, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cbbmachuyennganh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ngay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maNhanVien2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Ngay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbb_Manhanvien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(maMonHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maPhongHoc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbb_Mamonhoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Maphonghoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
-                .addComponent(thoiGian1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Thoigian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rSButtonHover4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,12 +331,13 @@ loadByMa();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
-fillComboBoxLopHoc();  
-fillComboBoxMonHoc();// TODO add your handling code here:
+        fillComboBoxLopHoc();
+        fillComboBoxMonHoc();
+        fillComboBoxNhanVien();// TODO add your handling code here:
     }//GEN-LAST:event_cbbmachuyennganhActionPerformed
 
     private void tblLichHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichHocMouseClicked
-   if(evt.getClickCount()==2){   
+   if(evt.getClickCount()==1){   
             row = tblLichHoc.getSelectedRow();
          tabs.setSelectedIndex(1);
                 edit();
@@ -343,154 +348,160 @@ fillComboBoxMonHoc();// TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_jctFindActionPerformed
 
-    private void maNhanVien2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maNhanVien2ActionPerformed
+    private void cbb_ManhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_ManhanvienActionPerformed
      // TODO add your handling code here:
-    }//GEN-LAST:event_maNhanVien2ActionPerformed
-     LichHoc getForm(){
-        LichHoc nv  = new LichHoc();
-      
-        nv.setNgay(ngay1.getText());
-        nv.setThoiGian(thoiGian1.getText());
-        nv.setMaMonHoc(String.valueOf(maMonHoc1.getSelectedItem()));
-        nv.setMaLopHoc(String.valueOf(maLopHoc1.getSelectedItem()));
+    }//GEN-LAST:event_cbb_ManhanvienActionPerformed
+     LichHoc getForm() {
+        LichHoc nv = new LichHoc();
+        nv.setNgay(txt_Ngay.getText());
+        nv.setThoiGian(txt_Thoigian.getText());
+        nv.setMaMonHoc(String.valueOf(cbb_Mamonhoc.getSelectedItem()));
+        nv.setMaLopHoc(String.valueOf(cbb_Malop.getSelectedItem()));
         nv.setMaChuyenNganh(String.valueOf(cbbmachuyennganh.getSelectedItem()));
-        nv.setMaNhanVien(maNhanVien2.getToolTipText());
-        nv.setMaPhongHoc(maPhongHoc1.getText());
-       
-      
+        nv.setMaNhanVien(cbb_Manhanvien.getToolTipText());
+        nv.setMaPhongHoc(txt_Maphonghoc.getText());
         return nv;
-        
     }
-      void setForm(LichHoc lh){
-          cbbmachuyennganh.setSelectedItem(lh.getMaChuyenNganh());
-          ngay1.setText(lh.getNgay());
-         maMonHoc1.setSelectedItem(String.valueOf(lh.getMaMonHoc()));
-         maLopHoc1.setSelectedItem(String.valueOf(lh.getMaLopHoc()));
-         maNhanVien2.setSelectedItem(String.valueOf(lh.getMaNhanVien()));
-         maPhongHoc1.setText(lh.getMaPhongHoc());
-        thoiGian1.setText(lh.getThoiGian());
-     
-    }
-       void edit(){
-        Integer MaLH = (Integer) tblLichHoc.getValueAt(row, 0);
-        LichHoc lh = lichhdao.selectByMaLH(MaLH);
-        setForm(lh);
-    }
-//
-//  void loadTableChuyenNganh(){
-//         DefaultTableModel model = (DefaultTableModel) tblLichHoc.getModel();
-//            model.setRowCount(0);
-//        try {
-//            List<ChuyenNganh> list = cndao.selectAll();
-//            for (ChuyenNganh nv : list) {
-//                Object[] row = {
-//                    nv.getMaChuyenNganh(),
-//                    nv.getTenChuyenNganh(),
-//                                
-//                };
-//                model.addRow(row);
-//            }
-//        } catch (Exception e) {
-//            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
-//        }
-//    }
-  public void init(){
-loadByMa();
-//      loadTableChuyenNganh();
-      fillComboBoxChuyenNganh();
-      fillComboBoxNhanVien();
-  }
-     void fillComboBoxLopHoc(){
-        try {
-              DefaultComboBoxModel model = (DefaultComboBoxModel) maLopHoc1.getModel();
-        model.removeAllElements();
-        ChuyenNganh chuyenNganh = (ChuyenNganh) cbbmachuyennganh.getSelectedItem();
-        if(chuyenNganh != null){
-            List<LopHoc> list = lopHocDAO.selectByChuyenNganh(chuyenNganh.getMaChuyenNganh());
-            for(LopHoc lh: list){
-                model.addElement(lh);
-            }
-//            this.fillTableHocVien();
-        }  
-        } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi Truy Vấn");
-        }
-    
-    }  
-    void fillComboBoxChuyenNganh(){
-        try {
-               DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
-        model.removeAllElements();
-        List<ChuyenNganh> list = cndao.selectAll();
-        for(ChuyenNganh cd: list){
-            model.addElement(cd);
-        }
-        this.fillComboBoxLopHoc();
-        } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi Truy Vấn");
-        }
-     
-    }
- 
-     void fillComboBoxMonHoc(){
-        try {
-              DefaultComboBoxModel model = (DefaultComboBoxModel) maMonHoc1.getModel();
-        model.removeAllElements();
-        ChuyenNganh chuyenNganh = (ChuyenNganh) cbbmachuyennganh.getSelectedItem();
-        if(chuyenNganh != null){
-            List<MonHoc> list = mhdao.selectByChuyenNganh(chuyenNganh.getMaChuyenNganh());
-            for(MonHoc lh: list){
-                model.addElement(lh);
-            }
 
-        }  
-        } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi Truy Vấn");
+    void setForm(LichHoc lh) {
+        if(row == -1){
+            fillComboBoxChuyenNganh();
+            txt_Maphonghoc.setText("");
+            txt_Ngay.setText("");
+            txt_Thoigian.setText("");
+        }else{
+            cbbmachuyennganh.setSelectedItem(lh.getMaChuyenNganh());
+            cbb_Mamonhoc.setSelectedItem(lh.getMaMonHoc());
+            cbb_Malop.setSelectedItem(lh.getMaLopHoc());
+            cbb_Manhanvien.setSelectedItem(lh.getMaNhanVien());
+            txt_Maphonghoc.setText(lh.getMaPhongHoc());
+            txt_Thoigian.setText(lh.getThoiGian());
+            txt_Ngay.setText(lh.getNgay());
         }
-    
     }
-         void fillComboBoxNhanVien(){
+
+    void edit() {
         try {
-               DefaultComboBoxModel model = (DefaultComboBoxModel) maNhanVien2.getModel();
-        model.removeAllElements();
-        List<NhanVien> list = nhanVienDao.selectAll();
-        for(NhanVien cd: list){
-            model.addElement(cd);
+            Integer MaLH = (Integer) tblLichHoc.getValueAt(row, 0);
+            LichHoc lh = lichhdao.selectByMaLH(MaLH);
+            if (lh != null) {
+                setForm(lh);
+                tabs.setSelectedIndex(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu");
+        }
+    }
+
+    public void init() {
+    filltable();
+        fillComboBoxChuyenNganh(); // đây
+    }
+
+    void fillComboBoxLopHoc() {
+        try {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_Malop.getModel();
+            model.removeAllElements();
+            String chuyenNganh = cbbmachuyennganh.getSelectedItem().toString();
+            if (chuyenNganh != null) {
+                List<LopHoc> list = lopHocDAO.selectByChuyenNganh(chuyenNganh);
+                for (LopHoc lh : list) {
+                    model.addElement(lh);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
         }
 
+    }
+
+    void fillComboBoxChuyenNganh() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
+        model.removeAllElements();
+        try {
+            List<ChuyenNganh> list = cndao.selectAll();
+            for (ChuyenNganh cd : list) {
+                model.addElement(cd.getMaChuyenNganh()); // đây (2) lúc đầu là model.addElement(cd); // sai chỗ cd
+            }
         } catch (Exception e) {
+            e.printStackTrace();
             MsgBox.alert(this, "Lỗi Truy Vấn");
         }
-     
+
     }
-          void loadByMa(){
-     try {
-         DefaultTableModel model = (DefaultTableModel) tblLichHoc.getModel();
+
+    void fillComboBoxMonHoc() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_Mamonhoc.getModel();
+        model.removeAllElements();
+        try {
+            String chuyenNganh = cbbmachuyennganh.getSelectedItem().toString();
+            if (chuyenNganh != null) {
+                List<MonHoc> list = mhdao.selectByChuyenNganh(chuyenNganh);
+                for (MonHoc lh : list) {
+                    model.addElement(lh);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }
+
+    }
+
+    void fillComboBoxNhanVien() {
+        try {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_Manhanvien.getModel();
+            model.removeAllElements();
+            try {
+                String chuyenNganh = cbbmachuyennganh.getSelectedItem().toString();
+                List<NhanVien> list = nhanVienDao.selectByMaCN(chuyenNganh);
+                for (NhanVien cd : list) {
+                    model.addElement(cd.getMaNhanVien());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }
+
+    }
+
+    void loadByMa() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) tblLichHoc.getModel();
             model.setRowCount(0);
-        String MaLopHoc = jctFind.getText();
-        List<LichHoc> list =  lichhdao.selectByMaLopHoc(MaLopHoc);
-        for (LichHoc nv : list) {
+            String MaLopHoc = jctFind.getText();
+            List<LichHoc> list = lichhdao.selectByMaLopHoc(MaLopHoc);
+            for (LichHoc nv : list) {
+                String TenMH =  mhdao.selectById(nv.getMaLopHoc()).getTenMonHoc();
                 Object[] row = {
-                 
                     nv.getMaLichHoc(),
-                nv.getNgay(),
+                    nv.getNgay(),
                     nv.getThoiGian(),
                     nv.getMaMonHoc(),
                     nv.getMaLopHoc(),
                     nv.getMaChuyenNganh(),
                     nv.getMaNhanVien(),
                     nv.getMaPhongHoc(),
-                    nv.getTenMonHoc(),
-                                 
-                };
+                    TenMH,
+                     };
                 model.addRow(row);
+
             }
         } catch (Exception e) {
-           MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private combobox.CBBMaLopHoc cbb_Malop;
+    private combobox.MaMonHoc cbb_Mamonhoc;
+    private combobox.MaNhanVien cbb_Manhanvien;
     private combobox.CBBMaChuyenNganh cbbmachuyennganh;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -500,17 +511,14 @@ loadByMa();
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private app.bolivia.swing.JCTextField jctFind;
-    private combobox.CBBMaLopHoc maLopHoc1;
-    private combobox.MaMonHoc maMonHoc1;
-    private combobox.MaNhanVien maNhanVien2;
-    private textfield.MaPhongHoc maPhongHoc1;
-    private textfield.Ngay ngay1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;
     private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private rojeru_san.complementos.RSButtonHover rSButtonHover4;
     private javax.swing.JTabbedPane tabs;
     private rojeru_san.complementos.RSTableMetro tblLichHoc;
-    private textfield.ThoiGian thoiGian1;
+    private textfield.MaPhongHoc txt_Maphonghoc;
+    private textfield.Ngay txt_Ngay;
+    private textfield.ThoiGian txt_Thoigian;
     // End of variables declaration//GEN-END:variables
 }
