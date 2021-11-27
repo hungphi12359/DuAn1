@@ -95,7 +95,6 @@ void fixTable(){
         txtMaSinhVien = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblStudent = new rojeru_san.complementos.RSTableMetro();
-        rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -453,13 +452,6 @@ void fixTable(){
         });
         jScrollPane2.setViewportView(tblStudent);
 
-        rSButtonHover1.setText("Thêm");
-        rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -469,12 +461,8 @@ void fixTable(){
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(12, Short.MAX_VALUE))
                     .addComponent(jScrollPane2)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,9 +471,7 @@ void fixTable(){
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         tabs.addTab("Thông Tin Sinh Viên", jPanel2);
@@ -561,11 +547,6 @@ FillTableInfo();
       }
     }//GEN-LAST:event_tblStudentMouseClicked
 
-    private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
-    
-       // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonHover1ActionPerformed
-
     private void txtDiemLab1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDiemLab1FocusLost
 
     }//GEN-LAST:event_txtDiemLab1FocusLost
@@ -591,7 +572,6 @@ FillTableInfo();
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private javax.swing.JTabbedPane tabs;
     private rojeru_san.complementos.RSTableMetro tblDiem;
     private rojeru_san.complementos.RSTableMetro tblStudent;
@@ -705,6 +685,7 @@ int i = 1;
     }
        void update() {
            try {
+             
                 Diem model = getModel();
          diemDAO.update(model);
               MsgBox.alert(this, "Cập nhật thành công");
@@ -712,6 +693,7 @@ int i = 1;
             
            } catch (Exception e) {
                 MsgBox.alert(this, "Lỗi");
+                e.printStackTrace();
            }
        
         
@@ -753,6 +735,7 @@ int i = 1;
 //        model.setMaDiem(Integer.valueOf(txtMaDiem.getText()));
         return model;
     }
+ 
 
     public void setTrang() {
         txtMaDiem.setBackground(white);

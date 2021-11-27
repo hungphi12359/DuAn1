@@ -30,7 +30,7 @@ public static boolean isGiangVien(){
 public static boolean isNhanVien(){
     return Auth.user != null ;
 }
-public static boolean SinhVien(){
-    return Auth.user != null ;
+public static boolean isSinhVien(){
+    return Auth.isLogin() && user.getVaiTro() == 2;
 }
 }

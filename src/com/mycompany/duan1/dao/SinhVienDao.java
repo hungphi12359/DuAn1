@@ -60,6 +60,10 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String>{
         List<SinhVien> list = selectBySql(sql, MaHV);
         return list.size() > 0 ? list.get(0) : null;
     }
+        public List<SinhVien> selectBymahv(String MaHV) {
+                String sql="SELECT * FROM SinhVien WHERE MaSinhVien= ?";
+ return this.selectBySql(sql, "%"+MaHV+"%");
+    }
 
     @Override
     public List<SinhVien> selectAll() {
@@ -106,5 +110,13 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String>{
         String sql="  SELECT * FROM SinhVien WHERE MaSinhVien LIKE ? OR MaChuyenNganh LIKE ? OR MaLopHoc LIKE ? OR TenSinhVien LIKE ?";
         return this.selectBySql(sql, id,id,id,id);
     }
-  
+   public List<SinhVien> selectSLSV(String id) {
+             String sql="SELECT * FROM SinhVien WHERE MaLopHoc like ?";
+        return selectBySql(sql, id);
+    }
+    public SinhVien selectByMaTK(String id) {
+             String sql="SELECT * FROM SinhVien WHERE MaTaiKhoan like ?";
+        List<SinhVien> list = selectBySql(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 }

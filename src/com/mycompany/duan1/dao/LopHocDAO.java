@@ -22,21 +22,21 @@ public class LopHocDAO extends EduSysDAO<LopHoc, String>{
    
     @Override
     public void insert(LopHoc entity) {
-         String sql="INSERT INTO [dbo].[LopHoc] ([MaLopHoc] ,[TenLopHoc] ,[SoLuongSinhVien],[MaNhanVien],[NgayDangKy]) VALUES(?  ,?,? ,? ,?)";
+         String sql="INSERT INTO [dbo].[LopHoc] ([MaLopHoc] ,[TenLopHoc],[MaNhanVien],[NgayDangKy]) VALUES(?  ,?,? ,? ,?)";
         XJdbc.update(sql, 
                 entity.getMaLopHoc(), 
                 entity.getTenLopHoc(), 
-                entity.getSoLuongSinhVien(), 
+        
                 entity.getMaNhanVien(),
                 entity.getNgayDangKy());
     }
 
     @Override
     public void update(LopHoc entity) {
-          String sql="UPDATE [dbo].[LopHoc] SET [TenLopHoc] = ?,[SoLuongSinhVien] = ?,[MaNhanVien] = ?,[NgayDangKy] = ?  WHERE [MaLopHoc] = ?";
+          String sql="UPDATE [dbo].[LopHoc] SET [TenLopHoc] = ?,[MaNhanVien] = ?,[NgayDangKy] = ?  WHERE [MaLopHoc] = ?";
         XJdbc.update(sql, 
              entity.getTenLopHoc(), 
-                entity.getSoLuongSinhVien(), 
+   
                 entity.getMaNhanVien(), 
                 entity.getNgayDangKy(),
                     entity.getMaLopHoc());
@@ -72,7 +72,7 @@ public class LopHocDAO extends EduSysDAO<LopHoc, String>{
                     LopHoc entity=new LopHoc();
                     entity.setMaLopHoc(rs.getString("MaLopHoc"));
                     entity.setTenLopHoc(rs.getString("TenLopHoc"));
-                    entity.setSoLuongSinhVien(rs.getInt("SoLuongSinhVien"));
+             
                     entity.setMaNhanVien(rs.getString("MaNhanVien"));
                     entity.setNgayDangKy(rs.getDate("NgayDangKy"));
                     list.add(entity);

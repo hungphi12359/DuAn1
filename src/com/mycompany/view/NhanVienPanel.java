@@ -60,7 +60,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
         txtSoDT1 = new textfield.SDT();
         txtEmail = new textfield.Email();
         txtDiaChi = new textfield.DiaChi();
-        jdcNgaySinh = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -72,6 +71,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
         txtMaCN1 = new textfield.MaChuyenNganh();
         txttimkiem = new textfield.TìmKiếm();
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
+        jdcNgaySinh = new com.toedter.calendar.JDateChooser();
 
         setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -157,9 +157,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 230, -1));
         jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 230, -1));
 
-        jdcNgaySinh.setDateFormatString("dd/MM/yyyy");
-        jPanel1.add(jdcNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 230, -1));
-
         jLabel1.setText("Ngày Sinh");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
 
@@ -241,6 +238,9 @@ public class NhanVienPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 140, 50, 40));
+
+        jdcNgaySinh.setDateFormatString("dd/MM/yyyy");
+        jPanel1.add(jdcNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -106,7 +106,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         txtDiaChi = new textfield.DiaChi();
         txtSoDienThoai = new textfield.SDT();
         txtEmail = new textfield.Email();
-        txtSeach = new textfield.TìmKiếm();
+        txttimkiem = new textfield.TìmKiếm();
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
         jdcNgaySinh = new com.toedter.calendar.JDateChooser();
         btnsubmit = new rojeru_san.complementos.RSButtonHover();
@@ -220,21 +220,21 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         jPanel1.add(txtSoDienThoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 270, -1));
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
 
-        txtSeach.setText("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV");
-        txtSeach.addFocusListener(new java.awt.event.FocusAdapter() {
+        txttimkiem.setText("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV");
+        txttimkiem.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtSeachFocusGained(evt);
+                txttimkiemFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtSeachFocusLost(evt);
+                txttimkiemFocusLost(evt);
             }
         });
-        txtSeach.addActionListener(new java.awt.event.ActionListener() {
+        txttimkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSeachActionPerformed(evt);
+                txttimkiemActionPerformed(evt);
             }
         });
-        jPanel1.add(txtSeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 240, -1));
+        jPanel1.add(txttimkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 240, -1));
 
         rSButtonHover1.setBackground(new java.awt.Color(204, 0, 51));
         rSButtonHover1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/Zoom.png"))); // NOI18N
@@ -336,27 +336,27 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
-    private void txtSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeachActionPerformed
+    private void txttimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSeachActionPerformed
+    }//GEN-LAST:event_txttimkiemActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         update();        // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void txtSeachFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSeachFocusGained
-        if (txtSeach.getText().equals("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV")) {
-            txtSeach.setText("");
-            txtSeach.requestFocus();
-            removePlacehoderStyle(txtSeach);
+    private void txttimkiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttimkiemFocusGained
+        if (txttimkiem.getText().equals("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV")) {
+            txttimkiem.setText("");
+            txttimkiem.requestFocus();
+            removePlacehoderStyle(txttimkiem);
         }// TODO add your handling code here:
-    }//GEN-LAST:event_txtSeachFocusGained
+    }//GEN-LAST:event_txttimkiemFocusGained
 
-    private void txtSeachFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSeachFocusLost
-        if (txtSeach.getText().length() == 0) {
-            addPlacehoderStyle(txtSeach);
-            txtSeach.setText("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV");
-    }//GEN-LAST:event_txtSeachFocusLost
+    private void txttimkiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttimkiemFocusLost
+        if (txttimkiem.getText().length() == 0) {
+            addPlacehoderStyle(txttimkiem);
+            txttimkiem.setText("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV");
+    }//GEN-LAST:event_txttimkiemFocusLost
     }
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         clearForm();// TODO add your handling code here:
@@ -375,7 +375,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
-        // TODO add your handling code here:
+fillComboBoxLopHoc();        // TODO add your handling code here:
     }//GEN-LAST:event_cbbmachuyennganhActionPerformed
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
@@ -455,7 +455,7 @@ clearForm();        // TODO add your handling code here:
         filltable();
         chonChuyenNganh();
         chonLopHoc();
-        addPlacehoderStyle(txtSeach);
+        addPlacehoderStyle(txttimkiem);
         fixTable();
 //    addPlacehoderStyle(txtSoDienThoai);
 //    addPlacehoderStyle(txtDiaChi);
@@ -628,14 +628,37 @@ clearForm();        // TODO add your handling code here:
     }
 
     void fillTableSelectByMa() {
-        try {
-            DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+//        try {
+//            DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+//            model.setRowCount(0);
+//            String keyword = txtSeach.getText();
+//            List<SinhVien> list = svdao.selectByMaCNLopHocTen(keyword);
+//            for (SinhVien nh : list) {
+//                model.addRow(new Object[]{
+//                    nh.getMaSinhVien(),
+//                    nh.getTenSinhVien(),
+//                    nh.getNgaySinh(),
+//                  
+//                    nh.getSDT(),
+//               
+//               
+//                    nh.getMaChuyenNganh(),
+//                    nh.getMaLopHoc(),
+//                   });
+//
+//            }
+//
+//        } catch (Exception e) {
+//            MsgBox.alert(this, "Lỗi Truy Vấn");
+//        }
+    try {
+         DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
             model.setRowCount(0);
-            String keyword = txtSeach.getText();
-            List<SinhVien> list = svdao.selectByMaCNLopHocTen(keyword);
-            for (SinhVien nh : list) {
-                model.addRow(new Object[]{
-                    nh.getMaSinhVien(),
+        String MaSV = txttimkiem.getText();
+        List<SinhVien> list =  svdao.selectByMaCNLopHocTen(MaSV);
+        for (SinhVien nh : list) {
+                Object[] row = {
+                              nh.getMaSinhVien(),
                     nh.getTenSinhVien(),
                     nh.getNgaySinh(),
                   
@@ -644,12 +667,12 @@ clearForm();        // TODO add your handling code here:
                
                     nh.getMaChuyenNganh(),
                     nh.getMaLopHoc(),
-                   });
-
+                           
+                };
+                model.addRow(row);
             }
-
         } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi Truy Vấn");
+            JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu!");
         }
 
     }
@@ -684,6 +707,25 @@ clearForm();        // TODO add your handling code here:
             System.out.println(ex.getMessage());
         }
     }
+      void fillComboBoxLopHoc() {
+        try {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmalophoc.getModel();
+            model.removeAllElements();
+            try {
+                String chuyenNganh = cbbmachuyennganh.getSelectedItem().toString();
+                List<LopHoc> list = lhdao.selectByChuyenNganh(chuyenNganh);
+                for (LopHoc cd : list) {
+                    model.addElement(cd.getMaLopHoc());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Scrollbar;
@@ -712,7 +754,7 @@ clearForm();        // TODO add your handling code here:
     private textfield.Email txtEmail;
     private textfield.TenSinhVien txtHoTen;
     private textfield.MaSinhVien txtMaSinhVien;
-    private textfield.TìmKiếm txtSeach;
     private textfield.SDT txtSoDienThoai;
+    private textfield.TìmKiếm txttimkiem;
     // End of variables declaration//GEN-END:variables
 }

@@ -348,14 +348,14 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="textfield.T&#xec;mKi&#x1ebf;m" name="txtSeach">
+            <Component class="textfield.T&#xec;mKi&#x1ebf;m" name="txttimkiem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;p V&#xe0;o M&#xe3; SV,M&#xe3; LH, M&#xe3; CN,T&#xea;n SV"/>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSeachFocusGained"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSeachFocusLost"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSeachActionPerformed"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txttimkiemFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txttimkiemFocusLost"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttimkiemActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

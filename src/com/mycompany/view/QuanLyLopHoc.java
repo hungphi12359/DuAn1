@@ -6,6 +6,7 @@
 package com.mycompany.view;
 
 import com.mycompany.duan1.dao.LopHocDAO;
+import com.mycompany.duan1.dao.SinhVienDao;
 import com.mycompany.duan1.model.LopHoc;
 import java.awt.Color;
 import java.util.List;
@@ -21,7 +22,8 @@ import scrollbar.ScrollBarCustom;
  * @author Admin
  */
 public class QuanLyLopHoc extends javax.swing.JPanel {
-
+    SinhVienDao svDao = new SinhVienDao();
+    public static String MaLH = null;
     /**
      * Creates new form quanlilophoc
      */
@@ -45,7 +47,6 @@ public class QuanLyLopHoc extends javax.swing.JPanel {
         jdcNgayDangKy = new com.toedter.calendar.JDateChooser();
         txtmalh = new textfield.MaLopHoc();
         jLabel3 = new javax.swing.JLabel();
-        txtslsv = new textfield.SoLuongSinhVien();
         txttenlh = new textfield.TenLopHoc();
         txtmanv = new textfield.MaNhanVien();
         btnnew = new rojeru_san.complementos.RSButtonHover();
@@ -54,7 +55,6 @@ public class QuanLyLopHoc extends javax.swing.JPanel {
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblbang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,8 +92,6 @@ public class QuanLyLopHoc extends javax.swing.JPanel {
             }
         });
         Scrollbar.setViewportView(tblbang);
-
-        add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 1080, 400));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "QUẢN LÝ LỚP HỌC", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
@@ -146,20 +144,17 @@ public class QuanLyLopHoc extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtmalh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtslsv, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
-                .addGap(80, 80, 80)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txttenlh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtmanv, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtmalh, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtmanv, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txttenlh, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jdcNgayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                    .addComponent(jdcNgayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
                 .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,25 +162,23 @@ public class QuanLyLopHoc extends javax.swing.JPanel {
                 .addComponent(rSButtonHover3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnnew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtmalh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttenlh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtmalh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txttenlh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(txtmanv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jdcNgayDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtslsv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtmanv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,37 +186,63 @@ public class QuanLyLopHoc extends javax.swing.JPanel {
                     .addComponent(btnnew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1070, 220));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Scrollbar)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(Scrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
-insert();        // TODO add your handling code here:
+        insert();
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
     private void tblbangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbangMouseClicked
-if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             row = tblbang.getSelectedRow();
-            edit();
-        }        // TODO add your handling code here:
+            MaLH = tblbang.getValueAt(row, 0).toString();
+            new SLSV(null, true).setVisible(true);
+            if(MaLH != null){
+                edit();
+            }
+        }
     }//GEN-LAST:event_tblbangMouseClicked
 
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
- delete();
-               // TODO add your handling code here:
+        delete();
+        // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
 
     private void rSButtonHover2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover2ActionPerformed
-update();        // TODO add your handling code here:
+        update();        // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover2ActionPerformed
 
     private void btnnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewActionPerformed
-clearForm();
+        clearForm();
     }//GEN-LAST:event_btnnewActionPerformed
-void init(){
-    load();
-    fixTable();
-}
-void fixTable(){
+    void init() {
+        load();
+        fixTable();
+    }
+
+    void fixTable() {
         Scrollbar.getViewport().setBackground(Color.WHITE);
         Scrollbar.setVerticalScrollBar(new ScrollBarCustom());
         JPanel p = new JPanel();
@@ -231,17 +250,19 @@ void fixTable(){
         Scrollbar.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         Scrollbar.setBorder(new EmptyBorder(5, 10, 5, 10));
     }
-     int row = -1;
-LopHocDAO lopHocDAO = new LopHocDAO();
-void load() {
+    int row = -1;
+    LopHocDAO lopHocDAO = new LopHocDAO();
+
+    void load() {
         DefaultTableModel model = (DefaultTableModel) tblbang.getModel();
         model.setRowCount(0);
-  List<LopHoc> list = lopHocDAO.selectAll();
+        List<LopHoc> list = lopHocDAO.selectAll();
         for (LopHoc lh : list) {
+            int SLSV = svDao.selectSLSV(lh.getMaLopHoc()).size();
             Object[] row = {
                 lh.getMaLopHoc(),
                 lh.getTenLopHoc(),
-                lh.getSoLuongSinhVien(),
+                SLSV,
                 lh.getMaNhanVien(),
                 lh.getNgayDangKy()};
             model.addRow(row);
@@ -269,7 +290,6 @@ void load() {
     void setForm(LopHoc lh) {
         txtmalh.setText(lh.getMaLopHoc());
         txttenlh.setText(lh.getTenLopHoc());
-        txtslsv.setText(String.valueOf(lh.getSoLuongSinhVien()));
         txtmanv.setText(lh.getMaNhanVien());
         jdcNgayDangKy.setDate(lh.getNgayDangKy());
     }
@@ -289,7 +309,6 @@ void load() {
         LopHoc model = new LopHoc();
         model.setMaLopHoc(txtmalh.getText());
         model.setTenLopHoc(txttenlh.getText());
-        model.setSoLuongSinhVien(Integer.valueOf(txtslsv.getText()));
         model.setMaNhanVien(txtmanv.getText());
         model.setNgayDangKy(jdcNgayDangKy.getDate());
         return model;
@@ -305,10 +324,10 @@ void load() {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Xoa That Bai");
         }
-    }   
-    void clearForm(){
+    }
+
+    void clearForm() {
         txtmalh.setText("");
-        txtslsv.setText("");
         jdcNgayDangKy.setDate(null);
         txttenlh.setText("");
         txtmanv.setText("");
@@ -326,7 +345,6 @@ void load() {
     private rojeru_san.complementos.RSTableMetro tblbang;
     private textfield.MaLopHoc txtmalh;
     private textfield.MaNhanVien txtmanv;
-    private textfield.SoLuongSinhVien txtslsv;
     private textfield.TenLopHoc txttenlh;
     // End of variables declaration//GEN-END:variables
 }

@@ -53,7 +53,7 @@ public class DiemDAO extends EduSysDAO<Diem, String> {
 
     @Override
     public void update(Diem entity) {
-         String sql="UPDATE [dbo].[DIEM] SET [DiemLab1] = ?,[DiemLab2] = ?,[DiemLab3] = ?,[DiemLab4] = ? ,[DiemLab5] = ?,[DiemLab6] = ?,[DiemLab7] = ?,[DiemLab8] = ?,[DiemAssgnmentGD1] = ? ,[DiemAssgnmentGD2] = ?,[DiemDoc] = ?  ,[MaSV] = ? ,[MaMH] = ? WHERE MaDiem = ?";
+         String sql="UPDATE [dbo].[DIEM] SET [DiemLab1] = ?,[DiemLab2] = ?,[DiemLab3] = ? ,[DiemLab4] = ?,[DiemLab5] = ? ,[DiemLab6] = ?,[DiemLab7] = ?,[DiemLab8] = ?,[DiemAssgnmentGD1] = ?,[DiemAssgnmentGD2] = ?,[DiemDoc] = ?,[MaSV] = ? ,[MaMH] = ? WHERE MaDiem = ?";
          XJdbc.update(sql, 
                  entity.getDiemLab1(), 
                  entity.getDiemLab2(), 

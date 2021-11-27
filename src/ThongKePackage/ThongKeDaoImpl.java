@@ -23,13 +23,12 @@ public class ThongKeDaoImpl implements ThongKeDao{
     public List<LopHocBean> getListByLopHoc() {
         try {
             Connection cons = XJdbc.getConnection();
-            String sql = "select NgayDangKy,SoLuongSinhVien , TenLopHoc  from LopHoc group by NgayDangKy,SoLuongSinhVien,TenLopHoc";
+            String sql = "select NgayDangKy, TenLopHoc  from LopHoc group by NgayDangKy,TenLopHoc";
             List<LopHocBean> list = new ArrayList<>();
             PreparedStatement ps = cons.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 LopHocBean lopHocBean = new LopHocBean(); lopHocBean.setNgayDangKy(rs.getDate("NgayDangKy"));
-                lopHocBean.setSoLuongSinhVien(rs.getInt("SoLuongSinhVien"));
                 lopHocBean.setTenLopHoc(rs.getString("TenLopHoc"));
                 list.add(lopHocBean);
             }

@@ -12,23 +12,18 @@ import java.util.Date;
  */
 public class LichHoc {
     private int MaLichHoc;
-    private String Ngay;
+    private Date Ngay;
     private String ThoiGian;
     private String MaMonHoc;
     private String MaLopHoc;
     private String MaChuyenNganh;
     private String MaNhanVien;
     private String MaPhongHoc;
-    private String TenPhongHoc;
-    private String TenMonHoc;
-    private String TenLopHoc;
-    private String TenNhanVien;
-    private String TenMaMonHoc;
 
     public LichHoc() {
     }
 
-    public LichHoc(int MaLichHoc, String Ngay, String ThoiGian, String MaMonHoc, String MaLopHoc, String MaChuyenNganh, String MaNhanVien, String MaPhongHoc, String TenPhongHoc, String TenMonHoc, String TenLopHoc, String TenNhanVien, String TenMaMonHoc) {
+    public LichHoc(int MaLichHoc, Date Ngay, String ThoiGian, String MaMonHoc, String MaLopHoc, String MaChuyenNganh, String MaNhanVien, String MaPhongHoc) {
         this.MaLichHoc = MaLichHoc;
         this.Ngay = Ngay;
         this.ThoiGian = ThoiGian;
@@ -37,11 +32,6 @@ public class LichHoc {
         this.MaChuyenNganh = MaChuyenNganh;
         this.MaNhanVien = MaNhanVien;
         this.MaPhongHoc = MaPhongHoc;
-        this.TenPhongHoc = TenPhongHoc;
-        this.TenMonHoc = TenMonHoc;
-        this.TenLopHoc = TenLopHoc;
-        this.TenNhanVien = TenNhanVien;
-        this.TenMaMonHoc = TenMaMonHoc;
     }
 
     public int getMaLichHoc() {
@@ -52,11 +42,11 @@ public class LichHoc {
         this.MaLichHoc = MaLichHoc;
     }
 
-    public String getNgay() {
+    public Date getNgay() {
         return Ngay;
     }
 
-    public void setNgay(String Ngay) {
+    public void setNgay(Date Ngay) {
         this.Ngay = Ngay;
     }
 
@@ -108,45 +98,5 @@ public class LichHoc {
         this.MaPhongHoc = MaPhongHoc;
     }
 
-    public String getTenPhongHoc() {
-        return TenPhongHoc;
-    }
-
-    public void setTenPhongHoc(String TenPhongHoc) {
-        this.TenPhongHoc = TenPhongHoc;
-    }
-
-    public String getTenMonHoc() {
-        return TenMonHoc;
-    }
-
-    public void setTenMonHoc(String TenMonHoc) {
-        this.TenMonHoc = TenMonHoc;
-    }
-
-    public String getTenLopHoc() {
-        return TenLopHoc;
-    }
-
-    public void setTenLopHoc(String TenLopHoc) {
-        this.TenLopHoc = TenLopHoc;
-    }
-
-    public String getTenNhanVien() {
-        return TenNhanVien;
-    }
-
-    public void setTenNhanVien(String TenNhanVien) {
-        this.TenNhanVien = TenNhanVien;
-    }
-
-    public String getTenMaMonHoc() {
-        return TenMaMonHoc;
-    }
-
-    public void setTenMaMonHoc(String TenMaMonHoc) {
-        this.TenMaMonHoc = TenMaMonHoc;
-    }
-
-
+   
 }

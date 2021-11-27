@@ -88,8 +88,8 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         tblCTHD1 = new javax.swing.JTable();
         txtTongTien = new javax.swing.JTextField();
         btnThanhToan = new javax.swing.JButton();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        txtiendu = new javax.swing.JTextField();
+        txtsvtra = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -195,12 +195,17 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 780, 230));
 
+        txtTongTien.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTongTienFocusLost(evt);
+            }
+        });
         txtTongTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTongTienActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 172, 28));
+        jPanel1.add(txtTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 400, 172, 28));
 
         btnThanhToan.setText("Thanh toán");
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
@@ -209,23 +214,35 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, 42));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 400, 154, 28));
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, 154, 28));
+
+        txtiendu.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTongTienFocusLost(evt);
+            }
+        });
+        jPanel1.add(txtiendu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 154, 28));
+
+        txtsvtra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtsvtraFocusLost(evt);
+            }
+        });
+        jPanel1.add(txtsvtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 154, 28));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 153, 0));
         jLabel14.setText("Tiền dư");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 410, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 153, 0));
         jLabel12.setText("SV trả");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 255));
         jLabel10.setText("Tổng cộng");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 410, -1, -1));
         jPanel1.add(txtmamonhoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 40, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -375,6 +392,20 @@ try {
     private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTongTienActionPerformed
+
+    private void txtsvtraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtsvtraFocusLost
+double tientra = Double.parseDouble(txtsvtra.getText());
+double tongCong = Double.parseDouble(txtTongTien.getText());
+
+double tiendu =(tientra - tongCong);
+String st = ChuyenDoi.DinhDangTien(tiendu);
+txtiendu.setText(st);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsvtraFocusLost
+
+    private void txtTongTienFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTongTienFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTongTienFocusLost
      private void ThemSanPhamTbCTHD( String MaChuyenNganh, double HocPhi,
            double ThanhTien, String HocKy) {
 
@@ -495,8 +526,6 @@ void Filltable(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JRadioButton rdochuatt;
     private javax.swing.JRadioButton rdott;
     private javax.swing.JTable tblCTHD1;
@@ -506,7 +535,9 @@ void Filltable(){
     private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtSoHoaDon;
     private javax.swing.JTextField txtTongTien;
+    private javax.swing.JTextField txtiendu;
     private javax.swing.JTextField txtmachuyennganh;
     private javax.swing.JTextField txtmamonhoc;
+    private javax.swing.JTextField txtsvtra;
     // End of variables declaration//GEN-END:variables
 }

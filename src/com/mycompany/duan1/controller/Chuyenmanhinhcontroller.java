@@ -18,7 +18,7 @@ import com.mycompany.view.NhanVienPanel;
 import com.mycompany.view.QLTKPanel;
 import com.mycompany.view.QuanLyDiemJPanel;
 import com.mycompany.view.QuanLyLopHoc;
-import com.mycompany.view.Quanlythanhtoan;
+import com.mycompany.view.SendMail;
 import com.mycompany.view.SinhVienJPanel;
 import com.mycompany.view.ThanhToanDichVu;
 import com.mycompany.view.ThongKeDuLieu;
@@ -118,7 +118,7 @@ this.listItem = listItem;
                   node = new QuanLyLopHoc();
                   break;
                     case "SendMail":
-                  node = new GmailJPanel();
+                  node = new SendMail();
                   break;
                     case "QLTaiKhoan":
                   node = new QLTKPanel();

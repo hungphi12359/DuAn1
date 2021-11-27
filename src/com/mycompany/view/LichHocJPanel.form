@@ -62,14 +62,20 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="L&#x1ecb;ch H&#x1ecd;c"/>
+                    <TitledBorder title="L&#x1ecb;ch H&#x1ecd;c">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder>
+                          <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                        </LineBorder>
+                      </Border>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Xem L&#x1ecb;ch H&#x1ecd;c">
-                    <Property name="tabTitle" type="java.lang.String" value="Xem L&#x1ecb;ch H&#x1ecd;c"/>
+                  <JTabbedPaneConstraints tabName="XEM L&#x1eca;CH H&#x1ecc;C">
+                    <Property name="tabTitle" type="java.lang.String" value="XEM L&#x1eca;CH H&#x1ecc;C"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -77,15 +83,13 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jPanel3" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <Component id="jPanel3" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -95,8 +99,8 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="476" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="461" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -117,16 +121,17 @@
                     <Component class="rojeru_san.complementos.RSTableMetro" name="tblLichHoc">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="9" rowCount="9">
-                            <Column editable="false" title="M&#xe3; L&#x1ecb;ch H&#x1ecd;c" type="java.lang.Object"/>
+                          <Table columnCount="10" rowCount="9">
+                            <Column editable="false" title="STT" type="java.lang.Object"/>
                             <Column editable="false" title="Ng&#xe0;y" type="java.lang.Object"/>
                             <Column editable="false" title="Th&#x1edd;i Gian" type="java.lang.Object"/>
-                            <Column editable="false" title="M&#xe3; M&#xf4;n H&#x1ecd;c" type="java.lang.Object"/>
-                            <Column editable="false" title="M&#xe3; L&#x1edb;p H&#x1ecd;c" type="java.lang.Object"/>
-                            <Column editable="false" title="M&#xe3; Chuy&#xea;n Ng&#xe0;nh" type="java.lang.Object"/>
-                            <Column editable="false" title="M&#xe3; Nh&#xe2;n Vi&#xea;n" type="java.lang.Object"/>
-                            <Column editable="false" title="M&#xe3; Ph&#xf2;ng H&#x1ecd;c" type="java.lang.Object"/>
-                            <Column editable="false" title="T&#xea;n M&#xf4;n H&#x1ecd;c" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; MH" type="java.lang.Object"/>
+                            <Column editable="false" title="T&#xea;n MH" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; LH" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; CN" type="java.lang.Object"/>
+                            <Column editable="false" title="M&#xe3; NV" type="java.lang.Object"/>
+                            <Column editable="false" title="T&#xea;n NV" type="java.lang.Object"/>
+                            <Column editable="false" title="Ph&#xf2;ng H&#x1ecd;c" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -194,7 +199,15 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                           </TableColumnModel>
+                        </Property>
+                        <Property name="intercellSpacing" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[0, 0]"/>
                         </Property>
                         <Property name="rowHeight" type="int" value="40"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -202,7 +215,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLichHocMouseClicked"/>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLichHocMousePressed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -226,9 +239,9 @@
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jctFind" pref="810" max="32767" attributes="0"/>
+                              <Component id="jctFind" pref="812" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="btn_Tim" min="-2" pref="103" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -245,7 +258,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" max="32767" attributes="0"/>
+                              <Component id="btn_Tim" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -266,12 +279,12 @@
                         <Property name="text" type="java.lang.String" value="M&#xe3; L&#x1edb;p H&#x1ecd;c"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="btn_Tim">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TimActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="app.bolivia.swing.JCTextField" name="jctFind">
@@ -309,119 +322,163 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Th&#xea;m L&#x1ecb;ch H&#x1ecd;c">
-                    <Property name="tabTitle" type="java.lang.String" value="Th&#xea;m L&#x1ecb;ch H&#x1ecd;c"/>
+                  <JTabbedPaneConstraints tabName="TH&#xca;M L&#x1eca;CH H&#x1ecc;C">
+                    <Property name="tabTitle" type="java.lang.String" value="TH&#xca;M L&#x1eca;CH H&#x1ecc;C"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="cbb_Mamonhoc" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
-                              <Component id="txt_Ngay" alignment="1" min="-2" pref="378" max="-2" attributes="0"/>
-                              <Component id="cbbmachuyennganh" min="-2" pref="378" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txt_Thoigian" max="32767" attributes="0"/>
-                              <Component id="txt_Maphonghoc" alignment="0" max="32767" attributes="0"/>
-                              <Component id="cbb_Malop" alignment="0" pref="418" max="32767" attributes="0"/>
-                              <Component id="cbb_Manhanvien" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="166" max="32767" attributes="0"/>
-                          <Component id="rSButtonHover4" min="-2" pref="143" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="rSButtonHover3" min="-2" pref="143" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                          <Component id="rSButtonHover1" min="-2" pref="143" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                          <Component id="rSButtonHover2" min="-2" pref="143" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbb_Malop" pref="51" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="cbbmachuyennganh" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_Ngay" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbb_Manhanvien" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="cbb_Mamonhoc" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_Maphonghoc" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="txt_Thoigian" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="rSButtonHover4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rSButtonHover3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rSButtonHover1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rSButtonHover2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="220" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
-                <Component class="textfield.Ngay" name="txt_Ngay">
-                </Component>
                 <Component class="textfield.ThoiGian" name="txt_Thoigian">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="645" y="105" width="400" height="40"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
                 <Component class="textfield.MaPhongHoc" name="txt_Maphonghoc">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="645" y="3" width="400" height="40"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
-                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover1">
+                <Component class="rojeru_san.complementos.RSButtonHover" name="btn_Xoa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_XoaActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="538" y="492" width="143" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="rojeru_san.complementos.RSButtonHover" name="btn_Moi">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_MoiActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="755" y="492" width="143" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="rojeru_san.complementos.RSButtonHover" name="btn_Sua">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SuaActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="323" y="492" width="143" height="-1"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
-                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
-                  </Properties>
-                </Component>
-                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover3">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
-                  </Properties>
-                </Component>
-                <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover4">
+                <Component class="rojeru_san.complementos.RSButtonHover" name="btn_Luu">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_LuuActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="113" y="492" width="143" height="-1"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
                 <Component class="combobox.CBBMaChuyenNganh" name="cbbmachuyennganh">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbmachuyennganhActionPerformed"/>
                   </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="44" y="3" width="400" height="40"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
                 <Component class="combobox.MaMonHoc" name="cbb_Mamonhoc">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="44" y="207" width="400" height="40"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
                 <Component class="combobox.CBBMaLopHoc" name="cbb_Malop">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="44" y="105" width="400" height="40"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
                 <Component class="combobox.MaNhanVien" name="cbb_Manhanvien">
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_ManhanvienActionPerformed"/>
-                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="44" y="309" width="400" height="40"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="txt_Ngay">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+                    <Property name="maxSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+                      <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,-26,112,121,38,-105,-48,120"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="645" y="218" width="400" height="29"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="650" y="190" width="-1" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel3">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="M&#xe3; l&#x1ecb;ch h&#x1ecd;c"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="650" y="290" width="-1" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_Malich">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f5" green="f5" red="f5" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="650" y="320" width="400" height="30"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
               </SubComponents>
             </Container>

@@ -157,6 +157,8 @@ public class MonHocJPanel extends javax.swing.JPanel {
         tblMonHoc.setColorBackgoundHead(new java.awt.Color(204, 0, 51));
         tblMonHoc.setColorBordeFilas(new java.awt.Color(204, 0, 51));
         tblMonHoc.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tblMonHoc.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tblMonHoc.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
         tblMonHoc.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblMonHoc.setRowHeight(40);
         tblMonHoc.addMouseListener(new java.awt.event.MouseAdapter() {

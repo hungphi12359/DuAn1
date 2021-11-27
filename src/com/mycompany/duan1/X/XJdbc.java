@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class XJdbc {
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String dburl = "jdbc:sqlserver://localhost:1433;database=QuanLySinhVienFInal";
+    private static String dburl = "jdbc:sqlserver://localhost:1433;database=QuanLySinhVien";
     private static String username = "sa";
     private static String password = "";
  public static Connection conn;
