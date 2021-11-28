@@ -18,7 +18,7 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String>{
 
     @Override
     public void insert(SinhVien entity) {
-           String sql="INSERT INTO SinhVien(MaSinhVien, TenSinhVien, NgaySinh , Email, SDT, DiaChi, GioiTinh,  MaChuyenNganh, MaLopHoc, Hinh) VALUES(?, ?, ?,?,?, ?,?,?,?, ?)";
+               String sql="INSERT INTO SinhVien(MaSinhVien, TenSinhVien, NgaySinh , Email, SDT, DiaChi, GioiTinh,  MaChuyenNganh, MaLopHoc, Hinh , MaTaiKhoan) VALUES(?, ?, ?, ?,?,?, ?,?,?,?, ?)";
         XJdbc.update(sql,  
                 entity.getMaSinhVien(), 
                 entity.getTenSinhVien(), 
@@ -34,18 +34,19 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String>{
 
     @Override
     public void update(SinhVien entity) {
-         String sql="UPDATE SinhVien SET TenSinhVien= ?, NgaySinh=?, Email=?,SDT=?, DiaChi=?, GioiTinh= ?,MaChuyenNganh=?, MaLopHoc= ?, Hinh = ? WHERE MaSinhVien = ?";
-        XJdbc.update(sql, 
-                entity.getTenSinhVien(), 
-                entity.getNgaySinh(), 
-                entity.getEmail(), 
+     String sql = "UPDATE SinhVien SET TenSinhVien= ?, NgaySinh=?, Email=?,SDT=?, DiaChi=?, GioiTinh= ?,MaChuyenNganh=?, MaLopHoc= ?, Hinh = ? MaTaiKhoan = ? WHERE MaSinhVien = ?";
+        XJdbc.update(sql,
+                entity.getTenSinhVien(),
+                entity.getNgaySinh(),
+                entity.getEmail(),
                 entity.getSDT(),
-        entity.getDiaChi(),
-        entity.isGioiTinh(),
- entity.getMaChuyenNganh(),
-        entity.getMaLopHoc(),
-        entity.getHinh(),
-        entity.getMaSinhVien());
+                entity.getDiaChi(),
+                entity.isGioiTinh(),
+                entity.getMaChuyenNganh(),
+                entity.getMaLopHoc(),
+                entity.getHinh(),
+                entity.getMaTK(),
+                entity.getMaSinhVien());
     }
 
     @Override
@@ -73,7 +74,7 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String>{
 
     @Override
     protected List<SinhVien> selectBySql(String sql, Object... args) {
-               List<SinhVien> list = new ArrayList<>();
+                List<SinhVien> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
@@ -90,6 +91,7 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String>{
                     entity.setMaChuyenNganh(rs.getString("MaChuyenNganh"));
                     entity.setMaLopHoc(rs.getString("MaLopHoc"));
                     entity.setHinh(rs.getString("Hinh"));
+                    entity.setMaTK(rs.getString("MaTaiKhoan"));
                     list.add(entity);
                 }
             } 
@@ -118,5 +120,9 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String>{
              String sql="SELECT * FROM SinhVien WHERE MaTaiKhoan like ?";
         List<SinhVien> list = selectBySql(sql, id);
         return list.size() > 0 ? list.get(0) : null;
+    }
+       public List<SinhVien> selectSVByMaLH(String id) {
+             String sql="  select * from SinhVien where MaLopHoc like ?";
+        return selectBySql(sql, id);
     }
 }

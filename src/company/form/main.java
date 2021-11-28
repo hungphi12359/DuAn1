@@ -5,11 +5,12 @@
 package company.form;
 
 import com.mycompany.duan1.X.Auth;
+import com.mycompany.duan1.X.MsgBox;
 import com.mycompany.duan1.bean.DanhMucBean;
 import com.mycompany.duan1.controller.Chuyenmanhinhcontroller;
 
 import com.mycompany.view.DangNhap;
-import com.mycompany.view.DoiMatKhauJFrame;
+
 
 import com.mycompany.view.KhoiDong1;
 import java.awt.BorderLayout;
@@ -48,7 +49,9 @@ public class main extends javax.swing.JFrame {
         this.openLogin();
         List<DanhMucBean> listItem = new ArrayList<>();
         listItem.add(new DanhMucBean("TrangChu",jpnTrangChu,jlbTrangChu));
-         listItem.add(new DanhMucBean("SinhVien",jpnSinhVien,jlbHocVien));
+       listItem.add(new DanhMucBean("SinhVien",jpnSinhVien,jlbHocVien));  
+       
+      
          listItem.add(new DanhMucBean("NhanVien",jpnNhanVien,jlbNhanVien));
          listItem.add(new DanhMucBean("MonHoc",jpnMonHoc,jlbMonHoc));
                  listItem.add(new DanhMucBean("TTDV",jpnHocPhi,jlbHocPhi));

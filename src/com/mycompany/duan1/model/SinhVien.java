@@ -18,15 +18,28 @@ public class SinhVien {
     private String SDT ;
     private String DiaChi ;
     private Boolean GioiTinh ;
-
     private String MaChuyenNganh;
     private String MaLopHoc;
     private String Hinh;
+    private String MaTK;
 
-    public SinhVien() {
+    public Boolean getGioiTinh() {
+        return GioiTinh;
     }
 
-    public SinhVien(String MaSinhVien, String TenSinhVien, Date NgaySinh, String Email, String SDT, String DiaChi, boolean GioiTinh, String MaChuyenNganh, String MaLopHoc, String Hinh) {
+    public void setGioiTinh(Boolean GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
+    public String getMaTK() {
+        return MaTK;
+    }
+
+    public void setMaTK(String MaTK) {
+        this.MaTK = MaTK;
+    }
+
+    public SinhVien(String MaSinhVien, String TenSinhVien, Date NgaySinh, String Email, String SDT, String DiaChi, Boolean GioiTinh, String MaChuyenNganh, String MaLopHoc, String Hinh, String MaTK) {
         this.MaSinhVien = MaSinhVien;
         this.TenSinhVien = TenSinhVien;
         this.NgaySinh = NgaySinh;
@@ -34,10 +47,13 @@ public class SinhVien {
         this.SDT = SDT;
         this.DiaChi = DiaChi;
         this.GioiTinh = GioiTinh;
-    
         this.MaChuyenNganh = MaChuyenNganh;
         this.MaLopHoc = MaLopHoc;
         this.Hinh = Hinh;
+        this.MaTK = MaTK;
+    }
+
+    public SinhVien() {
     }
 
     public String getMaSinhVien() {
@@ -124,7 +140,7 @@ public class SinhVien {
 
     @Override
     public String toString() {
-        return  MaSinhVien ;
+        return MaSinhVien ;
     }
 
     

@@ -4,71 +4,46 @@
  */
 package com.mycompany.view;
 
-import com.jaspersoft.ireport.designer.JrxmlLoader;
 import com.mycompany.duan1.X.MsgBox;
 import com.mycompany.duan1.X.XImage;
-import com.mycompany.duan1.X.XJdbc;
 import com.mycompany.duan1.dao.ChuyenNganhDao;
 import com.mycompany.duan1.dao.LopHocDAO;
 import com.mycompany.duan1.dao.SinhVienDao;
+import com.mycompany.duan1.dao.TaiKhoanDao;
 import com.mycompany.duan1.model.ChuyenNganh;
 import com.mycompany.duan1.model.LopHoc;
 import com.mycompany.duan1.model.SinhVien;
-import com.raven.datechooser.SelectedDate;
-import com.sun.jdi.connect.spi.Connection;
-import com.toedter.calendar.JDateChooser;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import com.mycompany.duan1.model.TaiKhoan;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextField;
-import java.awt.Color;
-import java.awt.Font;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.time.Instant;
-import javax.swing.JComboBox;
-import java.sql.PreparedStatement;
-import static java.sql.DriverManager.getConnection;
-import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.swing.table.DefaultTableModel;
 import scrollbar.ScrollBarCustom;
+
+
 
 /**
  *
  * @author ADMIN
  */
+
+
 public class SinhVienJPanel extends javax.swing.JPanel {
 
     private List<SinhVien> sinhvien;
-
+    TaiKhoanDao tkDao = new TaiKhoanDao();
+    DefaultComboBoxModel model = null;
     /**
      * Creates new form HocVienJPanel
      */
@@ -106,15 +81,14 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         txtDiaChi = new textfield.DiaChi();
         txtSoDienThoai = new textfield.SDT();
         txtEmail = new textfield.Email();
-        txttimkiem = new textfield.TìmKiếm();
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
         jdcNgaySinh = new com.toedter.calendar.JDateChooser();
+        cbb_Mataikhoan = new combobox.MaTaiKhoan();
         btnsubmit = new rojeru_san.complementos.RSButtonHover();
         btnUpdate = new rojeru_san.complementos.RSButtonHover();
         btnNew = new rojeru_san.complementos.RSButtonHover();
-        btnPrint = new rojeru_san.complementos.RSButtonHover();
-        btnXoa1 = new rojeru_san.complementos.RSButtonHover();
-        btnExel1 = new rojeru_san.complementos.RSButtonHover();
+        btnXoa = new rojeru_san.complementos.RSButtonHover();
+        txtSeach = new textfield.timkiem();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -126,17 +100,17 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         tblStudent.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Sinh Viên", "Tên Sinh Viên", "Ngày Sinh", "SĐT", "Mã CN", "Mã Lớp Học"
+                "Mã Sinh Viên", "Tên Sinh Viên", "Ngày Sinh", "Email", "SĐT", "DiaChi", "GioiTinh", "Mã CN", "Mã Lớp Học", "Hinh", "Mã Tài Khoản"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -151,6 +125,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         tblStudent.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
         tblStudent.setColorSelBackgound(new java.awt.Color(204, 204, 204));
         tblStudent.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        tblStudent.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblStudent.setRowHeight(45);
         tblStudent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -159,82 +134,71 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         });
         Scrollbar.setViewportView(tblStudent);
 
-        jpnView.add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 335, 1080, 270));
+        jpnView.add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 325, 1080, 290));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Thông Tin Sinh Viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Ngày Sinh");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 127, 70, -1));
 
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Giới Tính");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 73, -1, -1));
 
         rdonam.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(rdonam);
+        rdonam.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        rdonam.setForeground(new java.awt.Color(153, 153, 153));
         rdonam.setSelected(true);
         rdonam.setText("Nam");
-        jPanel1.add(rdonam, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
+        jPanel1.add(rdonam, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 92, -1, -1));
 
         rdonu.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(rdonu);
+        rdonu.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        rdonu.setForeground(new java.awt.Color(153, 153, 153));
         rdonu.setText("Nữ");
-        jPanel1.add(rdonu, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, 50, -1));
+        jPanel1.add(rdonu, new org.netbeans.lib.awtextra.AbsoluteConstraints(691, 92, 167, -1));
 
-        jPanel3.setBackground(new java.awt.Color(204, 0, 51));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(204, 0, 51)));
         jPanel3.setToolTipText("");
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHinh.setBackground(new java.awt.Color(204, 204, 204));
+        lblHinh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHinh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblHinhMouseClicked(evt);
             }
         });
-        jPanel3.add(lblHinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 101, 140));
+        jPanel3.add(lblHinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 170));
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ảnh");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, 20));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 130, 20));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 120, 170));
-        jPanel1.add(txtMaSinhVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 260, -1));
-        jPanel1.add(txtHoTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 260, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(921, 19, -1, -1));
+        jPanel1.add(txtMaSinhVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 19, 270, -1));
+        jPanel1.add(txtHoTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 73, 270, -1));
 
         cbbmachuyennganh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbmachuyennganhActionPerformed(evt);
             }
         });
-        jPanel1.add(cbbmachuyennganh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 260, -1));
-        jPanel1.add(cbbmalophoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 270, -1));
-        jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 270, -1));
-        jPanel1.add(txtSoDienThoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 270, -1));
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 270, -1));
-
-        txttimkiem.setText("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV");
-        txttimkiem.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txttimkiemFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txttimkiemFocusLost(evt);
-            }
-        });
-        txttimkiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttimkiemActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txttimkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 240, -1));
+        jPanel1.add(cbbmachuyennganh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 181, 270, -1));
+        jPanel1.add(cbbmalophoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 181, 270, -1));
+        jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 127, 270, -1));
+        jPanel1.add(txtSoDienThoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 73, 270, -1));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 19, 270, -1));
 
         rSButtonHover1.setBackground(new java.awt.Color(204, 0, 51));
         rSButtonHover1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/Zoom.png"))); // NOI18N
@@ -243,15 +207,14 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 rSButtonHover1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 130, 40, -1));
+        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 40, -1));
 
         jdcNgaySinh.setBackground(new java.awt.Color(255, 255, 255));
         jdcNgaySinh.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         jdcNgaySinh.setDateFormatString("dd/MM/yyyy");
         jdcNgaySinh.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel1.add(jdcNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 260, -1));
-
-        jpnView.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1080, 240));
+        jPanel1.add(jdcNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 147, 270, 24));
+        jPanel1.add(cbb_Mataikhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 19, 240, 44));
 
         btnsubmit.setBackground(new java.awt.Color(204, 0, 51));
         btnsubmit.setText("Lưu");
@@ -260,7 +223,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 btnsubmitActionPerformed(evt);
             }
         });
-        jpnView.add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 110, -1));
+        jPanel1.add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 247, 110, -1));
 
         btnUpdate.setBackground(new java.awt.Color(204, 0, 51));
         btnUpdate.setText("Cập Nhật");
@@ -269,7 +232,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jpnView.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 120, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 247, 120, -1));
 
         btnNew.setBackground(new java.awt.Color(204, 0, 51));
         btnNew.setText("Làm Mới");
@@ -278,34 +241,19 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        jpnView.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 120, -1));
+        jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 247, 120, -1));
 
-        btnPrint.setBackground(new java.awt.Color(204, 0, 51));
-        btnPrint.setText("Print");
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+        btnXoa.setBackground(new java.awt.Color(204, 0, 51));
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
+                btnXoaActionPerformed(evt);
             }
         });
-        jpnView.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 260, 110, -1));
+        jPanel1.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 247, 110, -1));
+        jPanel1.add(txtSeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 371, -1));
 
-        btnXoa1.setBackground(new java.awt.Color(204, 0, 51));
-        btnXoa1.setText("Xóa");
-        btnXoa1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoa1ActionPerformed(evt);
-            }
-        });
-        jpnView.add(btnXoa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 110, -1));
-
-        btnExel1.setBackground(new java.awt.Color(204, 0, 51));
-        btnExel1.setText("Exel");
-        btnExel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExel1ActionPerformed(evt);
-            }
-        });
-        jpnView.add(btnExel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, 110, -1));
+        jpnView.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1080, 320));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -322,6 +270,12 @@ public class SinhVienJPanel extends javax.swing.JPanel {
     private void tblStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentMouseClicked
         if (evt.getClickCount() == 2) {
             row = tblStudent.getSelectedRow();
+            this.model = null;
+           
+            fillcomboboxMaTK();
+        
+            cbb_Mataikhoan.setEnabled(false);
+            cbb_Mataikhoan.setBackground(new Color(245,245,245));
             edit();
         }
         // TODO add your handling code here:
@@ -336,107 +290,43 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
-    private void txttimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemActionPerformed
+    private void txtSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeachActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txttimkiemActionPerformed
+    }//GEN-LAST:event_txtSeachActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         update();        // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void txttimkiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttimkiemFocusGained
-        if (txttimkiem.getText().equals("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV")) {
-            txttimkiem.setText("");
-            txttimkiem.requestFocus();
-            removePlacehoderStyle(txttimkiem);
+    private void txtSeachFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSeachFocusGained
+        if (txtSeach.getText().equals("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV")) {
+            txtSeach.setText("");
+            txtSeach.requestFocus();
+            removePlacehoderStyle(txtSeach);
         }// TODO add your handling code here:
-    }//GEN-LAST:event_txttimkiemFocusGained
+    }//GEN-LAST:event_txtSeachFocusGained
 
-    private void txttimkiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttimkiemFocusLost
-        if (txttimkiem.getText().length() == 0) {
-            addPlacehoderStyle(txttimkiem);
-            txttimkiem.setText("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV");
-    }//GEN-LAST:event_txttimkiemFocusLost
+    private void txtSeachFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSeachFocusLost
+        if (txtSeach.getText().length() == 0) {
+            addPlacehoderStyle(txtSeach);
+            txtSeach.setText("Nhập Vào Mã SV,Mã LH, Mã CN,Tên SV");
+    }//GEN-LAST:event_txtSeachFocusLost
     }
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         clearForm();// TODO add your handling code here:
     }//GEN-LAST:event_btnNewActionPerformed
 
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        MessageFormat header  = new MessageFormat("Item report");   
-        try {
-            tblStudent.print(JTable.PrintMode.NORMAL, header, null);
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
-        
-        
-    }//GEN-LAST:event_btnPrintActionPerformed
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        delete();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
-fillComboBoxLopHoc();        // TODO add your handling code here:
+        fillcomboboxLopHoc();        // TODO add your handling code here:
     }//GEN-LAST:event_cbbmachuyennganhActionPerformed
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         insert();        // TODO add your handling code here:
     }//GEN-LAST:event_btnsubmitActionPerformed
-
-    private void btnXoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa1ActionPerformed
-clearForm();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnXoa1ActionPerformed
-
-    private void btnExel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExel1ActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
-        FileOutputStream exelFOU = null;
-       BufferedOutputStream exelBOU = null;
-       XSSFWorkbook exelJtableExporter = null;    
-       JFileChooser exelfileChooser = new JFileChooser("D:\\duan1\\DuAn1-Khanh\\Exel");
-       exelfileChooser.setDialogTitle("Save As");
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXEL FILES", "xls", "xlsx", "xlsm");
-        exelfileChooser.setFileFilter(fnef);
-        int exelChooser = exelfileChooser.showSaveDialog(null);
-        
-        if (exelChooser == JFileChooser.APPROVE_OPTION) {
-           
-             try {
-                exelJtableExporter = new XSSFWorkbook();
-                XSSFSheet exelSheet = exelJtableExporter.createSheet("JTable Sheet");
-                for (int i = 0; i < model.getRowCount(); i++) {
-                   XSSFRow exelRow = exelSheet.createRow(i);
-                   
-                   for (int j = 0; j < model.getColumnCount(); j++) {
-                        XSSFCell exelCell = exelRow.createCell(j);
-                        exelCell.setCellValue(model.getValueAt(i, j).toString());
-                    }
-                     
-                 }   
-                exelFOU = new FileOutputStream(exelfileChooser.getSelectedFile() + ".xls");
-                exelBOU = new BufferedOutputStream(exelFOU); 
-                exelJtableExporter.write(exelBOU);
-                JOptionPane.showMessageDialog(this, "Export Successfully !");
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    if(exelBOU != null){
-                        exelBOU.close();
-                    }
-                    if(exelFOU != null){
-                        exelFOU.close();
-                    }
-                    if(exelJtableExporter != null){
-                         
-                    }
-                } catch (IOException ex) {
-                    
-                    Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }  
-    }//GEN-LAST:event_btnExel1ActionPerformed
 
     void fixTable() {
         Scrollbar.getViewport().setBackground(Color.WHITE);
@@ -455,24 +345,25 @@ clearForm();        // TODO add your handling code here:
         filltable();
         chonChuyenNganh();
         chonLopHoc();
-        addPlacehoderStyle(txttimkiem);
+        addPlacehoderStyle(txtSeach);
         fixTable();
-//    addPlacehoderStyle(txtSoDienThoai);
-//    addPlacehoderStyle(txtDiaChi);
-//    addPlacehoderStyle(txtEmail);
-//    addPlacehoderStyle(txtHoTen);
-//    addPlacehoderStyle(txtMaSinhVien);
-
-//  removePlacehoderStyle(txtMaSinhVien);
-//  removePlacehoderStyle(txtHoTen);
-//  removePlacehoderStyle(txtEmail);
-//  removePlacehoderStyle(txtDiaChi);
-//  removePlacehoderStyle(txtSoDienThoai);
-//  removePlacehoderStyle(txtSeach);
-//  removecbbStyle(cbbmachuyennganh);
-//  removecbbStyle(cbbmalophoc);
+fillcomboboxMaTK();
+ 
     }
 
+    void fillcomboboxMaTK() {
+        model = (DefaultComboBoxModel) cbb_Mataikhoan.getModel();
+        model.removeAllElements();
+        try {
+            List<TaiKhoan> list = tkDao.selectByMaSV();
+            for (TaiKhoan tk : list) {
+                model.addElement(tk.getMaTK());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+  
     void edit() {
         String maSV = (String) tblStudent.getValueAt(this.row, 0);
         SinhVien sv = svdao.selectById(maSV);
@@ -491,13 +382,14 @@ clearForm();        // TODO add your handling code here:
         cbbmalophoc.setSelectedItem(String.valueOf(sv.getMaLopHoc()));
         rdonam.setSelected(sv.isGioiTinh() ? true : false);
         rdonu.setSelected(sv.isGioiTinh() ? false : true);
-
+      
         if (sv.getHinh() != null) {
             lblHinh.setToolTipText(sv.getHinh());
             lblHinh.setIcon(XImage.read(sv.getHinh()));
         } else {
             lblHinh.setIcon(XImage.read("noImage.png"));
         }
+      
     }
 
     SinhVien getForm() {
@@ -511,8 +403,8 @@ clearForm();        // TODO add your handling code here:
         sv.setMaLopHoc(String.valueOf(cbbmalophoc.getSelectedItem()));
         sv.setDiaChi(txtDiaChi.getText());
         sv.setGioiTinh(rdonam.isSelected() ? true : false);
-
         sv.setHinh(lblHinh.getToolTipText());
+//        sv.setMaTK(cbb_Mataikhoan.getSelectedItem());
         return sv;
     }
     JFileChooser fileChooser = new JFileChooser();
@@ -536,14 +428,14 @@ clearForm();        // TODO add your handling code here:
                 sv.getMaSinhVien(),
                 sv.getTenSinhVien(),
                 sv.getNgaySinh(),
-             
+                sv.getEmail(),
                 sv.getSDT(),
-         
-         
+                sv.getDiaChi(),
+                sv.isGioiTinh() ? "Nam" : "Nữ",
                 sv.getMaChuyenNganh(),
-                sv.getMaLopHoc()
-           
-
+                sv.getMaLopHoc(),
+                sv.getHinh(),
+                sv.getMaTK()
             };
             model.addRow(row);
         }
@@ -594,21 +486,29 @@ clearForm();        // TODO add your handling code here:
         txtMaSinhVien.setText("");
         txtHoTen.setText("");
         jdcNgaySinh.setDate(null);
-
         txtEmail.setText("");
         txtSoDienThoai.setText("");
         txtDiaChi.setText("");
-
         rdonu.isSelected();
         lblHinh.setIcon(XImage.read("noImage.png"));
+        fillcomboboxMaTK();
+        cbb_Mataikhoan.setEnabled(true);
+        cbb_Mataikhoan.setBackground(Color.white);
     }
     ChuyenNganhDao cndao = new ChuyenNganhDao();
     LopHocDAO lhdao = new LopHocDAO();
 
     void chonChuyenNganh() {
-        List<ChuyenNganh> list = cndao.selectAll();
-        for (ChuyenNganh cn : list) {
-            cbbmachuyennganh.addItem(cn.getMaChuyenNganh());
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
+        model.removeAllElements();
+        try {
+            List<ChuyenNganh> list = cndao.selectAll();
+            for (ChuyenNganh cd : list) {
+                model.addElement(cd.getMaChuyenNganh());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
         }
     }
 
@@ -619,60 +519,54 @@ clearForm();        // TODO add your handling code here:
         }
     }
 
-    void fillcomboboxLopHoc() {
-        String MaCN = (String) cbbmachuyennganh.getSelectedItem();
-        List<LopHoc> list = lhdao.selectByChuyenNganh(MaCN);
-        for (LopHoc lh : list) {
-            cbbmalophoc.addItem(lh.getMaLopHoc());
+       void fillcomboboxLopHoc() {
+//        String MaCN = (String) cbbmachuyennganh.getSelectedItem();
+//        List<LopHoc> list = lhdao.selectByChuyenNganh(MaCN);
+//        for (LopHoc lh : list) {
+//            cbbmalophoc.addItem(lh.getMaLopHoc());
+//        }
+       try {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmalophoc.getModel();
+            model.removeAllElements();
+            try {
+                String chuyenNganh = cbbmachuyennganh.getSelectedItem().toString();
+                List<LopHoc> list = lhdao.selectByChuyenNganh(chuyenNganh);
+                for (LopHoc cd : list) {
+                    model.addElement(cd.getMaLopHoc());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
         }
+
     }
 
     void fillTableSelectByMa() {
-//        try {
-//            DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
-//            model.setRowCount(0);
-//            String keyword = txtSeach.getText();
-//            List<SinhVien> list = svdao.selectByMaCNLopHocTen(keyword);
-//            for (SinhVien nh : list) {
-//                model.addRow(new Object[]{
-//                    nh.getMaSinhVien(),
-//                    nh.getTenSinhVien(),
-//                    nh.getNgaySinh(),
-//                  
-//                    nh.getSDT(),
-//               
-//               
-//                    nh.getMaChuyenNganh(),
-//                    nh.getMaLopHoc(),
-//                   });
-//
-//            }
-//
-//        } catch (Exception e) {
-//            MsgBox.alert(this, "Lỗi Truy Vấn");
-//        }
-    try {
-         DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        try {
+            DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
             model.setRowCount(0);
-        String MaSV = txttimkiem.getText();
-        List<SinhVien> list =  svdao.selectByMaCNLopHocTen(MaSV);
-        for (SinhVien nh : list) {
-                Object[] row = {
-                              nh.getMaSinhVien(),
+            String keyword = txtSeach.getText();
+            List<SinhVien> list = svdao.selectByMaCNLopHocTen(keyword);
+            for (SinhVien nh : list) {
+                model.addRow(new Object[]{
+                    nh.getMaSinhVien(),
                     nh.getTenSinhVien(),
                     nh.getNgaySinh(),
-                  
+                    nh.getEmail(),
                     nh.getSDT(),
-               
-               
+                    nh.getDiaChi(),
+                    nh.isGioiTinh() ? "Nam" : "Nữ",
                     nh.getMaChuyenNganh(),
                     nh.getMaLopHoc(),
-                           
-                };
-                model.addRow(row);
+                    nh.getHinh(),});
+
             }
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu!");
+            MsgBox.alert(this, "Lỗi Truy Vấn");
         }
 
     }
@@ -707,35 +601,15 @@ clearForm();        // TODO add your handling code here:
             System.out.println(ex.getMessage());
         }
     }
-      void fillComboBoxLopHoc() {
-        try {
-            DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmalophoc.getModel();
-            model.removeAllElements();
-            try {
-                String chuyenNganh = cbbmachuyennganh.getSelectedItem().toString();
-                List<LopHoc> list = lhdao.selectByChuyenNganh(chuyenNganh);
-                for (LopHoc cd : list) {
-                    model.addElement(cd.getMaLopHoc());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            MsgBox.alert(this, "Lỗi Truy Vấn");
-        }
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Scrollbar;
-    private rojeru_san.complementos.RSButtonHover btnExel1;
     private rojeru_san.complementos.RSButtonHover btnNew;
-    private rojeru_san.complementos.RSButtonHover btnPrint;
     private rojeru_san.complementos.RSButtonHover btnUpdate;
-    private rojeru_san.complementos.RSButtonHover btnXoa1;
+    private rojeru_san.complementos.RSButtonHover btnXoa;
     private rojeru_san.complementos.RSButtonHover btnsubmit;
     private javax.swing.ButtonGroup buttonGroup1;
+    private combobox.MaTaiKhoan cbb_Mataikhoan;
     private combobox.CBBMaChuyenNganh cbbmachuyennganh;
     private combobox.CBBMaLopHoc cbbmalophoc;
     private javax.swing.JLabel jLabel3;
@@ -754,7 +628,7 @@ clearForm();        // TODO add your handling code here:
     private textfield.Email txtEmail;
     private textfield.TenSinhVien txtHoTen;
     private textfield.MaSinhVien txtMaSinhVien;
+    private textfield.timkiem txtSeach;
     private textfield.SDT txtSoDienThoai;
-    private textfield.TìmKiếm txttimkiem;
     // End of variables declaration//GEN-END:variables
 }

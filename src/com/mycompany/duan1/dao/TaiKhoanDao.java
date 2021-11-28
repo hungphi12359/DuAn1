@@ -79,4 +79,17 @@ public class TaiKhoanDao extends EduSysDAO<TaiKhoan, String>{
         List<TaiKhoan> list = selectBySql(sql, Ten);
         return list.size() > 0 ? list.get(0):null ;
     }
+  
+    public List<TaiKhoan> selectByMaSV() {
+        String sql = "SELECT * FROM TaiKhoan LEFT JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where TaiKhoan.MaTaiKhoan not in (SELECT TaiKhoan.MaTaiKhoan FROM TaiKhoan inner JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where TaiKhoan.VaiTro = 2) And TaiKhoan.VaiTro = 2";
+        return selectBySql(sql);
+    }
+    public List<TaiKhoan> selectByMaNV() {
+        String sql = "SELECT * FROM TaiKhoan LEFT JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where TaiKhoan.MaTaiKhoan not in (SELECT TaiKhoan.MaTaiKhoan FROM TaiKhoan inner JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where TaiKhoan.VaiTro = 0) And TaiKhoan.VaiTro = 0";
+        return selectBySql(sql);
+    }
+     public List<TaiKhoan> selectById2(String id) {
+                     String sql="  SELECT * FROM TaiKhoan LEFT JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where   TaiKhoan.VaiTro  = 2 AND SinhVien.MaTaiKhoan = ?";
+         return selectBySql(sql, id);
+    }
 }

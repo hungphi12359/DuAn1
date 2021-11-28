@@ -22,10 +22,19 @@ public class NhanVien {
     private String MaChuyenNganh;
     private String Hinh;
 
+    public String getMaTaiKhoan() {
+        return MaTaiKhoan;
+    }
+
+    public void setMaTaiKhoan(String MaTaiKhoan) {
+        this.MaTaiKhoan = MaTaiKhoan;
+    }
+    private String MaTaiKhoan;
+    
     public NhanVien() {
     }
 
-    public NhanVien(String MaNhanVien, String TenNhanVien, String SDT, String Email, String DiaChi, Date NgaySinh, boolean GioiTinh, String MaChuyenNganh, String TenTk, String MatKhau, int VaiTro, String Hinh) {
+    public NhanVien(String MaNhanVien, String TenNhanVien, String SDT, String Email, String DiaChi, Date NgaySinh, boolean GioiTinh, String MaChuyenNganh, String TenTk, String MatKhau, int VaiTro, String Hinh, String MaTaiKhoan) {
         this.MaNhanVien = MaNhanVien;
         this.TenNhanVien = TenNhanVien;
         this.SDT = SDT;
@@ -34,8 +43,8 @@ public class NhanVien {
         this.NgaySinh = NgaySinh;
         this.GioiTinh = GioiTinh;
         this.MaChuyenNganh = MaChuyenNganh;
-
         this.Hinh = Hinh;
+        this.MaTaiKhoan = MaTaiKhoan;
     }
 
     public String getMaNhanVien() {
@@ -114,7 +123,7 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return  MaNhanVien ;
+        return  MaNhanVien;
     }
 
    

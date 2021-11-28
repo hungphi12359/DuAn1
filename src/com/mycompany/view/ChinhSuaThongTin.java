@@ -124,7 +124,7 @@ public class ChinhSuaThongTin extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/people.png"))); // NOI18N
 
-        jTextPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jTextPane1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(255, 255, 255)));
         jTextPane1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextPane1.setText("\t      THÔNG TIN PHẦN MỀM QUẢN LÝ SINH VIÊN VINDU\n  Phần mềm quản lý sinh viên VINDU là phần mềm quản lý sinh viên nhằm hỗ trợ cho các giảng viên dễ dàng quản lý\n  Các tính năng:\n  - Quản lý sinh viên, nhân viên.\n  - Quản lý môn học.\n  - Quản lý học phí.\n  - Quản lý lịch học.\n  - Quản lý điểm.\n  - Quản lý thanh toán.\n  - Quản lý lớp học.\n  - Quản lý tài khoản.");
         jScrollPane1.setViewportView(jTextPane1);

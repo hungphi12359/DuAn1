@@ -6,12 +6,13 @@
 package com.mycompany.duan1.controller;
 
 import com.mycompany.duan1.X.Auth;
+import com.mycompany.duan1.X.MsgBox;
 import com.mycompany.duan1.bean.DanhMucBean;
 
 import com.mycompany.view.ChinhSuaThongTin;
-import com.mycompany.view.DoiMatKhauJFrame;
-import com.mycompany.view.GmailJPanel;
-import com.mycompany.view.GuiTinNhan;
+
+
+
 import com.mycompany.view.LichHocJPanel;
 import com.mycompany.view.MonHocJPanel;
 import com.mycompany.view.NhanVienPanel;
@@ -95,10 +96,14 @@ this.listItem = listItem;
                   node = new TrangChuPanel();
                   break;
                    case "SinhVien":
-                     node = new SinhVienJPanel();
+                       if(Auth.isSinhVien()){
+            MsgBox.alert(null, "BẠN K CÓ QUYỀN TRUY CẬP");
+            return;
+         }else{
+          node = new SinhVienJPanel();           
+                      }
+               
                       break;
-                  
-                  
                   case "NhanVien":
                   node = new NhanVienPanel();
                   break;
