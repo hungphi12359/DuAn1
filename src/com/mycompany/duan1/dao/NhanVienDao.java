@@ -19,7 +19,7 @@ public class NhanVienDao extends EduSysDAO<NhanVien, String>{
 
     @Override
     public void insert(NhanVien entity) {
-         String sql="INSERT INTO [dbo].[NhanVien] ([MaNhanVien]  ,[TenNhanVien] ,[SDT]  ,[Email]  ,[DiaChi] ,[NgaySinh]  ,[GioiTinh],[MaChuyenNganh] ,[Hinh]) VALUES(?,?,?,?,?,?,?,?,?)";
+         String sql="INSERT INTO [dbo].[NhanVien] ([MaNhanVien]  ,[TenNhanVien] ,[SDT]  ,[Email]  ,[DiaChi] ,[NgaySinh]  ,[GioiTinh],[MaChuyenNganh] ,[Hinh],[MaTaiKhoan]) VALUES(?,?,?,?,?,?,?,?,?,?)";
         XJdbc.update(sql, 
                 entity.getMaNhanVien(), 
                 entity.getTenNhanVien(), 
@@ -29,12 +29,13 @@ public class NhanVienDao extends EduSysDAO<NhanVien, String>{
                 entity.getNgaySinh(), 
                 entity.isGioiTinh(), 
                 entity.getMaChuyenNganh(),
-entity.getHinh());
+entity.getHinh(),
+        entity.getMaTaiKhoan());
     }
 
     @Override
     public void update(NhanVien entity) {
-          String sql="UPDATE [dbo].[NhanVien] SET [TenNhanVien] = ?,[SDT] = ?,[Email] = ? ,[DiaChi] = ?,[NgaySinh] = ? ,[GioiTinh] = ? ,[MaChuyenNganh] = ?,[Hinh] = ? WHERE [MaNhanVien] = ? ";
+          String sql="UPDATE [dbo].[NhanVien] SET [TenNhanVien] = ?,[SDT] = ?,[Email] = ? ,[DiaChi] = ?,[NgaySinh] = ? ,[GioiTinh] = ? ,[MaChuyenNganh] = ?,[Hinh] = ? ,[MaTaiKhoan] = ? WHERE [MaNhanVien] = ? ";
         XJdbc.update(sql, 
                 entity.getTenNhanVien(), 
                 entity.getSDT(), 
@@ -44,7 +45,9 @@ entity.getHinh());
                 entity.isGioiTinh(), 
                 entity.getMaChuyenNganh(),
                 entity.getHinh(),
-                entity.getMaNhanVien());
+                entity.getMaTaiKhoan(),
+                entity.getMaNhanVien()
+        );
     }
 
     @Override
@@ -88,6 +91,7 @@ entity.getHinh());
                     entity.setGioiTinh(rs.getBoolean("GioiTinh"));
                     entity.setMaChuyenNganh(rs.getString("MaChuyenNganh"));
                     entity.setHinh(rs.getString("Hinh"));
+                    entity.setMaTaiKhoan(rs.getString("MaTaiKhoan"));
                     list.add(entity);
                 }
             } 

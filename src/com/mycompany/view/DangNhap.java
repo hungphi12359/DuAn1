@@ -5,12 +5,16 @@
 package com.mycompany.view;
 
 import app.bolivia.swing.JCTextField;
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.WebcamResolution;
 import com.mycompany.duan1.X.Auth;
 import com.mycompany.duan1.X.MsgBox;
 import com.mycompany.duan1.X.XImage;
 import com.mycompany.duan1.dao.TaiKhoanDao;
 import com.mycompany.duan1.model.TaiKhoan;
 import company.form.main;
+import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -54,6 +58,7 @@ public class DangNhap extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtmatkhau = new javax.swing.JPasswordField();
+        rSQR = new rojeru_san.complementos.RSButtonHover();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -86,6 +91,11 @@ public class DangNhap extends javax.swing.JDialog {
                 rSButtonHover1MouseClicked(evt);
             }
         });
+        rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover1ActionPerformed(evt);
+            }
+        });
 
         rSButtonHover2.setBackground(new java.awt.Color(255, 255, 255));
         rSButtonHover2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(92, 66, 215)));
@@ -116,6 +126,20 @@ public class DangNhap extends javax.swing.JDialog {
         txtmatkhau.setText("123");
         txtmatkhau.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        rSQR.setBackground(new java.awt.Color(92, 66, 215));
+        rSQR.setText("QR CODE");
+        rSQR.setColorHover(new java.awt.Color(92, 66, 215));
+        rSQR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSQRMouseClicked(evt);
+            }
+        });
+        rSQR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSQRActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,7 +148,8 @@ public class DangNhap extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addComponent(jLabel3))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -139,9 +164,11 @@ public class DangNhap extends javax.swing.JDialog {
                                 .addGap(71, 71, 71)
                                 .addComponent(jLabel2))
                             .addComponent(jLabel5)
-                            .addComponent(txtmatkhau))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
+                            .addComponent(txtmatkhau))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rSQR, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +190,8 @@ public class DangNhap extends javax.swing.JDialog {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rSButtonHover2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSQR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -193,31 +221,53 @@ public class DangNhap extends javax.swing.JDialog {
     }//GEN-LAST:event_rSButtonHover1MouseClicked
 
     private void ckbhienthiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckbhienthiActionPerformed
-    ShowPass();
+        ShowPass();
     }//GEN-LAST:event_ckbhienthiActionPerformed
 
-       void init() {
+    private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
+        Login();       // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonHover1ActionPerformed
+
+    private void rSQRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSQRMouseClicked
+
+    }//GEN-LAST:event_rSQRMouseClicked
+
+    private void rSQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSQRActionPerformed
+        dispose();
+        QRCodeCamera qr = new QRCodeCamera();
+        qr.setVisible(true);
+      
+    }//GEN-LAST:event_rSQRActionPerformed
+
+    void init() {
         setIconImage(XImage.getAppIcon());
         setTitle("ĐĂNG NHẬP");
         setLocationRelativeTo(null);
         KT();
     }
 
+    void main() {
+        main ma = new main();
+        ma.setVisible(true);
+    }
+
+
+
     void KT() {
-        addWindowListener(new WindowAdapter () {
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e){
-                if(MsgBox.confirm(null, "Bạn muốn thoát")){
-                    if(main.hd == 1){
+            public void windowClosing(WindowEvent e) {
+                if (MsgBox.confirm(null, "Bạn muốn thoát")) {
+                    if (main.hd == 1) {
                         dispose();
-                    }else{
+                    } else {
                         System.exit(0);
                     }
                 }
             }
         });
     }
-    
+
     void ShowPass() {
         if (ckbhienthi.isSelected()) {
             txtmatkhau.setEchoChar((char) 0);
@@ -225,14 +275,14 @@ public class DangNhap extends javax.swing.JDialog {
             txtmatkhau.setEchoChar(('*'));
         }
     }
-    
+
     void Ketthuc() {
-        if(MsgBox.confirm(this, "Bạn muốn thoát")){
+        if (MsgBox.confirm(this, "Bạn muốn thoát")) {
             if (main.hd == 1) {
-            this.dispose();
-        } else {
-            System.exit(0);
-        }
+                this.dispose();
+            } else {
+                System.exit(0);
+            }
         }
     }
 
@@ -254,6 +304,10 @@ public class DangNhap extends javax.swing.JDialog {
                 this.dispose();
             }
         }
+    }
+
+    void QRCode() {
+        main.hd = 1;
     }
 
     /**
@@ -285,6 +339,10 @@ public class DangNhap extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -300,7 +358,6 @@ public class DangNhap extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox ckbhienthi;
     private javax.swing.JLabel jLabel1;
@@ -311,6 +368,7 @@ public class DangNhap extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;
+    private rojeru_san.complementos.RSButtonHover rSQR;
     private javax.swing.JTextField txtdangnhap;
     private javax.swing.JPasswordField txtmatkhau;
     // End of variables declaration//GEN-END:variables

@@ -40,7 +40,6 @@ public class QRCodeCamera extends javax.swing.JFrame implements Runnable, Thread
     public QRCodeCamera() {
         initComponents();
         initWebcam();
-      
     }
 
   
@@ -172,14 +171,14 @@ public class QRCodeCamera extends javax.swing.JFrame implements Runnable, Thread
             }
             if(result != null){       
                 main();               
-         dispose();
+                this.dispose();       
             }
         }while(true);
     }
-  
     void main(){
          main ma = new main();
-         ma.setVisible(true);
+         new DangNhap(null, true).setVisible(false);
+     ma.setVisible(true);
     }
     @Override
     public Thread newThread(Runnable r) {

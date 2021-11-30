@@ -89,7 +89,7 @@ public class TaiKhoanDao extends EduSysDAO<TaiKhoan, String>{
         return selectBySql(sql);
     }
      public List<TaiKhoan> selectById2(String id) {
-                     String sql="  SELECT * FROM TaiKhoan LEFT JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where   TaiKhoan.VaiTro  = 2 AND SinhVien.MaTaiKhoan = ?";
+                     String sql="SELECT * FROM TaiKhoan LEFT JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where   TaiKhoan.VaiTro  = 2 AND SinhVien.MaTaiKhoan = ?";
          return selectBySql(sql, id);
     }
 }

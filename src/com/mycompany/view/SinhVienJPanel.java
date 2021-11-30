@@ -382,7 +382,7 @@ fillcomboboxMaTK();
         cbbmalophoc.setSelectedItem(String.valueOf(sv.getMaLopHoc()));
         rdonam.setSelected(sv.isGioiTinh() ? true : false);
         rdonu.setSelected(sv.isGioiTinh() ? false : true);
-      
+        fillcbbshowMaTK();
         if (sv.getHinh() != null) {
             lblHinh.setToolTipText(sv.getHinh());
             lblHinh.setIcon(XImage.read(sv.getHinh()));
@@ -404,7 +404,7 @@ fillcomboboxMaTK();
         sv.setDiaChi(txtDiaChi.getText());
         sv.setGioiTinh(rdonam.isSelected() ? true : false);
         sv.setHinh(lblHinh.getToolTipText());
-//        sv.setMaTK(cbb_Mataikhoan.getSelectedItem());
+        sv.setMaTK(cbb_Mataikhoan.getSelectedItem().toString());
         return sv;
     }
     JFileChooser fileChooser = new JFileChooser();
@@ -599,6 +599,15 @@ fillcomboboxMaTK();
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+    public void fillcbbshowMaTK(){
+        DefaultComboBoxModel model = (DefaultComboBoxModel)cbb_Mataikhoan.getModel();
+        model.removeAllElements();
+        try {
+       model.addElement(tblStudent.getValueAt(row, 10));
+         
+        } catch (Exception e) {
         }
     }
 

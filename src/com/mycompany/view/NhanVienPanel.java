@@ -127,17 +127,17 @@ public class NhanVienPanel extends javax.swing.JPanel {
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã NV", "Tên NV", "Số điện thoại", "Email", "Địa chỉ", "Ngày Sinh", "Giới Tính", "Mã CN", "Hình"
+                "Mã NV", "Tên NV", "Số điện thoại", "Email", "Địa chỉ", "Ngày Sinh", "Giới Tính", "Mã CN", "Hình", "Mã Tài Khoản"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -403,7 +403,8 @@ public class NhanVienPanel extends javax.swing.JPanel {
                     nv.getNgaySinh(),
                     nv.isGioiTinh() ? "Nam" : "Nữ",
                     nv.getMaChuyenNganh(),
-                    nv.getHinh()
+                    nv.getHinh(),
+                    nv.getMaTaiKhoan()
                 };
                 model.addRow(row);
             }
@@ -515,9 +516,17 @@ public class NhanVienPanel extends javax.swing.JPanel {
         jdcNgaySinh.setDate(nv.getNgaySinh());
         rdoNam.setSelected(!nv.isGioiTinh());
         rdoNu.setSelected(nv.isGioiTinh());
-        cbb_MaTK.setSelectedItem(nv.getMaTaiKhoan());
+        fillcbbshowMaTK();
     }
-
+    public void fillcbbshowMaTK(){
+        DefaultComboBoxModel model = (DefaultComboBoxModel)cbb_MaTK.getModel();
+        model.removeAllElements();
+        try {
+       model.addElement(tblNhanVien.getValueAt(row, 9));
+         
+        } catch (Exception e) {
+        }
+    }
     void delete() {
         String MaNhanVien = txtMaNV2.getText();
         try {

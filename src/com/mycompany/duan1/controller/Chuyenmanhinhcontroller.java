@@ -96,12 +96,9 @@ this.listItem = listItem;
                   node = new TrangChuPanel();
                   break;
                    case "SinhVien":
-                       if(Auth.isSinhVien()){
-            MsgBox.alert(null, "BẠN K CÓ QUYỀN TRUY CẬP");
-            return;
-         }else{
+              
           node = new SinhVienJPanel();           
-                      }
+                 
                
                       break;
                   case "NhanVien":

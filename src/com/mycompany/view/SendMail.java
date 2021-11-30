@@ -15,6 +15,8 @@ import java.io.File;
 import java.net.URI;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.Message;
@@ -29,6 +31,8 @@ import javax.mail.internet.MimeMultipart;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,6 +45,17 @@ public class SendMail extends javax.swing.JPanel {
      * Creates new form SendMail
      */
     public SendMail() {
+     try {
+         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+     } catch (ClassNotFoundException ex) {
+         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (InstantiationException ex) {
+         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (IllegalAccessException ex) {
+         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (UnsupportedLookAndFeelException ex) {
+         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+     }
         initComponents();
         init();
     }
@@ -421,6 +436,7 @@ File file = new File(sendFile.getName());
     LopHocDAO lhdao = new LopHocDAO();
         SinhVienDao svdao = new SinhVienDao();
     void init(){
+        
        chonChuyenNganh();
    }
     void chonChuyenNganh() {

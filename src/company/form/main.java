@@ -5,14 +5,16 @@
 package company.form;
 
 import com.mycompany.duan1.X.Auth;
-import com.mycompany.duan1.X.MsgBox;
 import com.mycompany.duan1.bean.DanhMucBean;
 import com.mycompany.duan1.controller.Chuyenmanhinhcontroller;
 
 import com.mycompany.view.DangNhap;
-
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.WebcamResolution;
 
 import com.mycompany.view.KhoiDong1;
+import com.mycompany.view.QRCodeCamera;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -36,7 +38,9 @@ import org.jfree.data.statistics.HistogramDataset;
  * @author ADMIN
  */
 public class main extends javax.swing.JFrame {
- public static int hd = 0;
+
+    public static int hd = 0;
+
     /**
      * Creates new form main
      */
@@ -45,37 +49,29 @@ public class main extends javax.swing.JFrame {
         setTitle("Quản Lý Học Viên");
         Chuyenmanhinhcontroller controller = new Chuyenmanhinhcontroller(jpnView);
         controller.setViews(jpnTrangChu, jlbTrangChu);
-                this.openWelcome();
-        this.openLogin();
+        this.openWelcome();
+
         List<DanhMucBean> listItem = new ArrayList<>();
-        listItem.add(new DanhMucBean("TrangChu",jpnTrangChu,jlbTrangChu));
-       listItem.add(new DanhMucBean("SinhVien",jpnSinhVien,jlbHocVien));  
-       
-      
-         listItem.add(new DanhMucBean("NhanVien",jpnNhanVien,jlbNhanVien));
-         listItem.add(new DanhMucBean("MonHoc",jpnMonHoc,jlbMonHoc));
-                 listItem.add(new DanhMucBean("TTDV",jpnHocPhi,jlbHocPhi));
-         listItem.add(new DanhMucBean("QLDiem",jpnQuanLyDiem,jlbQuanLyDiem));
-         listItem.add(new DanhMucBean("QLLopHoc",jpnQuanLyLopHoc,jlbQLLopHoc));
-                 listItem.add(new DanhMucBean("QLTaiKhoan",jpnQuanLyTaiKhoan,jlbQLTK));
-         listItem.add(new DanhMucBean("SendMail",jpnGuiTinNhan,jlbGuiTinNhan));
-         listItem.add(new DanhMucBean("LichHoc",jpnLichHoc,jlbLichHoc));
-         listItem.add(new DanhMucBean("TKDL",jpnThongKeDuLieu,jlbtkdl));
-         listItem.add(new DanhMucBean("DoiMatKhau",jpnDoiMatKhau,jlbDoiMatKhau));
-         
-  
-        
+        listItem.add(new DanhMucBean("TrangChu", jpnTrangChu, jlbTrangChu));
+        listItem.add(new DanhMucBean("SinhVien", jpnSinhVien, jlbHocVien));
+        listItem.add(new DanhMucBean("NhanVien", jpnNhanVien, jlbNhanVien));
+        listItem.add(new DanhMucBean("MonHoc", jpnMonHoc, jlbMonHoc));
+        listItem.add(new DanhMucBean("TTDV", jpnHocPhi, jlbHocPhi));
+        listItem.add(new DanhMucBean("QLDiem", jpnQuanLyDiem, jlbQuanLyDiem));
+        listItem.add(new DanhMucBean("QLLopHoc", jpnQuanLyLopHoc, jlbQLLopHoc));
+        listItem.add(new DanhMucBean("QLTaiKhoan", jpnQuanLyTaiKhoan, jlbQLTK));
+        listItem.add(new DanhMucBean("SendMail", jpnGuiTinNhan, jlbGuiTinNhan));
+        listItem.add(new DanhMucBean("LichHoc", jpnLichHoc, jlbLichHoc));
+        listItem.add(new DanhMucBean("TKDL", jpnThongKeDuLieu, jlbtkdl));
+        listItem.add(new DanhMucBean("DoiMatKhau", jpnDoiMatKhau, jlbDoiMatKhau));
 
         controller.setEvent(listItem);
-}
-  
-    void openWelcome (){
+    }
+
+    void openWelcome() {
         new KhoiDong1(this, true).setVisible(true);
     }
-    
-    void openLogin () {
-        new DangNhap(this, true).setVisible(true);
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -472,26 +468,25 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnDangXuatMousePressed
 
     private void jpnDangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnDangXuatMouseExited
-  jpnDangXuat.setBackground(new Color(51,51,51));
-   jpnDangXuat.setBackground(new Color(51,51,51));        // TODO add your handling code here:
+        jpnDangXuat.setBackground(new Color(51, 51, 51));
+        jpnDangXuat.setBackground(new Color(51, 51, 51));        // TODO add your handling code here:
     }//GEN-LAST:event_jpnDangXuatMouseExited
 
     private void jpnDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnDangXuatMouseEntered
         // TODO add your handling code here:
-          jpnDangXuat.setBackground(new Color(159 ,182, 205));
-           jpnDangXuat.setBackground(new Color(159, 182, 205)); 
+        jpnDangXuat.setBackground(new Color(159, 182, 205));
+        jpnDangXuat.setBackground(new Color(159, 182, 205));
     }//GEN-LAST:event_jpnDangXuatMouseEntered
 
     private void jpnDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnDangXuatMouseClicked
-new DangNhap(this, true).setVisible(true);      // TODO add your handling code here:
+        System.exit(0);   // TODO add your handling code here:
     }//GEN-LAST:event_jpnDangXuatMouseClicked
 
     private void jlbDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDangXuatMouseClicked
-new DangNhap(this, true).setVisible(true);    // TODO add your handling code here:
+        new DangNhap(this, true).setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jlbDangXuatMouseClicked
 
     private void jlbDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDoiMatKhauMouseClicked
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jlbDoiMatKhauMouseClicked
@@ -501,31 +496,31 @@ new DangNhap(this, true).setVisible(true);    // TODO add your handling code her
     }//GEN-LAST:event_jpnThongKeDuLieuAncestorMoved
 
     private void jpnDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnDoiMatKhauMouseClicked
-    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jpnDoiMatKhauMouseClicked
 
     private void jpnDoiMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnDoiMatKhauMouseEntered
-          jpnDoiMatKhau.setBackground(new Color(159 ,182, 205));
-           jpnDoiMatKhau.setBackground(new Color(159, 182, 205));        // TODO add your handling code here:
+        jpnDoiMatKhau.setBackground(new Color(159, 182, 205));
+        jpnDoiMatKhau.setBackground(new Color(159, 182, 205));        // TODO add your handling code here:
     }//GEN-LAST:event_jpnDoiMatKhauMouseEntered
 
     private void jpnDoiMatKhauMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnDoiMatKhauMouseExited
- 
-              jpnDoiMatKhau.setBackground(new Color(51,51,51));
-              jpnDoiMatKhau.setBackground(new Color(51,51,51));
-                // TODO add your handling code here:
+
+        jpnDoiMatKhau.setBackground(new Color(51, 51, 51));
+        jpnDoiMatKhau.setBackground(new Color(51, 51, 51));
+        // TODO add your handling code here:
     }//GEN-LAST:event_jpnDoiMatKhauMouseExited
 
     private void jlbDoiMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDoiMatKhauMouseEntered
         // TODO add your handling code here:
-         jpnDoiMatKhau.setBackground(new Color(159 ,182, 205));
-           jpnDoiMatKhau.setBackground(new Color(159, 182, 205));
+        jpnDoiMatKhau.setBackground(new Color(159, 182, 205));
+        jpnDoiMatKhau.setBackground(new Color(159, 182, 205));
     }//GEN-LAST:event_jlbDoiMatKhauMouseEntered
 
     private void jlbDoiMatKhauMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDoiMatKhauMouseExited
         // TODO add your handling code here:
-        jpnDoiMatKhau.setBackground(new Color(51,51,51));
-              jpnDoiMatKhau.setBackground(new Color(51,51,51));
+        jpnDoiMatKhau.setBackground(new Color(51, 51, 51));
+        jpnDoiMatKhau.setBackground(new Color(51, 51, 51));
     }//GEN-LAST:event_jlbDoiMatKhauMouseExited
 
     private void jlbDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDangXuatMouseEntered
@@ -535,16 +530,16 @@ new DangNhap(this, true).setVisible(true);    // TODO add your handling code her
 
     private void jlbDangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbDangXuatMouseExited
         // TODO add your handling code here:
-        jpnDangXuat.setBackground(new Color(51,51,51));
-              jpnDoiMatKhau.setBackground(new Color(51,51,51));
+        jpnDangXuat.setBackground(new Color(51, 51, 51));
+        jpnDoiMatKhau.setBackground(new Color(51, 51, 51));
     }//GEN-LAST:event_jlbDangXuatMouseExited
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-             processLogin(); 
+            processLogin();
         } catch (Exception e) {
         }
-              // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
     private void lbUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserNameMouseClicked
@@ -554,12 +549,11 @@ new DangNhap(this, true).setVisible(true);    // TODO add your handling code her
     /**
      * @param args the command line arguments
      */
-    public void processLogin(){
-     
-        lbUserName.setText("Hello,"+Auth.user.getTenTaiKhoan());
+    public void processLogin() {
+
+        lbUserName.setText("Hello," + Auth.user.getTenTaiKhoan());
     }
-      
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -582,6 +576,7 @@ new DangNhap(this, true).setVisible(true);    // TODO add your handling code her
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

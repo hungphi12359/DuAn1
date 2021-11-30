@@ -51,6 +51,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="265" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
@@ -70,10 +71,12 @@
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtmatkhau" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="rSQR" min="-2" pref="150" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" pref="341" max="32767" attributes="0"/>
+                  <Component id="jLabel1" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,6 +101,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rSButtonHover1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rSButtonHover2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rSQR" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
@@ -163,6 +167,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rSButtonHover1MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonHover1ActionPerformed"/>
           </Events>
         </Component>
         <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover2">
@@ -240,6 +245,21 @@
               </Border>
             </Property>
           </Properties>
+        </Component>
+        <Component class="rojeru_san.complementos.RSButtonHover" name="rSQR">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="d7" green="42" red="5c" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="QR CODE"/>
+            <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="d7" green="42" red="5c" type="rgb"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rSQRMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSQRActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
