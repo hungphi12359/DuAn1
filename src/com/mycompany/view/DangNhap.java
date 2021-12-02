@@ -236,7 +236,7 @@ public class DangNhap extends javax.swing.JDialog {
         dispose();
         QRCodeCamera qr = new QRCodeCamera();
         qr.setVisible(true);
-      
+ 
     }//GEN-LAST:event_rSQRActionPerformed
 
     void init() {
@@ -245,29 +245,7 @@ public class DangNhap extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         KT();
     }
-
-    void main() {
-        main ma = new main();
-        ma.setVisible(true);
-    }
-
-
-
-    void KT() {
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                if (MsgBox.confirm(null, "Bạn muốn thoát")) {
-                    if (main.hd == 1) {
-                        dispose();
-                    } else {
-                        System.exit(0);
-                    }
-                }
-            }
-        });
-    }
-
+    
     void ShowPass() {
         if (ckbhienthi.isSelected()) {
             txtmatkhau.setEchoChar((char) 0);
@@ -275,14 +253,19 @@ public class DangNhap extends javax.swing.JDialog {
             txtmatkhau.setEchoChar(('*'));
         }
     }
+    
+    void KT() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+    }
 
     void Ketthuc() {
         if (MsgBox.confirm(this, "Bạn muốn thoát")) {
-            if (main.hd == 1) {
-                this.dispose();
-            } else {
-                System.exit(0);
-            }
+            System.exit(0);
         }
     }
 
@@ -300,14 +283,10 @@ public class DangNhap extends javax.swing.JDialog {
                 txtmatkhau.requestFocus();
             } else {
                 Auth.user = tk;
-                main.hd = 1;
                 this.dispose();
+                new main().setVisible(true);
             }
         }
-    }
-
-    void QRCode() {
-        main.hd = 1;
     }
 
     /**
@@ -335,6 +314,14 @@ public class DangNhap extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

@@ -23,13 +23,16 @@ public class ThongKeDaoImpl implements ThongKeDao{
     public List<LopHocBean> getListByLopHoc() {
         try {
             Connection cons = XJdbc.getConnection();
-            String sql = "select NgayDangKy, TenLopHoc  from LopHoc group by NgayDangKy,TenLopHoc";
+            String sql = "SELECT  SinhVien.MaLopHoc , LopHoc.NgayDangKy, COUNT(SinhVien.MaLopHoc) AS 'Số Lượng Sinh Viên' FROM SinhVien   INNER JOIN LopHoc  ON SinhVien.MaLopHoc = LopHoc.MaLopHoc GROUP BY SinhVien.MaLopHoc, LopHoc.NgayDangKy";
             List<LopHocBean> list = new ArrayList<>();
             PreparedStatement ps = cons.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                LopHocBean lopHocBean = new LopHocBean(); lopHocBean.setNgayDangKy(rs.getDate("NgayDangKy"));
-                lopHocBean.setTenLopHoc(rs.getString("TenLopHoc"));
+                LopHocBean lopHocBean = new LopHocBean();
+                lopHocBean.setMaLopHoc(rs.getString("MaLopHoc"));
+                lopHocBean.setNgayDangKy(rs.getDate("NgayDangKy"));
+                
+                lopHocBean.setSoLuongSinhVien(rs.getInt("Số Lượng Sinh Viên"));
                 list.add(lopHocBean);
             }
             return list;
@@ -43,16 +46,14 @@ public class ThongKeDaoImpl implements ThongKeDao{
     public List<MonHocBean> getListByDoanhThu() {
          try {
             Connection cons = XJdbc.getConnection();
-            String sql = " select HocPhi,MaMonHoc,NgayBatDau,NgayKetThuc,HocKy from MonHoc where HocKy like 'fall2021' ";
+            String sql = " select sum(HocPhi) as N'HocPhi', NgayTaoHD, HocKy from HoaDon group by NgayTaoHD, HocKy";
             List<MonHocBean> list = new ArrayList<>();
             PreparedStatement ps = cons.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 MonHocBean monHocBean = new MonHocBean();
-                monHocBean.setHocPhi(rs.getFloat("HocPhi"));
-                monHocBean.setMaMonHoc(rs.getString("MaMonHoc"));
-                monHocBean.setNgayBatDau(rs.getDate("NgayBatDau"));
-                monHocBean.setNgayKetThuc(rs.getDate("NgayKetThuc"));
+                monHocBean.setHocPhi(rs.getDouble("HocPhi"));
+                monHocBean.setNgayTaoHD(rs.getDate("NgayTaoHD"));
                 monHocBean.setHocKy(rs.getString("HocKy"));
                 list.add(monHocBean);
             }

@@ -45,17 +45,7 @@ public class SendMail extends javax.swing.JPanel {
      * Creates new form SendMail
      */
     public SendMail() {
-     try {
-         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-     } catch (ClassNotFoundException ex) {
-         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (InstantiationException ex) {
-         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (IllegalAccessException ex) {
-         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (UnsupportedLookAndFeelException ex) {
-         Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
-     }
+   
         initComponents();
         init();
     }

@@ -14,14 +14,16 @@ public class LopHocBean {
     private  Date NgayDangKy;
     private  int SoLuongSinhVien;
     private String TenLopHoc;
+        private String MaLopHoc;
 
     public LopHocBean() {
     }
 
-    public LopHocBean(Date NgayDangKy, int SoLuongSinhVien, String TenLopHoc) {
+    public LopHocBean(Date NgayDangKy, int SoLuongSinhVien, String TenLopHoc, String MaLopHoc) {
         this.NgayDangKy = NgayDangKy;
         this.SoLuongSinhVien = SoLuongSinhVien;
         this.TenLopHoc = TenLopHoc;
+        this.MaLopHoc = MaLopHoc;
     }
 
     public Date getNgayDangKy() {
@@ -48,6 +50,14 @@ public class LopHocBean {
         this.TenLopHoc = TenLopHoc;
     }
 
-    
+    public String getMaLopHoc() {
+        return MaLopHoc;
+    }
+
+    public void setMaLopHoc(String MaLopHoc) {
+        this.MaLopHoc = MaLopHoc;
+    }
+
+  
     
 }

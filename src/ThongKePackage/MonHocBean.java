@@ -5,6 +5,7 @@
 package ThongKePackage;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,18 +15,22 @@ public class MonHocBean {
     private  Date NgayKetThuc;
     private  Date NgayBatDau;
     private  String MaMonHoc;
-    private float HocPhi;
+    private double HocPhi;
     private  String HocKy;
+    private  double TongTien;
+    private Date NgayTaoHD;
 
     public MonHocBean() {
     }
 
-    public MonHocBean(Date NgayKetThuc, Date NgayBatDau, String MaMonHoc, float HocPhi, String HocKy) {
+    public MonHocBean(Date NgayKetThuc, Date NgayBatDau, String MaMonHoc, double HocPhi, String HocKy, double TongTien, Date NgayTaoHD) {
         this.NgayKetThuc = NgayKetThuc;
         this.NgayBatDau = NgayBatDau;
         this.MaMonHoc = MaMonHoc;
         this.HocPhi = HocPhi;
         this.HocKy = HocKy;
+        this.TongTien = TongTien;
+        this.NgayTaoHD = NgayTaoHD;
     }
 
     public Date getNgayKetThuc() {
@@ -52,11 +57,11 @@ public class MonHocBean {
         this.MaMonHoc = MaMonHoc;
     }
 
-    public float getHocPhi() {
+    public double getHocPhi() {
         return HocPhi;
     }
 
-    public void setHocPhi(float HocPhi) {
+    public void setHocPhi(double HocPhi) {
         this.HocPhi = HocPhi;
     }
 
@@ -68,8 +73,21 @@ public class MonHocBean {
         this.HocKy = HocKy;
     }
 
-  
+    public double getTongTien() {
+        return TongTien;
+    }
 
-    
+    public void setTongTien(double TongTien) {
+        this.TongTien = TongTien;
+    }
+
+    public Date getNgayTaoHD() {
+        return NgayTaoHD;
+    }
+
+    public void setNgayTaoHD(Date NgayTaoHD) {
+        this.NgayTaoHD = NgayTaoHD;
+    }
+
     
 }

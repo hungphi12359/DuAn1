@@ -49,14 +49,12 @@ public class QRCodeCamera extends javax.swing.JFrame implements Runnable, Thread
         Dimension size = WebcamResolution.QVGA.getSize();
         webcam = Webcam.getWebcams().get(0);
         webcam.setViewSize(size);
-
         panel = new WebcamPanel(webcam);
         panel.setPreferredSize(size);
         panel.setFPSDisplayed(true);
-
         jPanel1.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 330));
         executor.execute(this);
-
+        setLocationRelativeTo(this);
     }
     
     public static void main(String args[]) {

@@ -22,7 +22,7 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
            
         QuanLyThongKeController controller = new  QuanLyThongKeController();
         controller.setDatatoChart1(jpnView1);
-        controller.setDataToChart2(jpnview2);
+        controller.setDatatoChart3(jpnview2);
         if(Auth.isSinhVien()){
             this.Tabs.setEnabledAt(0, false);
             this.Tabs.setSelectedIndex(1);
@@ -61,10 +61,10 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         );
         jpnView1Layout.setVerticalGroup(
             jpnView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jpnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1070, 300));
+        jPanel2.add(jpnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1070, 290));
 
         javax.swing.GroupLayout jpnview2Layout = new javax.swing.GroupLayout(jpnview2);
         jpnview2.setLayout(jpnview2Layout);
@@ -74,10 +74,10 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         );
         jpnview2Layout.setVerticalGroup(
             jpnview2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 1070, 260));
+        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1070, 340));
 
         Tabs.addTab("THỐNG KÊ", jPanel2);
 

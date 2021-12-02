@@ -106,6 +106,10 @@ final String SELECT_BY_ID_MaChuyenNganh = "select * from MonHoc where MaChuyenNg
         String sql="select * from MonHoc where MaChuyenNganh like ?";
         return this.selectBySql(sql, MaCN);
     }
+    public List<MonHoc> selectByHocKy(String MaHK){
+        String sql="select * from MonHoc where HocKy like ?";
+        return this.selectBySql(sql, MaHK);
+    }
     
     
 }

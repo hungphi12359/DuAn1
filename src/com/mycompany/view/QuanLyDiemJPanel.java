@@ -14,6 +14,7 @@ import com.mycompany.duan1.model.MonHoc;
 import com.mycompany.duan1.model.SinhVien;
 import java.awt.Color;
 import static java.awt.Color.white;
+import java.awt.Scrollbar;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -72,8 +73,6 @@ void fixTable(){
         btnXoa = new rojeru_san.complementos.RSButtonHover();
         btnSua = new rojeru_san.complementos.RSButtonHover();
         btnMoi = new rojeru_san.complementos.RSButtonHover();
-        Scrollbar = new javax.swing.JScrollPane();
-        tblDiem = new rojeru_san.complementos.RSTableMetro();
         cbbMaMonHoc = new combobox.Combobox();
         txtDiemLab1 = new textfield.TextField111();
         txtDiemLab2 = new textfield.TextField1111();
@@ -89,6 +88,8 @@ void fixTable(){
         txtMaDiem = new textfield.MaDiem();
         txtMaSV = new textfield.MaSinhVien();
         txttimkiem = new textfield.FindMaSinhVien();
+        Scrollbar = new javax.swing.JScrollPane();
+        tblDiem1 = new rojeru_san.complementos.RSTableMetro();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -144,45 +145,6 @@ void fixTable(){
                 btnMoiActionPerformed(evt);
             }
         });
-
-        tblDiem.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mã điểm", "Mã Sinh Viên", "Mã Môn Học", "Lab 1", "Lab 2", "Lab 3", "Lab 4", "Lab 5", "Lab 6", "Lab 7", "Lab 8", "Điểm Ass1", "Điểm Ass2", "Điểm Doc", "Điểm Trung Bình"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblDiem.setColorBackgoundHead(new java.awt.Color(204, 0, 51));
-        tblDiem.setColorBordeFilas(new java.awt.Color(255, 255, 255));
-        tblDiem.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tblDiem.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        tblDiem.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
-        tblDiem.setColorSelBackgound(new java.awt.Color(204, 204, 204));
-        tblDiem.setRowHeight(40);
-        tblDiem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDiemMouseClicked(evt);
-            }
-        });
-        Scrollbar.setViewportView(tblDiem);
 
         cbbMaMonHoc.setForeground(new java.awt.Color(0, 204, 51));
         cbbMaMonHoc.addActionListener(new java.awt.event.ActionListener() {
@@ -285,11 +247,42 @@ void fixTable(){
 
         txttimkiem.setForeground(new java.awt.Color(0, 0, 204));
 
+        tblDiem1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã Điểm", "Mã Sinh Viên", "Mã Môn Học", "Lab 1", "Lab 2", "Lab 3", "Lab 4", "Lab 5", "Lab 6", "Lab 7", "Lab 8", "Điểm Assignment GD1", "Điểm Assignment GD2", "Điểm Doccument"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblDiem1.setColorBackgoundHead(new java.awt.Color(204, 0, 51));
+        tblDiem1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tblDiem1.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tblDiem1.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tblDiem1.setColorSelBackgound(new java.awt.Color(153, 153, 153));
+        tblDiem1.setRowHeight(25);
+        tblDiem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDiem1MouseClicked(evt);
+            }
+        });
+        Scrollbar.setViewportView(tblDiem1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Scrollbar)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -335,6 +328,7 @@ void fixTable(){
                         .addGap(18, 18, 18)
                         .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 173, Short.MAX_VALUE))
+            .addComponent(Scrollbar)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,9 +366,9 @@ void fixTable(){
                         .addComponent(txttimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10)
-                .addComponent(Scrollbar, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Scrollbar, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(328, 328, 328))
         );
 
         tabs.addTab("Quản Lý Điểm", jPanel1);
@@ -471,7 +465,7 @@ void fixTable(){
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabs.addTab("Thông Tin Sinh Viên", jPanel2);
@@ -484,16 +478,9 @@ void fixTable(){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs)
+            .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tblDiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiemMouseClicked
-if(evt.getClickCount() == 2){
-row = tblDiem.getSelectedRow();
-edit();
-}
-    }//GEN-LAST:event_tblDiemMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
       insert();
@@ -550,6 +537,13 @@ FillTableInfo();
     private void txtDiemLab1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDiemLab1FocusLost
 
     }//GEN-LAST:event_txtDiemLab1FocusLost
+
+    private void tblDiem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiem1MouseClicked
+if(evt.getClickCount() == 2){
+row = tblDiem1.getSelectedRow();
+edit();        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDiem1MouseClicked
+    }
     MonHocDao mhdao = new MonHocDao();
     void chonMonHoc(){
         List<MonHoc> list = mhdao.selectAll();
@@ -573,7 +567,7 @@ FillTableInfo();
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane tabs;
-    private rojeru_san.complementos.RSTableMetro tblDiem;
+    private rojeru_san.complementos.RSTableMetro tblDiem1;
     private rojeru_san.complementos.RSTableMetro tblStudent;
     private textfield.TextField111111_1 txtDiemASS1;
     private textfield.TextField11111_1 txtDiemASS2;
@@ -595,7 +589,7 @@ FillTableInfo();
     DiemDAO diemDAO = new DiemDAO();
 int i = 1;
    void filltable() {
-        DefaultTableModel model = (DefaultTableModel) tblDiem.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblDiem1.getModel();
         model.setRowCount(0);
         List<Diem> list = diemDAO.selectAll();
         for (Diem d : list) {
@@ -622,7 +616,7 @@ int i = 1;
     }
    void fillSelectDiem() {
        try {
-                    DefaultTableModel model = (DefaultTableModel)tblDiem.getModel();
+                    DefaultTableModel model = (DefaultTableModel)tblDiem1.getModel();
     model.setRowCount(0);
                String keyword = txttimkiem.getText();
             List<Diem> list = diemDAO.selectByMaSV(keyword);
@@ -659,7 +653,7 @@ int i = 1;
     }
    
     void edit() {
-        Integer MaDiem = (Integer) tblDiem.getValueAt(this.row, 0);
+        Integer MaDiem = (Integer) tblDiem1.getValueAt(this.row, 0);
         Diem d = diemDAO.selectByMaDiem(MaDiem);
         tabs.setSelectedIndex(0);
         setForm(d);

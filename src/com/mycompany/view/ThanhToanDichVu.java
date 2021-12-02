@@ -9,13 +9,17 @@ import com.mycompany.duan1.X.DatabaseConnection;
 import com.mycompany.duan1.X.MsgBox;
 import com.mycompany.duan1.X.XJdbc;
 import com.mycompany.duan1.controller.MyCombobox;
+import com.mycompany.duan1.dao.ChuyenNganhDao;
 import com.mycompany.duan1.dao.DAOHoaDon;
 import com.mycompany.duan1.dao.HoaDonDao;
+import com.mycompany.duan1.dao.HocKyDao;
 import com.mycompany.duan1.dao.MonHocDao;
 import com.mycompany.duan1.dao.NhanVienDao;
 import com.mycompany.duan1.dao.SinhVienDao;
 import com.mycompany.duan1.model.ChuyenDoi;
+import com.mycompany.duan1.model.ChuyenNganh;
 import com.mycompany.duan1.model.HoaDon;
+import com.mycompany.duan1.model.HocKy;
 import com.mycompany.duan1.model.MonHoc;
 import com.mycompany.duan1.model.NhanVien;
 import com.mycompany.duan1.model.SinhVien;
@@ -44,6 +48,8 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.apache.log4j.Logger;
+import net.sf.jasperreports.view.*;
+import net.sf.jasperreports.engine.*;
 /**
  *
  * @author ADMIN
@@ -87,11 +93,6 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCTHD1 = new javax.swing.JTable();
         txtTongTien = new javax.swing.JTextField();
-        btnThanhToan = new javax.swing.JButton();
-        txtiendu = new javax.swing.JTextField();
-        txtsvtra = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtmamonhoc = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -99,24 +100,27 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         rdochuatt = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMonHoc = new rojeru_san.complementos.RSTableMetro();
+        rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
+        btnThanhToan = new rojeru_san.complementos.RSButtonHover();
+        cbbmahocky = new combobox.MaHocKy();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setForeground(new java.awt.Color(204, 0, 51));
         jLabel1.setText("Ngày tạo");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 14, -1, -1));
         jPanel1.add(txtNgayTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel2.setForeground(new java.awt.Color(204, 0, 51));
         jLabel2.setText("Số hóa đơn");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
         jPanel1.add(txtSoHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 143, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel6.setForeground(new java.awt.Color(204, 0, 51));
         jLabel6.setText("Nhân viên");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
 
@@ -124,12 +128,12 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 143, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel7.setForeground(new java.awt.Color(204, 0, 51));
         jLabel7.setText("Địa chỉ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel3.setForeground(new java.awt.Color(204, 0, 51));
         jLabel3.setText("Sinh Viên");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
         jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 190, -1));
@@ -154,17 +158,17 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         jPanel1.add(txtmachuyennganh, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 190, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel5.setForeground(new java.awt.Color(204, 0, 51));
         jLabel5.setText("Mã Chuyên Ngành");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel15.setForeground(new java.awt.Color(204, 0, 51));
         jLabel15.setText("Tình Trạng");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 90, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel8.setForeground(new java.awt.Color(204, 0, 51));
         jLabel8.setText("Điện thoại");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, -1, -1));
 
@@ -205,48 +209,16 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
                 txtTongTienActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 400, 172, 28));
-
-        btnThanhToan.setText("Thanh toán");
-        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThanhToanActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, 42));
-
-        txtiendu.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTongTienFocusLost(evt);
-            }
-        });
-        jPanel1.add(txtiendu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 154, 28));
-
-        txtsvtra.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtsvtraFocusLost(evt);
-            }
-        });
-        jPanel1.add(txtsvtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 154, 28));
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel14.setText("Tiền dư");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel12.setText("SV trả");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
+        jPanel1.add(txtTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 172, 28));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel10.setForeground(new java.awt.Color(204, 0, 51));
         jLabel10.setText("Tổng cộng");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 410, -1, -1));
-        jPanel1.add(txtmamonhoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 40, 130, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 380, -1, -1));
+        jPanel1.add(txtmamonhoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel9.setForeground(new java.awt.Color(204, 0, 51));
         jLabel9.setText("Mã MH");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 50, -1, -1));
 
@@ -285,7 +257,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         tblMonHoc.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
         tblMonHoc.setColorSelBackgound(new java.awt.Color(0, 0, 0));
         tblMonHoc.setColorSelForeground(new java.awt.Color(0, 0, 0));
-        tblMonHoc.setRowHeight(30);
+        tblMonHoc.setRowHeight(18);
         tblMonHoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblMonHocMouseClicked(evt);
@@ -293,7 +265,34 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblMonHoc);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 291, 600));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 61, 291, 550));
+
+        rSButtonHover1.setBackground(new java.awt.Color(204, 0, 51));
+        rSButtonHover1.setText("XÓA");
+        rSButtonHover1.setColorHover(new java.awt.Color(255, 51, 51));
+        rSButtonHover1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonHover1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 130, -1));
+
+        btnThanhToan.setBackground(new java.awt.Color(204, 0, 51));
+        btnThanhToan.setText("THANH TOÁN");
+        btnThanhToan.setColorHover(new java.awt.Color(255, 51, 51));
+        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhToanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 420, 130, -1));
+
+        cbbmahocky.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbmahockyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbbmahocky, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 290, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -334,38 +333,6 @@ chonChuyenDe();     // TODO add your handling code here:
 
     }//GEN-LAST:event_txtmachuyennganhKeyReleased
     HoaDonDao hddao = new HoaDonDao();
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-        if (tblMonHoc.getRowCount() <= 0) {
-            MsgBox.alert(this,"Chưa chọn sản phẩm!");
-            return;
-        }
-   
-        
-        HoaDon hd = getForm();
-                //Thêm hóa đơn vào database
-                hddao.insert(hd);
-                MsgBox.alert(this, "Đã Thanh Toán Cho Sinh Viên");
-//        //
-//        //        //Set MaHD mới thêm dc vào Hóa đơn hd
-//        //        hd.setMaHD(BLLHoaDon.GetMaHDBySoHoaDon(hd.getSoHoaDon()));
-//        //
-//        //        //Thêm tất cả chi tiết hóa đơn theo MaHD vừa thêm
-//        //        ThemCTHDTuTable(hd.getMaHD());
-//
-//        //gọi hàm xuất hóa đơn
-try {
-            XuatHoaDon();
-        } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi Xuất Hóa Đơn");
-            
-        }
-        
-//
-//        //tạo lại hóa đơn mới
-//        TaoMoiHD();
-
-    }//GEN-LAST:event_btnThanhToanActionPerformed
-
     private void txtDienThoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDienThoaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDienThoaiActionPerformed
@@ -393,19 +360,31 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTongTienActionPerformed
 
-    private void txtsvtraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtsvtraFocusLost
-double tientra = Double.parseDouble(txtsvtra.getText());
-double tongCong = Double.parseDouble(txtTongTien.getText());
-
-double tiendu =(tientra - tongCong);
-String st = ChuyenDoi.DinhDangTien(tiendu);
-txtiendu.setText(st);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsvtraFocusLost
-
     private void txtTongTienFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTongTienFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTongTienFocusLost
+
+    private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
+DeletaRowTable();
+    }//GEN-LAST:event_rSButtonHover1ActionPerformed
+
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        if (tblMonHoc.getRowCount() <= 0) {
+            MsgBox.alert(this,"Chưa chọn sản phẩm!");
+            return;
+        }
+   
+        
+        HoaDon hd = getForm();
+                //Thêm hóa đơn vào database
+                hddao.insert(hd);
+                MsgBox.alert(this, "Đã Thanh Toán Cho Sinh Viên");
+
+    }//GEN-LAST:event_btnThanhToanActionPerformed
+
+    private void cbbmahockyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmahockyActionPerformed
+filltablemonhoc();        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbmahockyActionPerformed
      private void ThemSanPhamTbCTHD( String MaChuyenNganh, double HocPhi,
            double ThanhTien, String HocKy) {
 
@@ -426,7 +405,7 @@ txtiendu.setText(st);
       fillComboBoxNhanVien();
       fillComboBoxsINHVien();
       txtNgayTao.setText(ChuyenDoi.DinhDangNgay(ChuyenDoi.now()));
- 
+ fillComboBoxHocKy();
     
   }
     SinhVienDao svdao = new SinhVienDao();
@@ -491,30 +470,66 @@ void Filltable(){
         return hd;
         
     }
-    
-    public void XuatHoaDon() throws SQLException{
-         try {
-            
-            Hashtable map = new Hashtable();
-            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\ADMIN\\Documents\\QuanLySinhVientest\\QuanLySinhVien\\src\\report\\report1.jrxml");
-    JasperPrint p = JasperFillManager.fillReport(report,  map, DBConnection.conn );
-            JasperViewer.viewReport(p, false);
-            JasperExportManager.exportReportToPdfFile(p, "Xuat.pdf");
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+    void DeletaRowTable(){
+        DefaultTableModel tblModel = (DefaultTableModel)tblCTHD1.getModel();
+        if(tblCTHD1.getSelectedRowCount() == 1){
+            tblModel.removeRow(tblCTHD1.getSelectedRow());
+        }else{
+            if(tblCTHD1.getSelectedRowCount() == 0){
+                MsgBox.alert(this, "Bạn Chưa Chọn Gì Cả");
+            }else{
+                  MsgBox.alert(this, "Bạn Chỉ Được Phép Xóa Từng Dòng");
+            }
         }
+    }
+    HocKyDao hkdao = new HocKyDao();
+    void fillComboBoxHocKy() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmahocky.getModel();
+        model.removeAllElements();
+        try {
+            List<HocKy> list = hkdao.selectAll();
+            for (HocKy cd : list) {
+                model.addElement(cd.getMaHocKy());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }
+
+    }
+    MonHocDao mhdao = new MonHocDao();
+      void filltablemonhoc() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) tblMonHoc.getModel();
+          
+              model.setRowCount(0);
+            try {
+                String hocky = cbbmahocky.getSelectedItem().toString();
+                List<MonHoc> list = mhdao.selectByHocKy(hocky);
+                
+                for (MonHoc cd : list) {
+                      Object [] row =  {cd.getMaMonHoc(),cd.getMaChuyenNganh(),cd.getHocPhi(),cd.getHocKy()};
+        model.addRow(row);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }
+
     }
 
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnThanhToan;
+    private rojeru_san.complementos.RSButtonHover btnThanhToan;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbKH;
+    private combobox.MaHocKy cbbmahocky;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -526,6 +541,7 @@ void Filltable(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private javax.swing.JRadioButton rdochuatt;
     private javax.swing.JRadioButton rdott;
     private javax.swing.JTable tblCTHD1;
@@ -535,9 +551,7 @@ void Filltable(){
     private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtSoHoaDon;
     private javax.swing.JTextField txtTongTien;
-    private javax.swing.JTextField txtiendu;
     private javax.swing.JTextField txtmachuyennganh;
     private javax.swing.JTextField txtmamonhoc;
-    private javax.swing.JTextField txtsvtra;
     // End of variables declaration//GEN-END:variables
 }
