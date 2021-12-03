@@ -62,27 +62,27 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         jpnView1.setLayout(jpnView1Layout);
         jpnView1Layout.setHorizontalGroup(
             jpnView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1070, Short.MAX_VALUE)
+            .addGap(0, 1090, Short.MAX_VALUE)
         );
         jpnView1Layout.setVerticalGroup(
             jpnView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 290, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jpnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1070, 290));
+        jPanel2.add(jpnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1090, 290));
 
         javax.swing.GroupLayout jpnview2Layout = new javax.swing.GroupLayout(jpnview2);
         jpnview2.setLayout(jpnview2Layout);
         jpnview2Layout.setHorizontalGroup(
             jpnview2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1070, Short.MAX_VALUE)
+            .addGap(0, 1090, Short.MAX_VALUE)
         );
         jpnview2Layout.setVerticalGroup(
             jpnview2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 340, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1070, 340));
+        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1090, 340));
 
         Tabs.addTab("THỐNG KÊ", jPanel2);
 

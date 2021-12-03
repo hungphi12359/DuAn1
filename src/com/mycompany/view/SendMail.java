@@ -69,8 +69,6 @@ public class SendMail extends javax.swing.JPanel {
         txtlinkfile = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtngnhan = new app.bolivia.swing.JCTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtcc = new app.bolivia.swing.JCTextField();
         jLabel7 = new javax.swing.JLabel();
         txtsubject = new app.bolivia.swing.JCTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -96,7 +94,7 @@ public class SendMail extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txttk.setText("phinphd04328@fpt.edu.vn");
+        txttk.setText("phinphpd04328@fpt.edu.vn");
         jPanel1.add(txttk, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 237, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -120,34 +118,28 @@ public class SendMail extends javax.swing.JPanel {
                 rSButtonHover1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 60, -1));
+        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 60, -1));
 
         txtlinkfile.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtlinkfile.setText("Bạn Chưa Chọn File Nào !");
-        jPanel1.add(txtlinkfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 300, 440, 30));
+        jPanel1.add(txtlinkfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 440, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 102));
         jLabel5.setText("Đính Kèm File:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, 30));
         jPanel1.add(txtngnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 480, 40));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel6.setText("N Người Nhận: ");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 160, 20));
-        jPanel1.add(txtcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 480, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 102));
         jLabel7.setText("Nội Dung: ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, 41));
-        jPanel1.add(txtsubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 630, 41));
+        jPanel1.add(txtsubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 480, 41));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
         jLabel8.setText("Tiêu Đề: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, 41));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, -1, 41));
 
         txtmessage.setColumns(20);
         txtmessage.setRows(5);
@@ -376,11 +368,9 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover5ActionPerformed
  int row = -1;
     void sendmail(){
-   final String username = txttk.getText();
-        final String password = new String(txtpass.getPassword())   ;
+  final String username = txttk.getText();
+        final String password = new String(txtpass.getPassword());
 
-    
-//    contentPart.setContent(body,"text/html, charset=utf-8");
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
@@ -395,35 +385,24 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
                 });
 
         try {
-MimeBodyPart filePart = new MimeBodyPart();
-File file = new File(sendFile.getName());
-            FileDataSource fds = new FileDataSource(file);
-            filePart.setDataHandler(new DataHandler(fds));
-            filePart.setFileName(file.getName());
-            MimeMultipart multipart = new MimeMultipart();
-            multipart.addBodyPart(filePart);
-            
-            
-            
+
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(txttk.getText()));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(txtngnhan.getText())
             );
-//                            String ccEmails = txtcc.getText();
-//            message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmails));
             message.setSubject(txtsubject.getText());
             message.setText(txtmessage.getText());
-            message.setContent(multipart);
+            message.setFileName(sendFile.getName());
             Transport.send(message);
-            
 
             System.out.println("Done");
 
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    
 }
 
    ChuyenNganhDao cndao = new ChuyenNganhDao();
@@ -541,7 +520,6 @@ File file = new File(sendFile.getName());
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -557,7 +535,6 @@ File file = new File(sendFile.getName());
     private javax.swing.JTabbedPane tabs;
     private rojeru_san.complementos.RSTableMetro tblStudent;
     private textfield.timkiem timkiem2;
-    private app.bolivia.swing.JCTextField txtcc;
     private javax.swing.JLabel txtlinkfile;
     private javax.swing.JTextArea txtmessage;
     private app.bolivia.swing.JCTextField txtngnhan;
