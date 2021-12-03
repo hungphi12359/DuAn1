@@ -523,6 +523,9 @@
         <Component class="combobox.MaTaiKhoan" name="cbb_MaTK">
         </Component>
         <Component class="textfield.timkiem" name="txttimkiem">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttimkiemActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

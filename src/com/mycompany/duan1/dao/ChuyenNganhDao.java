@@ -17,22 +17,31 @@ public class ChuyenNganhDao  extends EduSysDAO<ChuyenNganh, String>{
 
     @Override
     public void insert(ChuyenNganh entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     String sql="INSERT INTO [dbo].[ChuyenNganh]([MaChuyenNganh],[TenChuyenNganh])VALUES(?,?)";
+        XJdbc.update(sql, 
+                entity.getMaChuyenNganh(), 
+                entity.getTenChuyenNganh());
     }
 
     @Override
     public void update(ChuyenNganh entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+              String sql="UPDATE [dbo].[ChuyenNganh] SET [TenChuyenNganh] = ? WHERE MaChuyenNganh = ?";
+        XJdbc.update(sql, 
+                entity.getTenChuyenNganh(),entity.getMaChuyenNganh()
+        );
     }
 
     @Override
     public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           String sql="DELETE FROM [dbo].[ChuyenNganh] WHERE MaChuyenNganh = ?";
+        XJdbc.update(sql, id);
     }
 
     @Override
     public ChuyenNganh selectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                         String sql="SELECT * FROM ChuyenNganh where MaChuyenNganh = ?";
+     List<ChuyenNganh> list = this.selectBySql(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
@@ -65,6 +74,10 @@ public class ChuyenNganhDao  extends EduSysDAO<ChuyenNganh, String>{
             throw new RuntimeException(ex);
         }
         return list;
+    }
+         public List<ChuyenNganh> selectByMacn(String id) {
+           String sql="SELECT * FROM ChuyenNganh where MaChuyenNganh LIKE ?";
+        return this.selectBySql(sql, "%"+id+"%");
     }
     
 }

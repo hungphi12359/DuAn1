@@ -193,6 +193,9 @@ public class LichHocJPanel extends javax.swing.JPanel {
         tblLichHoc.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblLichHoc.setRowHeight(40);
         tblLichHoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLichHocMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tblLichHocMousePressed(evt);
             }
@@ -363,10 +366,15 @@ public class LichHocJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jctFindActionPerformed
 
     private void tblLichHocMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichHocMousePressed
-        if (evt.getClickCount() == 2) {
-            this.row = tblLichHoc.getSelectedRow();
+            if(!Auth.isSinhVien()){
+            tabs.setSelectedIndex(0);
+            if (evt.getClickCount() == 2) {
+        this.row = tblLichHoc.getSelectedRow();
             edit();
         }
+        }
+       
+        
     }//GEN-LAST:event_tblLichHocMousePressed
 
     private void btn_LuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LuuActionPerformed
@@ -390,6 +398,10 @@ public class LichHocJPanel extends javax.swing.JPanel {
     private void btn_MoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MoiActionPerformed
         clearForm();
     }//GEN-LAST:event_btn_MoiActionPerformed
+
+    private void tblLichHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichHocMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblLichHocMouseClicked
     LichHoc getForm() {
         LichHoc nv = new LichHoc();
         nv.setThoiGian(txt_Thoigian.getText());

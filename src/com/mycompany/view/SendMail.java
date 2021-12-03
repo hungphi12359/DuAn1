@@ -95,6 +95,8 @@ public class SendMail extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txttk.setText("phinphd04328@fpt.edu.vn");
         jPanel1.add(txttk, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 237, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -338,7 +340,7 @@ public class SendMail extends javax.swing.JPanel {
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
     private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
-sendmail();        // TODO add your handling code here:
+     // TODO add your handling code here:
     }//GEN-LAST:event_btnhuyActionPerformed
 
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
@@ -346,7 +348,7 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
 
     private void rSButtonHover4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover4ActionPerformed
-        // TODO add your handling code here:
+    sendmail();       // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover4ActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
@@ -409,6 +411,8 @@ File file = new File(sendFile.getName());
                     Message.RecipientType.TO,
                     InternetAddress.parse(txtngnhan.getText())
             );
+//                            String ccEmails = txtcc.getText();
+//            message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(ccEmails));
             message.setSubject(txtsubject.getText());
             message.setText(txtmessage.getText());
             message.setContent(multipart);

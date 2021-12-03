@@ -7,6 +7,11 @@ package com.mycompany.view;
 import ThongKePackage.QuanLyThongKeController;
 import com.mycompany.duan1.X.Auth;
 import com.mycompany.duan1.controller.Chuyenmanhinhcontroller;
+import company.form.main;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -19,7 +24,7 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
      */
     public ThongKeDuLieu() {
         initComponents();
-           
+       
         QuanLyThongKeController controller = new  QuanLyThongKeController();
         controller.setDatatoChart1(jpnView1);
         controller.setDatatoChart3(jpnview2);

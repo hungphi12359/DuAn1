@@ -9,6 +9,7 @@ import com.mycompany.duan1.X.Auth;
 import com.mycompany.duan1.X.MsgBox;
 import com.mycompany.duan1.bean.DanhMucBean;
 import com.mycompany.view.ChinhSuaThongTin;
+import com.mycompany.view.ChuyenNganhJPanel;
 import com.mycompany.view.LichHocJPanel;
 import com.mycompany.view.MonHocJPanel;
 import com.mycompany.view.NhanVienPanel;
@@ -163,6 +164,9 @@ public class Chuyenmanhinhcontroller {
                     break;
                 case "DoiMatKhau":
                     node = new ChinhSuaThongTin();
+                    break;
+                    case "ChuyenNganh":
+                    node = new ChuyenNganhJPanel();
                     break;
 
             }

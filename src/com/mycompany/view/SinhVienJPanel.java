@@ -31,19 +31,16 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import scrollbar.ScrollBarCustom;
 
-
-
 /**
  *
  * @author ADMIN
  */
-
-
 public class SinhVienJPanel extends javax.swing.JPanel {
 
     private List<SinhVien> sinhvien;
     TaiKhoanDao tkDao = new TaiKhoanDao();
     DefaultComboBoxModel model = null;
+
     /**
      * Creates new form HocVienJPanel
      */
@@ -251,6 +248,12 @@ public class SinhVienJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 247, 110, -1));
+
+        txtSeach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSeachActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtSeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 371, -1));
 
         jpnView.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1080, 320));
@@ -271,11 +274,11 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         if (evt.getClickCount() == 2) {
             row = tblStudent.getSelectedRow();
             this.model = null;
-           
+
             fillcomboboxMaTK();
-        
+
             cbb_Mataikhoan.setEnabled(false);
-            cbb_Mataikhoan.setBackground(new Color(245,245,245));
+            cbb_Mataikhoan.setBackground(new Color(245, 245, 245));
             edit();
         }
         // TODO add your handling code here:
@@ -347,8 +350,8 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         chonLopHoc();
         addPlacehoderStyle(txtSeach);
         fixTable();
-fillcomboboxMaTK();
- 
+        fillcomboboxMaTK();
+
     }
 
     void fillcomboboxMaTK() {
@@ -363,7 +366,7 @@ fillcomboboxMaTK();
             e.printStackTrace();
         }
     }
-  
+
     void edit() {
         String maSV = (String) tblStudent.getValueAt(this.row, 0);
         SinhVien sv = svdao.selectById(maSV);
@@ -389,7 +392,7 @@ fillcomboboxMaTK();
         } else {
             lblHinh.setIcon(XImage.read("noImage.png"));
         }
-      
+
     }
 
     SinhVien getForm() {
@@ -499,7 +502,7 @@ fillcomboboxMaTK();
     LopHocDAO lhdao = new LopHocDAO();
 
     void chonChuyenNganh() {
-            DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
         model.removeAllElements();
         try {
             List<ChuyenNganh> list = cndao.selectAll();
@@ -519,13 +522,13 @@ fillcomboboxMaTK();
         }
     }
 
-       void fillcomboboxLopHoc() {
+    void fillcomboboxLopHoc() {
 //        String MaCN = (String) cbbmachuyennganh.getSelectedItem();
 //        List<LopHoc> list = lhdao.selectByChuyenNganh(MaCN);
 //        for (LopHoc lh : list) {
 //            cbbmalophoc.addItem(lh.getMaLopHoc());
 //        }
-       try {
+        try {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmalophoc.getModel();
             model.removeAllElements();
             try {
@@ -601,12 +604,13 @@ fillcomboboxMaTK();
             System.out.println(ex.getMessage());
         }
     }
-    public void fillcbbshowMaTK(){
-        DefaultComboBoxModel model = (DefaultComboBoxModel)cbb_Mataikhoan.getModel();
+
+    public void fillcbbshowMaTK() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_Mataikhoan.getModel();
         model.removeAllElements();
         try {
-       model.addElement(tblStudent.getValueAt(row, 10));
-         
+            model.addElement(tblStudent.getValueAt(row, 10));
+
         } catch (Exception e) {
         }
     }

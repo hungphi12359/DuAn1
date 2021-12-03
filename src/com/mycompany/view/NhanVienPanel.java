@@ -51,7 +51,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
     TaiKhoanDao tkDao = new TaiKhoanDao();
     int row = -1;
     DefaultComboBoxModel model = null;
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -234,6 +234,12 @@ public class NhanVienPanel extends javax.swing.JPanel {
             }
         });
 
+        txttimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttimkiemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -352,7 +358,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
         if (evt.getClickCount() == 2) {
             row = tblNhanVien.getSelectedRow();
             cbb_MaTK.setEnabled(false);
-            cbb_MaTK.setBackground(new Color(245,245,245));
+            cbb_MaTK.setBackground(new Color(245, 245, 245));
             edit();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_tblNhanVienMouseClicked
@@ -425,7 +431,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
+
     void fillComboBoxChuyenNganh() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
         model.removeAllElements();
@@ -518,15 +524,17 @@ public class NhanVienPanel extends javax.swing.JPanel {
         rdoNu.setSelected(nv.isGioiTinh());
         fillcbbshowMaTK();
     }
-    public void fillcbbshowMaTK(){
-        DefaultComboBoxModel model = (DefaultComboBoxModel)cbb_MaTK.getModel();
+
+    public void fillcbbshowMaTK() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_MaTK.getModel();
         model.removeAllElements();
         try {
-       model.addElement(tblNhanVien.getValueAt(row, 9));
-         
+            model.addElement(tblNhanVien.getValueAt(row, 9));
+
         } catch (Exception e) {
         }
     }
+
     void delete() {
         String MaNhanVien = txtMaNV2.getText();
         try {

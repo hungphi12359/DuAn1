@@ -77,6 +77,10 @@ public class DiemDAO extends EduSysDAO<Diem, String> {
                 String sql="DELETE FROM [dbo].[DIEM] WHERE MaDiem = ?";
         XJdbc.update(sql, id);
     }
+       public void delete2(int id) {
+                String sql="DELETE FROM [dbo].[DIEM] WHERE MaDiem = ?";
+        XJdbc.update(sql, id);
+    }
 
     @Override
     public Diem selectById(String id) {
