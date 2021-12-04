@@ -107,7 +107,7 @@ public class LichHocDao extends EduSysDAO<LichHoc, String> {
     }
 
     public List<LichHoc> selectByMaLopHoc(String id) {
-        String sql = "select * from LichHoc where MaLopHoc like ?";
+        String sql = "select * from LichHoc where MaLopHoc like ? order by Ngay asc";
         return this.selectBySql(sql, "%" + id + "%");
     }
     public List<LichHoc> selectByMaSV(String id) {
