@@ -24,6 +24,7 @@ import com.mycompany.duan1.model.MonHoc;
 import com.mycompany.duan1.model.NhanVien;
 import com.mycompany.duan1.model.SinhVien;
 import com.sun.jdi.connect.spi.Connection;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -43,6 +44,9 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.util.logging.Level;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -50,6 +54,7 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.apache.log4j.Logger;
 import net.sf.jasperreports.view.*;
 import net.sf.jasperreports.engine.*;
+import scrollbar.ScrollBarCustom;
 /**
  *
  * @author ADMIN
@@ -98,7 +103,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         rdott = new javax.swing.JRadioButton();
         rdochuatt = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        Scrollbar = new javax.swing.JScrollPane();
         tblMonHoc = new rojeru_san.complementos.RSTableMetro();
         rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
         btnThanhToan = new rojeru_san.complementos.RSButtonHover();
@@ -197,7 +202,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblCTHD1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 780, 230));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 780, 280));
 
         txtTongTien.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -209,12 +214,12 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
                 txtTongTienActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 172, 28));
+        jPanel1.add(txtTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, 172, 28));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 0, 51));
         jLabel10.setText("Tổng cộng");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 380, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 430, -1, -1));
         jPanel1.add(txtmamonhoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -255,17 +260,17 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         tblMonHoc.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         tblMonHoc.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
         tblMonHoc.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
-        tblMonHoc.setColorSelBackgound(new java.awt.Color(0, 0, 0));
-        tblMonHoc.setColorSelForeground(new java.awt.Color(0, 0, 0));
-        tblMonHoc.setRowHeight(18);
+        tblMonHoc.setColorSelBackgound(new java.awt.Color(204, 204, 204));
+        tblMonHoc.setColorSelForeground(new java.awt.Color(204, 204, 204));
+        tblMonHoc.setRowHeight(25);
         tblMonHoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblMonHocMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblMonHoc);
+        Scrollbar.setViewportView(tblMonHoc);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 61, 291, 550));
+        jPanel1.add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 291, 160));
 
         rSButtonHover1.setBackground(new java.awt.Color(204, 0, 51));
         rSButtonHover1.setText("XÓA");
@@ -275,7 +280,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
                 rSButtonHover1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 130, -1));
+        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 460, 130, -1));
 
         btnThanhToan.setBackground(new java.awt.Color(204, 0, 51));
         btnThanhToan.setText("THANH TOÁN");
@@ -285,14 +290,14 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
                 btnThanhToanActionPerformed(evt);
             }
         });
-        jPanel1.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 420, 130, -1));
+        jPanel1.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 460, 130, -1));
 
         cbbmahocky.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbmahockyActionPerformed(evt);
             }
         });
-        jPanel1.add(cbbmahocky, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 290, -1));
+        jPanel1.add(cbbmahocky, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 290, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -399,7 +404,14 @@ filltablemonhoc();        // TODO add your handling code here:
      
         tbModel.addRow(obj);
     }
- 
+  void fixTable() {
+        Scrollbar.getViewport().setBackground(Color.WHITE);
+        Scrollbar.setVerticalScrollBar(new ScrollBarCustom());
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        Scrollbar.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        Scrollbar.setBorder(new EmptyBorder(5, 10, 5, 10));
+    }
     void init(){
       Filltable();
       fillComboBoxNhanVien();
@@ -523,6 +535,7 @@ void Filltable(){
 
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane Scrollbar;
     private rojeru_san.complementos.RSButtonHover btnThanhToan;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbKH;
@@ -539,7 +552,6 @@ void Filltable(){
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private javax.swing.JRadioButton rdochuatt;

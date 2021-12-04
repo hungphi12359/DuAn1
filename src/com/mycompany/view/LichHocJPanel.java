@@ -61,6 +61,7 @@ public class LichHocJPanel extends javax.swing.JPanel {
                     TenNV = null;
                 }
                 Object[] row = {
+//                    this.row++,
                     lh.getMaLichHoc(),
                     lh.getNgay(),
                     lh.getThoiGian(),

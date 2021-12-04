@@ -388,11 +388,6 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="rSButtonHover5" min="-2" pref="151" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
-                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -415,10 +410,8 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="357" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="rSButtonHover5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="424" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -495,14 +488,6 @@
                   <Image iconType="3" name="/myimage/icons/Edit.png"/>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="rojeru_san.complementos.RSButtonHover" name="rSButtonHover5">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="TH&#xca;M"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonHover5ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

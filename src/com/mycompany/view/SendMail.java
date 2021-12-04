@@ -89,7 +89,6 @@ public class SendMail extends javax.swing.JPanel {
         tblStudent = new rojeru_san.complementos.RSTableMetro();
         timkiem2 = new textfield.timkiem();
         rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
-        rSButtonHover5 = new rojeru_san.complementos.RSButtonHover();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -247,13 +246,6 @@ public class SendMail extends javax.swing.JPanel {
         rSButtonHover2.setBackground(new java.awt.Color(204, 0, 51));
         rSButtonHover2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/Edit.png"))); // NOI18N
 
-        rSButtonHover5.setText("THÊM");
-        rSButtonHover5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonHover5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -278,10 +270,6 @@ public class SendMail extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(rSButtonHover5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,10 +287,8 @@ public class SendMail extends javax.swing.JPanel {
                             .addComponent(rSButtonHover2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(7, 7, 7)))
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rSButtonHover5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tabs.addTab("Thông Tin Sinh Viên", jPanel2);
@@ -362,10 +348,6 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
   
       }        // TODO add your handling code here:
     }//GEN-LAST:event_tblStudentMouseClicked
-
-    private void rSButtonHover5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover5ActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_rSButtonHover5ActionPerformed
  int row = -1;
     void sendmail(){
   final String username = txttk.getText();
@@ -531,7 +513,6 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
     private rojeru_san.complementos.RSButtonHover rSButtonHover2;
     private rojeru_san.complementos.RSButtonHover rSButtonHover3;
     private rojeru_san.complementos.RSButtonHover rSButtonHover4;
-    private rojeru_san.complementos.RSButtonHover rSButtonHover5;
     private javax.swing.JTabbedPane tabs;
     private rojeru_san.complementos.RSTableMetro tblStudent;
     private textfield.timkiem timkiem2;

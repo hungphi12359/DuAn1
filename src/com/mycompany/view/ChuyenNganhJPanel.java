@@ -97,7 +97,7 @@ public class ChuyenNganhJPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Mã Chuyên Ngành", "Tên Chuyên Ngành"
             }
         ) {
             boolean[] canEdit = new boolean [] {

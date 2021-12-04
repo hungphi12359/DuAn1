@@ -254,6 +254,11 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 txtSeachActionPerformed(evt);
             }
         });
+        txtSeach.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSeachKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtSeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 371, -1));
 
         jpnView.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1080, 320));
@@ -331,6 +336,10 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         insert();        // TODO add your handling code here:
     }//GEN-LAST:event_btnsubmitActionPerformed
 
+    private void txtSeachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeachKeyPressed
+fillTableSelectByMa();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSeachKeyPressed
+
     void fixTable() {
         Scrollbar.getViewport().setBackground(Color.WHITE);
         Scrollbar.setVerticalScrollBar(new ScrollBarCustom());
@@ -348,7 +357,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         filltable();
         chonChuyenNganh();
         chonLopHoc();
-        addPlacehoderStyle(txtSeach);
+    
         fixTable();
         fillcomboboxMaTK();
 
