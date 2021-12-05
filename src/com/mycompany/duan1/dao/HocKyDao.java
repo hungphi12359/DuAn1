@@ -67,5 +67,10 @@ public class HocKyDao extends EduSysDAO<HocKy, String> {
         }
         return list;
     }
-    
+        public List<HocKy> selectAllNotIN(String MaSV) {
+           String sql = "select  * from HocKy where MaHocKy not in (select HocKy from HoaDon where MaSinhVien like ? )";
+        return this.selectBySql(sql,MaSV);
+//           String sql = "  SELECT * FROM HocKy WHERE MaHocKy NOT IN (SELECT HocKy FROM HoaDon)";
+    }
+        
 }

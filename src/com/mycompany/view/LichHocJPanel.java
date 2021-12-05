@@ -20,7 +20,22 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultTreeCellEditor;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.swing.JTable;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.text.MessageFormat;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ADMIN
@@ -81,7 +96,7 @@ public class LichHocJPanel extends javax.swing.JPanel {
         }
 
     }
-    
+    int i = 0;
     void filltable2(String MaLH) {
         DefaultTableModel model = (DefaultTableModel) tblLichHoc.getModel();
         model.setRowCount(0);
@@ -98,7 +113,7 @@ public class LichHocJPanel extends javax.swing.JPanel {
                     TenNV = null;
                 }
                 Object[] row = {
-                    lh.getMaLichHoc(),
+                    i++,
                     lh.getNgay(),
                     lh.getThoiGian(),
                     lh.getMaMonHoc(), 
@@ -132,8 +147,10 @@ public class LichHocJPanel extends javax.swing.JPanel {
         tblLichHoc = new rojeru_san.complementos.RSTableMetro();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btn_Tim = new javax.swing.JButton();
         jctFind = new app.bolivia.swing.JCTextField();
+        btnExel1 = new rojeru_san.complementos.RSButtonHover();
+        btnPrint = new rojeru_san.complementos.RSButtonHover();
+        rSButtonHover1 = new rojeru_san.complementos.RSButtonHover();
         jPanel4 = new javax.swing.JPanel();
         txt_Thoigian = new textfield.ThoiGian();
         txt_Maphonghoc = new textfield.MaPhongHoc();
@@ -203,22 +220,15 @@ public class LichHocJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblLichHoc);
 
-        jPanel3.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel3.setBackground(new java.awt.Color(204, 0, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mã Lớp Học");
 
-        btn_Tim.setText("Tìm Kiếm");
-        btn_Tim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_TimActionPerformed(evt);
-            }
-        });
-
-        jctFind.setBackground(new java.awt.Color(0, 51, 51));
+        jctFind.setBackground(new java.awt.Color(204, 0, 51));
         jctFind.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
         jctFind.setForeground(new java.awt.Color(255, 255, 255));
         jctFind.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -228,6 +238,28 @@ public class LichHocJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnExel1.setBackground(new java.awt.Color(204, 0, 51));
+        btnExel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnExel1.setText("Exel");
+        btnExel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExel1ActionPerformed(evt);
+            }
+        });
+
+        btnPrint.setBackground(new java.awt.Color(204, 0, 51));
+        btnPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+
+        rSButtonHover1.setBackground(new java.awt.Color(204, 0, 51));
+        rSButtonHover1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        rSButtonHover1.setText("Tìm Kiếm");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -235,44 +267,48 @@ public class LichHocJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jctFind, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
-                .addGap(51, 51, 51)
-                .addComponent(btn_Tim, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jctFind, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnExel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jctFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_Tim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnExel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jctFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rSButtonHover1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
 
@@ -358,10 +394,6 @@ public class LichHocJPanel extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 620));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_TimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TimActionPerformed
-        loadByMa();
-    }//GEN-LAST:event_btn_TimActionPerformed
-
     private void jctFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jctFindActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jctFindActionPerformed
@@ -403,6 +435,71 @@ public class LichHocJPanel extends javax.swing.JPanel {
     private void tblLichHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichHocMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblLichHocMouseClicked
+
+    private void btnExel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExel1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblLichHoc.getModel();
+        FileOutputStream exelFOU = null;
+        BufferedOutputStream exelBOU = null;
+        XSSFWorkbook exelJtableExporter = null;
+        JFileChooser exelfileChooser = new JFileChooser("D:\\duan1\\DuAn1_Khanh\\Exel");
+        exelfileChooser.setDialogTitle("Save As");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXEL FILES", "xls", "xlsx", "xlsm");
+        exelfileChooser.setFileFilter(fnef);
+        int exelChooser = exelfileChooser.showSaveDialog(null);
+
+        if (exelChooser == JFileChooser.APPROVE_OPTION) {
+
+            try {
+                exelJtableExporter = new XSSFWorkbook();
+                XSSFSheet exelSheet = exelJtableExporter.createSheet("JTable Sheet");
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    XSSFRow exelRow = exelSheet.createRow(i);
+
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        XSSFCell exelCell = exelRow.createCell(j);
+                        exelCell.setCellValue(model.getValueAt(i, j).toString());
+                    }
+
+                }
+                exelFOU = new FileOutputStream(exelfileChooser.getSelectedFile() + ".xls");
+                exelBOU = new BufferedOutputStream(exelFOU);
+                exelJtableExporter.write(exelBOU);
+                JOptionPane.showMessageDialog(this, "Export Successfully !");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if(exelBOU != null){
+                        exelBOU.close();
+                    }
+                    if(exelFOU != null){
+                        exelFOU.close();
+                    }
+                    if(exelJtableExporter != null){
+
+                    }
+                } catch (IOException ex) {
+
+                    Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnExel1ActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        MessageFormat header  = new MessageFormat("Item report");
+
+        try {
+            tblLichHoc.print(JTable.PrintMode.NORMAL, header, null);
+            JFileChooser pdfChooser = new JFileChooser("D:\\duan1\\DuAn1_Khanh\\Print");
+            pdfChooser.setDialogTitle("Save As");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
     LichHoc getForm() {
         LichHoc nv = new LichHoc();
         nv.setThoiGian(txt_Thoigian.getText());
@@ -620,10 +717,11 @@ public class LichHocJPanel extends javax.swing.JPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojeru_san.complementos.RSButtonHover btnExel1;
+    private rojeru_san.complementos.RSButtonHover btnPrint;
     private rojeru_san.complementos.RSButtonHover btn_Luu;
     private rojeru_san.complementos.RSButtonHover btn_Moi;
     private rojeru_san.complementos.RSButtonHover btn_Sua;
-    private javax.swing.JButton btn_Tim;
     private rojeru_san.complementos.RSButtonHover btn_Xoa;
     private combobox.CBBMaLopHoc cbb_Malop;
     private combobox.MaMonHoc cbb_Mamonhoc;
@@ -639,6 +737,7 @@ public class LichHocJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private app.bolivia.swing.JCTextField jctFind;
     private javax.swing.JLabel lbl_Malich;
+    private rojeru_san.complementos.RSButtonHover rSButtonHover1;
     private javax.swing.JTabbedPane tabs;
     private rojeru_san.complementos.RSTableMetro tblLichHoc;
     private textfield.MaPhongHoc txt_Maphonghoc;

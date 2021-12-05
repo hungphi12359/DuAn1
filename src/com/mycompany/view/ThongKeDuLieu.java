@@ -79,10 +79,10 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         );
         jpnview2Layout.setVerticalGroup(
             jpnview2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGap(0, 410, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1090, 340));
+        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1090, 410));
 
         Tabs.addTab("THỐNG KÊ", jPanel2);
 
@@ -126,7 +126,7 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -140,7 +140,7 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Tabs)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

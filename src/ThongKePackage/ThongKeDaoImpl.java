@@ -46,7 +46,7 @@ public class ThongKeDaoImpl implements ThongKeDao{
     public List<MonHocBean> getListByDoanhThu() {
          try {
             Connection cons = XJdbc.getConnection();
-            String sql = " select sum(HocPhi) as N'HocPhi', NgayTaoHD, HocKy from HoaDon group by NgayTaoHD, HocKy";
+            String sql = " select sum(TongTien) as N'HocPhi', NgayTaoHD, HocKy from HoaDon group by NgayTaoHD, HocKy";
             List<MonHocBean> list = new ArrayList<>();
             PreparedStatement ps = cons.prepareCall(sql);
             ResultSet rs = ps.executeQuery();

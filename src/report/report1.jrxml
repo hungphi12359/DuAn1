@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00c9248d-43bc-4f38-961a-52a765728aca">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
+	<parameter name="MaHoaDon" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[11]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     HoaDon."MaHoaDon" AS HoaDon_MaHoaDon,
+     HoaDon."SoHoaDon" AS HoaDon_SoHoaDon,
+     HoaDon."NgayTaoHD" AS HoaDon_NgayTaoHD,
+     HoaDon."MaNhanVien" AS HoaDon_MaNhanVien,
+     HoaDon."MaSinhVien" AS HoaDon_MaSinhVien,
+     HoaDon."MaChuyenNganhSV" AS HoaDon_MaChuyenNganhSV,
+     HoaDon."HocPhi" AS HoaDon_HocPhi,
+     HoaDon."TinhTrang" AS HoaDon_TinhTrang,
+     HoaDon."TongTien" AS HoaDon_TongTien,
+     HoaDon."HocKy" AS HoaDon_HocKy,
+     HocKy."MaHocKy" AS HocKy_MaHocKy,
+     NhanVien."MaNhanVien" AS NhanVien_MaNhanVien,
+     SinhVien."MaSinhVien" AS SinhVien_MaSinhVien
+FROM
+     "dbo"."HocKy" HocKy INNER JOIN "dbo"."HoaDon" HoaDon ON HocKy."MaHocKy" = HoaDon."HocKy"
+     INNER JOIN "dbo"."NhanVien" NhanVien ON HoaDon."MaNhanVien" = NhanVien."MaNhanVien"
+     INNER JOIN "dbo"."SinhVien" SinhVien ON HoaDon."MaSinhVien" = SinhVien."MaSinhVien"
+WHERE
+     HoaDon."MaHoaDon" = $P{MaHoaDon}]]>
+	</queryString>
+	<field name="HoaDon_MaHoaDon" class="java.lang.Integer"/>
+	<field name="HoaDon_SoHoaDon" class="java.lang.String"/>
+	<field name="HoaDon_NgayTaoHD" class="java.sql.Date"/>
+	<field name="HoaDon_MaNhanVien" class="java.lang.String"/>
+	<field name="HoaDon_MaSinhVien" class="java.lang.String"/>
+	<field name="HoaDon_MaChuyenNganhSV" class="java.lang.String"/>
+	<field name="HoaDon_HocPhi" class="java.math.BigDecimal"/>
+	<field name="HoaDon_TinhTrang" class="java.lang.Boolean"/>
+	<field name="HoaDon_TongTien" class="java.math.BigDecimal"/>
+	<field name="HoaDon_HocKy" class="java.lang.String"/>
+	<field name="HocKy_MaHocKy" class="java.lang.String"/>
+	<field name="NhanVien_MaNhanVien" class="java.lang.String"/>
+	<field name="SinhVien_MaSinhVien" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="138" y="23" width="302" height="45" uuid="f5dc9cc9-c9fb-4016-9e5c-a801bcf8dc2a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="24"/>
+				</textElement>
+				<text><![CDATA[HÓA ĐƠN THANH TOÁN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="62" height="20" uuid="df7d615c-054f-421d-9b82-1e97c4c15a0a"/>
+				<text><![CDATA[Số Hóa Đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="62" height="20" uuid="5d2032e8-e812-4eb5-bf55-6e982d661bc7"/>
+				<text><![CDATA[Ngày Tạo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="62" y="0" width="120" height="20" uuid="a08b4dcc-8711-4cb6-b773-d6af1752a139"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_SoHoaDon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="20" width="120" height="20" uuid="442d864b-e039-405e-ac6a-d6b2c8787431"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_NgayTaoHD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="62" height="20" uuid="4ad17fdb-f9f4-4da9-9e39-718fb2208293"/>
+				<text><![CDATA[Nhân Viên]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="62" y="40" width="134" height="20" uuid="0eae532d-e3f1-44af-bf61-79ecbf5e3730"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_MaNhanVien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="0" width="50" height="20" uuid="aaccc407-c953-4d0e-8233-fab994972bb6"/>
+				<text><![CDATA[Sinh Viên]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="329" y="0" width="146" height="20" uuid="43f43a9c-72bd-4ee3-b864-526d9bfac6e8"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_MaSinhVien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="20" width="161" height="20" uuid="e63c7542-68c0-4407-b685-285ee2580046"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_MaChuyenNganhSV}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="20" width="74" height="20" uuid="13751db0-a8f6-41ac-b818-1624d0fedbfc"/>
+				<text><![CDATA[Chuyên Ngành]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="329" y="40" width="111" height="20" uuid="94c35e3e-ee26-45b4-b057-6bc764060d37"/>
+				<textFieldExpression><![CDATA[$F{HocKy_MaHocKy}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="40" width="74" height="20" uuid="2c8a8a18-c447-45f8-a68d-16598c70536a"/>
+				<text><![CDATA[Học Kỳ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="40" width="115" height="20" uuid="7325a33a-7fdf-454b-afce-c201d452fcba"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_HocKy}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="582e2571-f0df-4a5c-ae2d-1be3f03a88dc"/>
+				<text><![CDATA[Học Kỳ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="0" width="124" height="20" uuid="7a7185f8-bbc5-4ce6-bbeb-7318f6e5146b"/>
+				<text><![CDATA[Mã Học Kỳ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="0" width="179" height="20" uuid="c134cceb-5fc7-455e-9f6d-ca5211fcc507"/>
+				<text><![CDATA[Học Phí]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="29" width="554" height="1" uuid="9f42f892-6eed-4800-98a9-a50eda2ac69e"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="491bbcf6-24c7-4cab-89ba-16c3078a65e3"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_HocKy}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="0" width="124" height="20" uuid="069a7d5d-59f6-43ed-bd18-7b5aede8f2c9"/>
+				<textFieldExpression><![CDATA[$F{HocKy_MaHocKy}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="0" width="180" height="20" uuid="b2a91411-75db-4dbc-bf81-82033a9c659d"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_HocPhi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="74" width="100" height="20" uuid="58ea0d6b-04f6-4461-a1eb-7166de4d9e89"/>
+				<text><![CDATA[Tổng Tiền]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="74" width="180" height="20" uuid="682760db-3c08-413a-ae7d-bf6fac3e9168"/>
+				<textFieldExpression><![CDATA[$F{HoaDon_TongTien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

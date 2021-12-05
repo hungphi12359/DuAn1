@@ -16,7 +16,12 @@ import com.mycompany.duan1.model.SinhVien;
 import com.mycompany.duan1.model.TaiKhoan;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Hashtable;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -28,8 +33,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.swing.JTable;
+    
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import scrollbar.ScrollBarCustom;
+
+
+
+
+
+
 
 /**
  *
@@ -86,6 +106,8 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         btnNew = new rojeru_san.complementos.RSButtonHover();
         btnXoa = new rojeru_san.complementos.RSButtonHover();
         txtSeach = new textfield.timkiem();
+        btnExel1 = new rojeru_san.complementos.RSButtonHover();
+        btnPrint = new rojeru_san.complementos.RSButtonHover();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -97,17 +119,17 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         tblStudent.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Sinh Viên", "Tên Sinh Viên", "Ngày Sinh", "Email", "SĐT", "DiaChi", "GioiTinh", "Mã CN", "Mã Lớp Học", "Hinh", "Mã Tài Khoản"
+                "Mã Sinh Viên", "Tên Sinh Viên", "Email", "GioiTinh", "Mã CN", "Mã Lớp Học", "Mã Tài Khoản"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -204,7 +226,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 rSButtonHover1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 40, -1));
+        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, 40, -1));
 
         jdcNgaySinh.setBackground(new java.awt.Color(255, 255, 255));
         jdcNgaySinh.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -220,7 +242,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 btnsubmitActionPerformed(evt);
             }
         });
-        jPanel1.add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 247, 110, -1));
+        jPanel1.add(btnsubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 110, -1));
 
         btnUpdate.setBackground(new java.awt.Color(204, 0, 51));
         btnUpdate.setText("Cập Nhật");
@@ -229,7 +251,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 247, 120, -1));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 120, -1));
 
         btnNew.setBackground(new java.awt.Color(204, 0, 51));
         btnNew.setText("Làm Mới");
@@ -238,7 +260,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 247, 120, -1));
+        jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 120, -1));
 
         btnXoa.setBackground(new java.awt.Color(204, 0, 51));
         btnXoa.setText("Xóa");
@@ -247,7 +269,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 btnXoaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 247, 110, -1));
+        jPanel1.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 110, -1));
 
         txtSeach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +281,25 @@ public class SinhVienJPanel extends javax.swing.JPanel {
                 txtSeachKeyPressed(evt);
             }
         });
-        jPanel1.add(txtSeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 371, -1));
+        jPanel1.add(txtSeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 220, -1));
+
+        btnExel1.setBackground(new java.awt.Color(204, 0, 51));
+        btnExel1.setText("Exel");
+        btnExel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExel1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnExel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 110, 40));
+
+        btnPrint.setBackground(new java.awt.Color(204, 0, 51));
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 110, -1));
 
         jpnView.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1080, 320));
 
@@ -339,6 +379,72 @@ public class SinhVienJPanel extends javax.swing.JPanel {
     private void txtSeachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeachKeyPressed
 fillTableSelectByMa();        // TODO add your handling code here:
     }//GEN-LAST:event_txtSeachKeyPressed
+
+    private void btnExel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExel1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        FileOutputStream exelFOU = null;
+        BufferedOutputStream exelBOU = null;
+        XSSFWorkbook exelJtableExporter = null;
+        JFileChooser exelfileChooser = new JFileChooser("D:\\duan1\\DuAn1_Khanh\\Exel");
+        exelfileChooser.setDialogTitle("Save As");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXEL FILES", "xls", "xlsx", "xlsm");
+        exelfileChooser.setFileFilter(fnef);
+        int exelChooser = exelfileChooser.showSaveDialog(null);
+
+        if (exelChooser == JFileChooser.APPROVE_OPTION) {
+
+            try {
+                exelJtableExporter = new XSSFWorkbook();
+                XSSFSheet exelSheet = exelJtableExporter.createSheet("JTable Sheet");
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    XSSFRow exelRow = exelSheet.createRow(i);
+
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        XSSFCell exelCell = exelRow.createCell(j);
+                        exelCell.setCellValue(model.getValueAt(i, j).toString());
+                    }
+
+                }
+                exelFOU = new FileOutputStream(exelfileChooser.getSelectedFile() + ".xls");
+                exelBOU = new BufferedOutputStream(exelFOU);
+                exelJtableExporter.write(exelBOU);
+                JOptionPane.showMessageDialog(this, "Export Successfully !");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if(exelBOU != null){
+                        exelBOU.close();
+                    }
+                    if(exelFOU != null){
+                        exelFOU.close();
+                    }
+                    if(exelJtableExporter != null){
+
+                    }
+                } catch (IOException ex) {
+
+                    Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnExel1ActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        MessageFormat header  = new MessageFormat("Item report");
+
+        try {
+            tblStudent.print(JTable.PrintMode.NORMAL, header, null);
+            JFileChooser pdfChooser = new JFileChooser("D:\\duan1\\DuAn1_Khanh\\Print");
+            pdfChooser.setDialogTitle("Save As");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+
+    }//GEN-LAST:event_btnPrintActionPerformed
 
     void fixTable() {
         Scrollbar.getViewport().setBackground(Color.WHITE);
@@ -439,14 +545,14 @@ fillTableSelectByMa();        // TODO add your handling code here:
             Object[] row = {
                 sv.getMaSinhVien(),
                 sv.getTenSinhVien(),
-                sv.getNgaySinh(),
+//                sv.getNgaySinh(),
                 sv.getEmail(),
-                sv.getSDT(),
-                sv.getDiaChi(),
+//                sv.getSDT(),
+//                sv.getDiaChi(),
                 sv.isGioiTinh() ? "Nam" : "Nữ",
                 sv.getMaChuyenNganh(),
                 sv.getMaLopHoc(),
-                sv.getHinh(),
+//                sv.getHinh(),
                 sv.getMaTK()
             };
             model.addRow(row);
@@ -626,7 +732,9 @@ fillTableSelectByMa();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Scrollbar;
+    private rojeru_san.complementos.RSButtonHover btnExel1;
     private rojeru_san.complementos.RSButtonHover btnNew;
+    private rojeru_san.complementos.RSButtonHover btnPrint;
     private rojeru_san.complementos.RSButtonHover btnUpdate;
     private rojeru_san.complementos.RSButtonHover btnXoa;
     private rojeru_san.complementos.RSButtonHover btnsubmit;

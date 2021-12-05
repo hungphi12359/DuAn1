@@ -73,17 +73,13 @@
                   </Border>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="11" rowCount="4">
+                  <Table columnCount="7" rowCount="4">
                     <Column editable="false" title="M&#xe3; Sinh Vi&#xea;n" type="java.lang.Object"/>
                     <Column editable="false" title="T&#xea;n Sinh Vi&#xea;n" type="java.lang.Object"/>
-                    <Column editable="false" title="Ng&#xe0;y Sinh" type="java.lang.Object"/>
                     <Column editable="false" title="Email" type="java.lang.Object"/>
-                    <Column editable="false" title="S&#x110;T" type="java.lang.Object"/>
-                    <Column editable="false" title="DiaChi" type="java.lang.Object"/>
                     <Column editable="false" title="GioiTinh" type="java.lang.Object"/>
                     <Column editable="false" title="M&#xe3; CN" type="java.lang.Object"/>
                     <Column editable="false" title="M&#xe3; L&#x1edb;p H&#x1ecd;c" type="java.lang.Object"/>
-                    <Column editable="false" title="Hinh" type="java.lang.Object"/>
                     <Column editable="false" title="M&#xe3; T&#xe0;i Kho&#x1ea3;n" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -110,26 +106,6 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -412,7 +388,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="1000" y="260" width="40" height="-1"/>
+                  <AbsoluteConstraints x="860" y="140" width="40" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -458,7 +434,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="20" y="247" width="110" height="-1"/>
+                  <AbsoluteConstraints x="30" y="250" width="110" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -474,7 +450,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="247" width="120" height="-1"/>
+                  <AbsoluteConstraints x="180" y="250" width="120" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -490,7 +466,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="330" y="247" width="120" height="-1"/>
+                  <AbsoluteConstraints x="340" y="250" width="120" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -506,7 +482,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="490" y="247" width="110" height="-1"/>
+                  <AbsoluteConstraints x="500" y="250" width="110" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -517,7 +493,39 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="620" y="250" width="371" height="-1"/>
+                  <AbsoluteConstraints x="620" y="130" width="220" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="rojeru_san.complementos.RSButtonHover" name="btnExel1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="0" red="cc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Exel"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExel1ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="640" y="250" width="110" height="40"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="rojeru_san.complementos.RSButtonHover" name="btnPrint">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="0" red="cc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Print"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="780" y="250" width="110" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

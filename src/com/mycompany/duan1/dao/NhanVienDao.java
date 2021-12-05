@@ -113,5 +113,10 @@ entity.getHinh(),
         String sql = "  select * from NhanVien where MaChuyenNganh like ?";
         return this.selectBySql(sql, id);
     }
+        public NhanVien selectByMaTK(String id) {
+        String sql = "  select * from NhanVien where MaTaiKhoan like ?";
+        List<NhanVien> list = this.selectBySql(sql, id);
+        return list.size() > 0 ? list.get(0) : null;
+    }
     
 }

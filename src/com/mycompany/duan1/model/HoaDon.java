@@ -12,33 +12,26 @@ import java.util.Date;
  */
 public class HoaDon {
     int MaHoaDon;
-    String SoHoaDon;
     Date NgayTaoHoaDon ;
     String MaNhanVien;
     String MaSinhVien;
-    String MaChuyenNganhSV;
-    double HocPhi;
-    String MaMonHoc;
-    int MaHocKy;
-    double TongTien;
+    String MaChuyenNganh;
     boolean TinhTrang;
     String HocKy;
+    double TongTien ;
 
     public HoaDon() {
     }
 
-    public HoaDon(int MaHoaDon, String SoHoaDon, Date NgayTaoHoaDon, String MaNhanVien, String MaSinhVien, String MaChuyenNganhSV, double HocPhi, String MaMonHoc, int MaHocKy, double TongTien, boolean TinhTrang) {
+    public HoaDon(int MaHoaDon, Date NgayTaoHoaDon, String MaNhanVien, String MaSinhVien, String MaChuyenNganh, boolean TinhTrang, String HocKy, double TongTien) {
         this.MaHoaDon = MaHoaDon;
-        this.SoHoaDon = SoHoaDon;
         this.NgayTaoHoaDon = NgayTaoHoaDon;
         this.MaNhanVien = MaNhanVien;
         this.MaSinhVien = MaSinhVien;
-        this.MaChuyenNganhSV = MaChuyenNganhSV;
-        this.HocPhi = HocPhi;
-        this.MaMonHoc = MaMonHoc;
-        this.MaHocKy = MaHocKy;
-        this.TongTien = TongTien;
+        this.MaChuyenNganh = MaChuyenNganh;
         this.TinhTrang = TinhTrang;
+        this.HocKy = HocKy;
+        this.TongTien = TongTien;
     }
 
     public int getMaHoaDon() {
@@ -47,14 +40,6 @@ public class HoaDon {
 
     public void setMaHoaDon(int MaHoaDon) {
         this.MaHoaDon = MaHoaDon;
-    }
-
-    public String getSoHoaDon() {
-        return SoHoaDon;
-    }
-
-    public void setSoHoaDon(String SoHoaDon) {
-        this.SoHoaDon = SoHoaDon;
     }
 
     public Date getNgayTaoHoaDon() {
@@ -81,44 +66,12 @@ public class HoaDon {
         this.MaSinhVien = MaSinhVien;
     }
 
-    public String getMaChuyenNganhSV() {
-        return MaChuyenNganhSV;
+    public String getMaChuyenNganh() {
+        return MaChuyenNganh;
     }
 
-    public void setMaChuyenNganhSV(String MaChuyenNganhSV) {
-        this.MaChuyenNganhSV = MaChuyenNganhSV;
-    }
-
-    public double getHocPhi() {
-        return HocPhi;
-    }
-
-    public void setHocPhi(double HocPhi) {
-        this.HocPhi = HocPhi;
-    }
-
-    public String getMaMonHoc() {
-        return MaMonHoc;
-    }
-
-    public void setMaMonHoc(String MaMonHoc) {
-        this.MaMonHoc = MaMonHoc;
-    }
-
-    public int getMaHocKy() {
-        return MaHocKy;
-    }
-
-    public void setMaHocKy(int MaHocKy) {
-        this.MaHocKy = MaHocKy;
-    }
-
-    public double getTongTien() {
-        return TongTien;
-    }
-
-    public void setTongTien(double TongTien) {
-        this.TongTien = TongTien;
+    public void setMaChuyenNganh(String MaChuyenNganh) {
+        this.MaChuyenNganh = MaChuyenNganh;
     }
 
     public boolean isTinhTrang() {
@@ -129,10 +82,6 @@ public class HoaDon {
         this.TinhTrang = TinhTrang;
     }
 
-    public HoaDon(String HocKy) {
-        this.HocKy = HocKy;
-    }
-
     public String getHocKy() {
         return HocKy;
     }
@@ -141,5 +90,13 @@ public class HoaDon {
         this.HocKy = HocKy;
     }
 
- 
+    public double getTongTien() {
+        return TongTien;
+    }
+
+    public void setTongTien(double TongTien) {
+        this.TongTien = TongTien;
+    }
+
+    
 }

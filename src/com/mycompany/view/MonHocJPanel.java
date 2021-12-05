@@ -22,7 +22,22 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import scrollbar.ScrollBarCustom;
-
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.swing.JTable;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.text.MessageFormat;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ADMIN
@@ -69,6 +84,8 @@ public class MonHocJPanel extends javax.swing.JPanel {
         cbbmachuyennganh = new combobox.CBBMaChuyenNganh();
         cbb_Manhanvien = new combobox.MaNhanVien();
         txtMaHocKy = new combobox.MaHocKy();
+        btnExel5 = new rojeru_san.complementos.RSButtonHover();
+        btnPrint = new rojeru_san.complementos.RSButtonHover();
 
         setMaximumSize(new java.awt.Dimension(1100, 625));
         setName(""); // NOI18N
@@ -98,7 +115,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
                 btnThemActionPerformed(evt);
             }
         });
-        jPanel2.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 460, 140, 50));
+        jPanel2.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 420, 140, 50));
 
         btnupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/icons8-edit-40.png"))); // NOI18N
         btnupdate.setText("Sửa ");
@@ -107,7 +124,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
                 btnupdateActionPerformed(evt);
             }
         });
-        jPanel2.add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 460, 140, 50));
+        jPanel2.add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 420, 140, 50));
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/icons8-remove-40.png"))); // NOI18N
         btnXoa.setText("Xóa");
@@ -116,7 +133,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
                 btnXoaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 530, 140, 50));
+        jPanel2.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 140, 50));
 
         btnmoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/icons8-new-40.png"))); // NOI18N
         btnmoi.setText("Mới");
@@ -125,7 +142,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
                 btnmoiActionPerformed(evt);
             }
         });
-        jPanel2.add(btnmoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 530, 140, 50));
+        jPanel2.add(btnmoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 480, 140, 50));
 
         Scrollbar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -168,7 +185,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
         });
         Scrollbar.setViewportView(tblMonHoc);
 
-        jPanel2.add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 1060, 400));
+        jPanel2.add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 1060, 380));
 
         jdcNgayBatDau.setDateFormatString("dd/MM/yyyy");
         jPanel2.add(jdcNgayBatDau, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 230, -1));
@@ -187,6 +204,24 @@ public class MonHocJPanel extends javax.swing.JPanel {
         jPanel2.add(cbbmachuyennganh, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 180, -1));
         jPanel2.add(cbb_Manhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 180, -1));
         jPanel2.add(txtMaHocKy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 180, -1));
+
+        btnExel5.setBackground(new java.awt.Color(204, 0, 51));
+        btnExel5.setText("Exel");
+        btnExel5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExel5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnExel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 540, 140, 50));
+
+        btnPrint.setBackground(new java.awt.Color(204, 0, 51));
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 540, 140, 50));
 
         javax.swing.GroupLayout jpnMonHocLayout = new javax.swing.GroupLayout(jpnMonHoc);
         jpnMonHoc.setLayout(jpnMonHocLayout);
@@ -347,6 +382,71 @@ public class MonHocJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         fillComboBoxNhanVien();
     }//GEN-LAST:event_cbbmachuyennganhActionPerformed
+
+    private void btnExel5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExel5ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblMonHoc.getModel();
+        FileOutputStream exelFOU = null;
+        BufferedOutputStream exelBOU = null;
+        XSSFWorkbook exelJtableExporter = null;
+        JFileChooser exelfileChooser = new JFileChooser("D:\\duan1\\DuAn1_Khanh\\Exel");
+        exelfileChooser.setDialogTitle("Save As");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXEL FILES", "xls", "xlsx", "xlsm");
+        exelfileChooser.setFileFilter(fnef);
+        int exelChooser = exelfileChooser.showSaveDialog(null);
+
+        if (exelChooser == JFileChooser.APPROVE_OPTION) {
+
+            try {
+                exelJtableExporter = new XSSFWorkbook();
+                XSSFSheet exelSheet = exelJtableExporter.createSheet("JTable Sheet");
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    XSSFRow exelRow = exelSheet.createRow(i);
+
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        XSSFCell exelCell = exelRow.createCell(j);
+                        exelCell.setCellValue(model.getValueAt(i, j).toString());
+                    }
+
+                }
+                exelFOU = new FileOutputStream(exelfileChooser.getSelectedFile() + ".xls");
+                exelBOU = new BufferedOutputStream(exelFOU);
+                exelJtableExporter.write(exelBOU);
+                JOptionPane.showMessageDialog(this, "Export Successfully !");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if(exelBOU != null){
+                        exelBOU.close();
+                    }
+                    if(exelFOU != null){
+                        exelFOU.close();
+                    }
+                    if(exelJtableExporter != null){
+
+                    }
+                } catch (IOException ex) {
+
+                    Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnExel5ActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        MessageFormat header  = new MessageFormat("Item report");
+
+        try {
+            tblMonHoc.print(JTable.PrintMode.NORMAL, header, null);
+            JFileChooser pdfChooser = new JFileChooser("D:\\duan1\\DuAn1_Khanh\\Print");
+            pdfChooser.setDialogTitle("Save As");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
     void Filltable() {
         DefaultTableModel model = (DefaultTableModel) tblMonHoc.getModel();
         model.setRowCount(0);
@@ -422,6 +522,8 @@ public class MonHocJPanel extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Scrollbar;
+    private rojeru_san.complementos.RSButtonHover btnExel5;
+    private rojeru_san.complementos.RSButtonHover btnPrint;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnmoi;
