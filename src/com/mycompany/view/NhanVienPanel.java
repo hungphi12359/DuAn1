@@ -434,6 +434,7 @@ Validate vld = new Validate();
           vld.ValidatorNullJText(txtEmail, sb, "Email Không Được Để Trống");
           vld.ValidatorNullJText(txtSoDT1, sb, "Số Điện Thoại Không Được Để Trống");
            vld.ValidatorNullJText(txtDiaChi, sb, "Số Điện Thoại Không Được Để Trống");
+           vld.checkMaNV(txtMaNV2, sb, "Mã Nhân Viên Không Được Qá 7 Ký Tự");
        if(sb.length() > 0){
             MsgBox.showErrorDialog(jPanel1, sb.toString(),"Đã Xảy Ra Lỗi" );
             return;

@@ -369,7 +369,7 @@ this.row = tbltaikhoan.getSelectedRow();
             vld.ValidatorNullJText(txt_MaTK, sb, "Mã Lớp Học Không Được Để Trống");
             vld.ValidatorNullJText(txt_Tentaikhoan, sb, "Tên Lớp Học Không Được Để Trống");
             vld.ValidatorNullJText(txt_Matkhau, sb, "Tên Lớp Học Không Được Để Trống");
-
+            vld.checkMaNV(txt_MaTK, sb, "Mã Tài Khoản Không Được Qúa 7 Ký Tự");
             if (sb.length() > 0) {
                 MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
                 return;

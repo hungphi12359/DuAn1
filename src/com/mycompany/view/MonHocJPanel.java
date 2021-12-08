@@ -386,6 +386,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
             vld.ValidatorNullJText(txtMaMonHoc, sb, "Mã Môn Học Không Được Để Trống");
             vld.ValidatorNullJText(txtTenMonHoc, sb, "Tên Môn Học Không Được Để Trống");
             vld.ValidatorNullJText(txtHocPhi, sb, "Học Phí Môn Học Không Được Để Trống");
+            vld.checkMaNV(txtMaMonHoc, sb, "Mã Môn Học Không Được Qá 7 Ký Tự");
             if (sb.length() > 0) {
                 MsgBox.showErrorDialog(jPanel2, sb.toString(), "Đã Xảy Ra Lỗi");
                 return;

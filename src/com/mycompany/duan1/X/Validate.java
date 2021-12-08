@@ -38,6 +38,22 @@ public class Validate {
         }
         return ok;
     }
+        public static boolean checkLopHoc(JTextField field,StringBuilder sb,String errorMessage) {
+        boolean ok = true;
+        field.setBackground(white);
+        String id = field.getText();
+        String rgx = "[a-zA-Z0-9]{1,9}";
+        if (id.matches(rgx)) {
+            ok = true;
+        } else {
+            sb.append(errorMessage).append("\n");
+            field.setBackground(pink);
+            field.requestFocus();
+            
+            ok = false;
+        }
+        return ok;
+    }
         public static boolean checkMaNH(JTextField field,StringBuilder sb,String errorMessage) {
         field.setBackground(white);
         String id = field.getText();

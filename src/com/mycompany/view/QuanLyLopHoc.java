@@ -337,7 +337,7 @@ public class QuanLyLopHoc extends javax.swing.JPanel {
             checkTrungMa(txtmalh, sb, "Mã Lớp Học Đã Tồn Tại Trên Hệ Thống");
             vld.ValidatorNullJText(txtmalh, sb, "Mã Lớp Học Không Được Để Trống");
             vld.ValidatorNullJText(txttenlh, sb, "Tên Lớp Học Không Được Để Trống");
-
+vld.checkLopHoc(txtmalh, sb, "Mã Lớp Học Không Được Qúa 7 Ký Tự");
             if (sb.length() > 0) {
                 MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
                 return;

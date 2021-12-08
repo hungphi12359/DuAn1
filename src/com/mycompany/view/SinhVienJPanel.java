@@ -419,6 +419,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         try {
+            
             StringBuilder sb = new StringBuilder();
             checkTrungMa(txtMaSinhVien, sb, "Sinh Viên Đã Tồn Tại Trên Hệ Thống");
             vld.ValidatorNullJText(txtMaSinhVien, sb, "Mã Sinh Viên Không Được Để Trống");
@@ -428,6 +429,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
             vld.ValidatorNullJText(txtEmail, sb, "Email Không Được Để Trống");
             vld.ValidatorNullJText(txtSoDienThoai, sb, "Số Điện Thoại Không Được Để Trống");
             vld.ValidatorNullJText(txtDiaChi, sb, "Số Điện Thoại Không Được Để Trống");
+            vld.checkMaNV(txtMaSinhVien, sb, "Mã Sinh Viên Không Được Qá 7 Ký Tự");
             if (sb.length() > 0) {
                 MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
                 return;
