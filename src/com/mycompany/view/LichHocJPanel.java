@@ -387,11 +387,11 @@ public class LichHocJPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 620));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 625));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jctFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jctFindActionPerformed
@@ -576,7 +576,7 @@ public class LichHocJPanel extends javax.swing.JPanel {
             if (chuyenNganh != null) {
                 List<LopHoc> list = lopHocDAO.selectByChuyenNganh(chuyenNganh);
                 for (LopHoc lh : list) {
-                    model.addElement(lh);
+                    model.addElement(lh.getMaLopHoc());
                 }
             }
         } catch (Exception e) {

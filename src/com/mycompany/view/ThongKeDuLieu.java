@@ -1,40 +1,94 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package com.mycompany.view;
 
 import ThongKePackage.QuanLyThongKeController;
 import com.mycompany.duan1.X.Auth;
 import com.mycompany.duan1.controller.Chuyenmanhinhcontroller;
+import com.mycompany.duan1.dao.DiemDAO;
+import com.mycompany.duan1.dao.MonHocDao;
+import com.mycompany.duan1.dao.SinhVienDao;
+import com.mycompany.duan1.model.Diem;
+import com.mycompany.duan1.model.MonHoc;
 import company.form.main;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author ADMIN
- */
 public class ThongKeDuLieu extends javax.swing.JPanel {
+    SinhVienDao svDao = new SinhVienDao();
+    MonHocDao mhDao = new MonHocDao();
+    DiemDAO diemDao = new DiemDAO();
 
-    /**
-     * Creates new form ThongKeDuLieu
-     */
     public ThongKeDuLieu() {
         initComponents();
-       
-        QuanLyThongKeController controller = new  QuanLyThongKeController();
+        init();
+    }
+
+    void init() {
+        QuanLyThongKeController controller = new QuanLyThongKeController();
         controller.setDatatoChart1(jpnView1);
         controller.setDatatoChart3(jpnview2);
-        if(Auth.isSinhVien()){
+        if (Auth.isSinhVien()) {
             this.Tabs.setEnabledAt(0, false);
             this.Tabs.setSelectedIndex(1);
-           
+            // Tìm mã sinh viên thông qua Auth
+            String MaSV = svDao.selectByMaTK(Auth.user.getMaTK()).getMaSinhVien();
+            FilltableBangDiem(MaSV);
+            return;
+        }
+        if (Auth.isNhanVien() && Auth.isGiangVien()) {
+            this.Tabs.setEnabledAt(1, false);
+            this.Tabs.setSelectedIndex(0);
+            return;
         }
     }
 
+    void FilltableBangDiem(String MaSV) {
+        DefaultTableModel model = (DefaultTableModel) tbl_BangDiem.getModel();
+        model.setRowCount(0);
+        try {
+            // Hiển thị danh sách Môn Học theo Chuyên Ngành Ngành thông qua select * from where MaSV = ?
+            List<MonHoc> list = mhDao.selectBangDiem(MaSV);
+            int i = 0;
+            for (MonHoc mh : list) {
+                float Diem = 0;
+                // Lấy MaMH với MaSV để hiển thị điểm
+                if(diemDao.selectDIEM(mh.getMaMonHoc(), MaSV) == null){
+                    Diem = 0;
+                }else{
+                    List<Diem> dsdiem = diemDao.selectDIEM(mh.getMaMonHoc(),MaSV);
+                    for (Diem diem : dsdiem) {
+                        Diem = (diem.getDiemLab1() + diem.getDiemLab2() + diem.getDiemLab3() + diem.getDiemLab4() + diem.getDiemLab5() + diem.getDiemLab6() + diem.getDiemLab7() + diem.getDiemLab8() + diem.getDiemAsmGD1() + diem.getDiemAsmGD2() + diem.getDiemDoc()) / 11;
+                    }
+                }
+                Object[] row = {
+                    i += 1,
+                    mh.getHocKy(),
+                    mh.getTenMonHoc(),
+                    mh.getMaMonHoc(),
+                    Diem,
+                    //Dựa điểm phân loại
+                    Status(Diem)
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    String Status (float Diem ){
+        if(Diem == 0){
+            return "Chưa học";
+        }else if (Diem < 5){
+            return "Rớt";
+        }else {
+            return "Đạt";
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +109,9 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        Tabs.setMinimumSize(new java.awt.Dimension(1100, 625));
+        Tabs.setPreferredSize(new java.awt.Dimension(1100, 625));
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -62,27 +119,27 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         jpnView1.setLayout(jpnView1Layout);
         jpnView1Layout.setHorizontalGroup(
             jpnView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1090, Short.MAX_VALUE)
+            .addGap(0, 1070, Short.MAX_VALUE)
         );
         jpnView1Layout.setVerticalGroup(
             jpnView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 290, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jpnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1090, 290));
+        jPanel2.add(jpnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1070, 290));
 
         javax.swing.GroupLayout jpnview2Layout = new javax.swing.GroupLayout(jpnview2);
         jpnview2.setLayout(jpnview2Layout);
         jpnview2Layout.setHorizontalGroup(
             jpnview2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1090, Short.MAX_VALUE)
+            .addGap(0, 1070, Short.MAX_VALUE)
         );
         jpnview2Layout.setVerticalGroup(
             jpnview2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 270, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1090, 410));
+        jPanel2.add(jpnview2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1070, 270));
 
         Tabs.addTab("THỐNG KÊ", jPanel2);
 
@@ -90,13 +147,13 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
 
         tbl_BangDiem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Học Kỳ", "Môn", "Mã MH", "Điểm", "Trạng thái"
+                "STT", "Học Kỳ", "Môn", "Mã MH", "Điểm", "Trạng thái"
             }
         ));
         tbl_BangDiem.setColorBackgoundHead(new java.awt.Color(204, 0, 51));
@@ -112,6 +169,10 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
             }
         });
         jScrollPane3.setViewportView(tbl_BangDiem);
+        if (tbl_BangDiem.getColumnModel().getColumnCount() > 0) {
+            tbl_BangDiem.getColumnModel().getColumn(0).setMinWidth(3);
+            tbl_BangDiem.getColumnModel().getColumn(0).setPreferredWidth(3);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -126,7 +187,7 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -140,7 +201,7 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tabs)
+            .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -151,7 +212,7 @@ public class ThongKeDuLieu extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

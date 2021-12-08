@@ -72,6 +72,7 @@ public class ChuyenNganhJPanel extends javax.swing.JPanel {
         btnPrint = new rojeru_san.complementos.RSButtonHover();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1100, 625));
 
         btnSua.setBackground(new java.awt.Color(204, 0, 51));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/Edit.png"))); // NOI18N
@@ -133,6 +134,7 @@ public class ChuyenNganhJPanel extends javax.swing.JPanel {
         tblchuyennganh.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         tblchuyennganh.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
         tblchuyennganh.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tblchuyennganh.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblchuyennganh.setRowHeight(30);
         tblchuyennganh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -225,7 +227,7 @@ public class ChuyenNganhJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 628, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -482,10 +484,6 @@ return cn;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Scrollbar;
-    private rojeru_san.complementos.RSButtonHover btnExel1;
-    private rojeru_san.complementos.RSButtonHover btnExel2;
-    private rojeru_san.complementos.RSButtonHover btnExel3;
-    private rojeru_san.complementos.RSButtonHover btnExel4;
     private rojeru_san.complementos.RSButtonHover btnExel5;
     private rojeru_san.complementos.RSButtonHover btnMoi;
     private rojeru_san.complementos.RSButtonHover btnPrint;

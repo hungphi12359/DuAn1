@@ -42,12 +42,14 @@ import javax.swing.table.DefaultTableModel;
  * @author ADMIN
  */
 public class SendMail extends javax.swing.JPanel {
- File sendFile = null; 
+
+    File sendFile = null;
+
     /**
      * Creates new form SendMail
      */
     public SendMail() {
-   
+
         initComponents();
         init();
     }
@@ -92,6 +94,8 @@ public class SendMail extends javax.swing.JPanel {
         timkiem2 = new textfield.timkiem();
         rSButtonHover2 = new rojeru_san.complementos.RSButtonHover();
 
+        tabs.setPreferredSize(new java.awt.Dimension(1100, 625));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -119,34 +123,34 @@ public class SendMail extends javax.swing.JPanel {
                 rSButtonHover1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 60, -1));
+        jPanel1.add(rSButtonHover1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 60, -1));
 
         txtlinkfile.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtlinkfile.setText("Bạn Chưa Chọn File Nào !");
-        jPanel1.add(txtlinkfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 440, 30));
+        jPanel1.add(txtlinkfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, 440, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 102));
         jLabel5.setText("Đính Kèm File:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, 30));
-        jPanel1.add(txtngnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 480, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, 30));
+        jPanel1.add(txtngnhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 470, 40));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 102));
         jLabel7.setText("Nội Dung: ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, 41));
-        jPanel1.add(txtsubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 480, 41));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, 41));
+        jPanel1.add(txtsubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 470, 41));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
         jLabel8.setText("Tiêu Đề: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, -1, 41));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, -1, 41));
 
         txtmessage.setColumns(20);
         txtmessage.setRows(5);
         jScrollPane1.setViewportView(txtmessage);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 630, 180));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 630, 180));
 
         btnhuy.setBackground(new java.awt.Color(204, 0, 0));
         btnhuy.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -158,7 +162,7 @@ public class SendMail extends javax.swing.JPanel {
                 btnhuyActionPerformed(evt);
             }
         });
-        jPanel1.add(btnhuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, 70, -1));
+        jPanel1.add(btnhuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 530, 70, -1));
 
         txtpass.setText("Hungphi12a10");
         jPanel1.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 240, 30));
@@ -182,7 +186,7 @@ public class SendMail extends javax.swing.JPanel {
                 rSButtonHover4ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonHover4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 570, 70, -1));
+        jPanel1.add(rSButtonHover4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 70, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/icons8-gmail-150.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 160, -1));
@@ -237,6 +241,7 @@ public class SendMail extends javax.swing.JPanel {
         tblStudent.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
         tblStudent.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
         tblStudent.setColorSelBackgound(new java.awt.Color(102, 102, 102));
+        tblStudent.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblStudent.setRowHeight(40);
         tblStudent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -270,7 +275,7 @@ public class SendMail extends javax.swing.JPanel {
                                 .addComponent(cbbmalophoc, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -289,7 +294,7 @@ public class SendMail extends javax.swing.JPanel {
                             .addComponent(rSButtonHover2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(7, 7, 7)))
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -305,12 +310,12 @@ public class SendMail extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
- 
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(this);
         if (fileChooser.getSelectedFile() != null) {
@@ -320,17 +325,17 @@ public class SendMail extends javax.swing.JPanel {
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
     private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
-     // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnhuyActionPerformed
 
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
-tabs.setSelectedIndex(1);     // TODO add your handling code here:
+        tabs.setSelectedIndex(1);     // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
     Validate vld = new Validate();
     private void rSButtonHover4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover4ActionPerformed
         try {
             StringBuilder sb = new StringBuilder();
-        vld.ValidatorNullJText(txttk, sb, "Tên Tài Khoản Không Được Để Trống");
+            vld.ValidatorNullJText(txttk, sb, "Tên Tài Khoản Không Được Để Trống");
             vld.ValidatorNullJText(txtpass, sb, "Mật Khẩu Không Được Để Trống");
             vld.ValidatorNullJText(txtngnhan, sb, "Tên Người Không Được Để Trống");
             vld.ValidatorNullJText(txtsubject, sb, "Tiêu Đề Không Được Để Trống");
@@ -338,19 +343,19 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
                 MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
                 return;
             }
-           
-            if(txtmessage.getText().length() == 0){
+
+            if (txtmessage.getText().length() == 0) {
                 txtmessage.setBackground(red);
                 MsgBox.showErrorDialog(jPanel1, "Tin Nhắn không được rỗng", "Đã Xảy Ra Lỗi");
                 return;
             }
-          
-        sendmail();  
+
+            sendmail();
         } catch (Exception e) {
-            
-              MsgBox.showErrorDialog(jPanel1, "Có lỗi xảy ra", "Đã Xảy Ra Lỗi");
+
+            MsgBox.showErrorDialog(jPanel1, "Có lỗi xảy ra", "Đã Xảy Ra Lỗi");
         }
-          // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover4ActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
@@ -365,30 +370,30 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
     }//GEN-LAST:event_cbbmalophocActionPerformed
 
     private void tblStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentMouseClicked
- if(evt.getClickCount() == 2){
+        if (evt.getClickCount() == 2) {
             this.row = tblStudent.getSelectedRow();
             this.edit2();
 
-  
-      }        // TODO add your handling code here:
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_tblStudentMouseClicked
- int row = -1;
-    void sendmail(){
-  final String username = txttk.getText();
+    int row = -1;
+
+    void sendmail() {
+        final String username = txttk.getText();
         final String password = new String(txtpass.getPassword());
 
         Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true"); //TLS
-        
+
         Session session = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
 
         try {
 
@@ -408,16 +413,18 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-    
-}
 
-   ChuyenNganhDao cndao = new ChuyenNganhDao();
+    }
+
+    ChuyenNganhDao cndao = new ChuyenNganhDao();
     LopHocDAO lhdao = new LopHocDAO();
-        SinhVienDao svdao = new SinhVienDao();
-    void init(){
-        
-       chonChuyenNganh();
-   }
+    SinhVienDao svdao = new SinhVienDao();
+
+    void init() {
+
+        chonChuyenNganh();
+    }
+
     void chonChuyenNganh() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
         model.removeAllElements();
@@ -431,89 +438,82 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
             MsgBox.alert(this, "Lỗi Truy Vấn");
         }
     }
-      void fillcomboboxLopHoc() {
-//        String MaCN = (String) cbbmachuyennganh.getSelectedItem();
-//        List<LopHoc> list = lhdao.selectByChuyenNganh(MaCN);
-//        for (LopHoc lh : list) {
-//            cbbmalophoc.addItem(lh.getMaLopHoc());
-//        }
-       try {
-            DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmalophoc.getModel();
-            model.removeAllElements();
+
+    void fillcomboboxLopHoc() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmalophoc.getModel();
+        model.removeAllElements();
+        if (cbbmachuyennganh.getSelectedItem() != null) {
             try {
                 String machuyennganh = cbbmachuyennganh.getSelectedItem().toString();
                 List<LopHoc> list = lhdao.selectByChuyenNganh(machuyennganh);
                 for (LopHoc cd : list) {
                     model.addElement(cd.getMaLopHoc());
-                      fillTableSelectByMa();
+                    fillTableSelectByMa();
                 }
-              
+
             } catch (Exception e) {
                 e.printStackTrace();
+                MsgBox.alert(this, "Lỗi Truy Vấn");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            MsgBox.alert(this, "Lỗi Truy Vấn");
         }
-
     }
-      void filltableByLopHoc(){
-             try {
-            DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
-            model.setRowCount(0);
-            String malophoc = cbbmalophoc.getSelectedItem().toString();
-            String keyword = timkiem2.getText();
-            List<SinhVien> list = svdao.selectSVByMaLH(malophoc);
-            for (SinhVien nh : list) {
-                model.addRow(new Object[]{
-                    nh.getMaSinhVien(),
-                   
-                    nh.getEmail(),
-                  
-                    nh.getMaChuyenNganh(),
-                    nh.getMaLopHoc(),
-                 });
 
+    void filltableByLopHoc() {
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        model.setRowCount(0);
+        if(cbbmalophoc.getSelectedItem() != null && timkiem2 != null){
+            try {
+                String malophoc = cbbmalophoc.getSelectedItem().toString();
+                String keyword = timkiem2.getText();
+                List<SinhVien> list = svdao.selectSVByMaLH(malophoc);
+                for (SinhVien nh : list) {
+                    model.addRow(new Object[]{
+                        nh.getMaSinhVien(),
+                        nh.getEmail(),
+                        nh.getMaChuyenNganh(),
+                        nh.getMaLopHoc(),});
+                }
+
+            } catch (Exception e) {
+                MsgBox.alert(this, "Lỗi Truy Vấn");
             }
-
-        } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi Truy Vấn");
         }
-      }
-          void fillTableSelectByMa() {
-        try {
-            DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
-            model.setRowCount(0);
-            String malophoc = cbbmalophoc.getSelectedItem().toString();
-            String keyword = timkiem2.getText();
-            List<SinhVien> list = svdao.selectSVByMaLH(malophoc);
-            for (SinhVien nh : list) {
-                model.addRow(new Object[]{
-                    nh.getMaSinhVien(),
-                   
-                    nh.getEmail(),
-                  
-                    nh.getMaChuyenNganh(),
-                    nh.getMaLopHoc(),
-                 });
+    }
 
+    void fillTableSelectByMa() {
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        model.setRowCount(0);
+        if(cbbmalophoc.getSelectedItem() != null && timkiem2 != null) {
+            try {
+                String malophoc = cbbmalophoc.getSelectedItem().toString();
+                String keyword = timkiem2.getText();
+                List<SinhVien> list = svdao.selectSVByMaLH(malophoc);
+                for (SinhVien nh : list) {
+                    model.addRow(new Object[]{
+                        nh.getMaSinhVien(),
+                        nh.getEmail(),
+                        nh.getMaChuyenNganh(),
+                        nh.getMaLopHoc(),});
+
+                }
+
+            } catch (Exception e) {
+                MsgBox.alert(this, "Lỗi Truy Vấn");
             }
-
-        } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi Truy Vấn");
         }
+    }
 
+    void edit2() {
+        String maSV = (String) tblStudent.getValueAt(this.row, 0);
+        SinhVien sv = svdao.selectById(maSV);
+        this.setForm(sv);
+        tabs.setSelectedIndex(0);
     }
-               void edit2() {
-         String maSV = (String) tblStudent.getValueAt(this.row, 0);
-         SinhVien sv = svdao.selectById(maSV);
-         this.setForm(sv);
-         tabs.setSelectedIndex(0);
+
+    private void setForm(SinhVien sv) {
+        txtngnhan.setText(sv.getEmail());
     }
-                  private void setForm(SinhVien sv) {
-       txtngnhan.setText(sv.getEmail());
-    }
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.complementos.RSButtonHover btnhuy;
@@ -548,4 +548,3 @@ tabs.setSelectedIndex(1);     // TODO add your handling code here:
     private app.bolivia.swing.JCTextField txttk;
     // End of variables declaration//GEN-END:variables
 }
-        

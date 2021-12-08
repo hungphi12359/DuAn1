@@ -107,8 +107,10 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         btnPrint = new rojeru_san.complementos.RSButtonHover();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1100, 625));
 
         jpnView.setBackground(new java.awt.Color(255, 255, 255));
+        jpnView.setPreferredSize(new java.awt.Dimension(1100, 625));
         jpnView.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Scrollbar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -150,7 +152,7 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         });
         Scrollbar.setViewportView(tblStudent);
 
-        jpnView.add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 325, 1080, 290));
+        jpnView.add(Scrollbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 325, 1080, 280));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Thông Tin Sinh Viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -304,7 +306,9 @@ public class SinhVienJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
