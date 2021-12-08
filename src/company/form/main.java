@@ -49,11 +49,24 @@ public class main extends javax.swing.JFrame {
      * Creates new form main
      */
     public main() {
-        setExtendedState(getExtendedState()|JFrame.MAXIMIZED_BOTH);
+        try {       
+            try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//                   setExtendedState(getExtendedState()|JFrame.MAXIMIZED_BOTH);
         initComponents();
         setTitle("Quản Lý Học Viên");
-        Chuyenmanhinhcontroller controller = new Chuyenmanhinhcontroller(jpnView);
+Chuyenmanhinhcontroller  controller = new Chuyenmanhinhcontroller(jpnView);
         controller.setViews(jpnTrangChu, jlbTrangChu);
+     
         this.openWelcome();
     
         List<DanhMucBean> listItem = new ArrayList<>();
@@ -72,6 +85,10 @@ public class main extends javax.swing.JFrame {
         listItem.add(new DanhMucBean("ChuyenNganh", jpnChuyenNganh, jlbChuyenNganh));
 
         controller.setEvent(listItem);
+        } catch (Exception e) {
+         
+        }
+ 
     }
 
     void openWelcome() {

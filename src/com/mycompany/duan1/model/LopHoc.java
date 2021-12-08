@@ -16,16 +16,20 @@ public class LopHoc {
     private int SoLuongSinhVien;
     private String MaNhanVien;
     private Date NgayDangKy; 
+    private String MaChuyenNganh;
+    private boolean TrangThai;
 
     public LopHoc() {
     }
 
-    public LopHoc(String MaLopHoc, String TenLopHoc, int SoLuongSinhVien, String MaNhanVien, Date NgayDangKy) {
+    public LopHoc(String MaLopHoc, String TenLopHoc, int SoLuongSinhVien, String MaNhanVien, Date NgayDangKy, String MaChuyenNganh, boolean TrangThai) {
         this.MaLopHoc = MaLopHoc;
         this.TenLopHoc = TenLopHoc;
         this.SoLuongSinhVien = SoLuongSinhVien;
         this.MaNhanVien = MaNhanVien;
         this.NgayDangKy = NgayDangKy;
+        this.MaChuyenNganh = MaChuyenNganh;
+        this.TrangThai = TrangThai;
     }
 
     public String getMaLopHoc() {
@@ -68,11 +72,21 @@ public class LopHoc {
         this.NgayDangKy = NgayDangKy;
     }
 
-    @Override
-    public String toString() {
-        return MaLopHoc ;
+    public String getMaChuyenNganh() {
+        return MaChuyenNganh;
     }
-    
+
+    public void setMaChuyenNganh(String MaChuyenNganh) {
+        this.MaChuyenNganh = MaChuyenNganh;
+    }
+
+    public boolean isTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
+    }
 
    
 }

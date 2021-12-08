@@ -7,13 +7,17 @@ package com.mycompany.view;
 
 import com.mycompany.duan1.X.Auth;
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.dao.TaiKhoanDao;
 import com.mycompany.duan1.model.TaiKhoan;
 import java.awt.Color;
+import static java.awt.Color.red;
+import static java.awt.Color.white;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import scrollbar.ScrollBarCustom;
@@ -23,6 +27,7 @@ import scrollbar.ScrollBarCustom;
  * @author quang
  */
 public class QLTKPanel extends javax.swing.JPanel {
+     Validate vld = new Validate();
    TaiKhoanDao tkDao = new TaiKhoanDao();
     int row = -1;
     /**
@@ -184,6 +189,7 @@ public class QLTKPanel extends javax.swing.JPanel {
         cbbVaitro = new javax.swing.JComboBox<>();
         txt_Tentaikhoan = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        timkiem1 = new textfield.timkiem();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.MatteBorder(null));
@@ -201,7 +207,6 @@ public class QLTKPanel extends javax.swing.JPanel {
         jPanel1.add(txt_MaTK, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 250, 30));
 
         txt_Matkhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txt_Matkhau.setText("jPasswordField1");
         txt_Matkhau.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(txt_Matkhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 290, 30));
 
@@ -216,7 +221,7 @@ public class QLTKPanel extends javax.swing.JPanel {
                 btnThemActionPerformed(evt);
             }
         });
-        jPanel1.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, 100, 40));
+        jPanel1.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 100, 40));
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/Delete.png"))); // NOI18N
         btnXoa.setText("Xoá");
@@ -225,7 +230,7 @@ public class QLTKPanel extends javax.swing.JPanel {
                 btnXoaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 100, 40));
+        jPanel1.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 70, 100, 40));
 
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/Refresh.png"))); // NOI18N
         btnSua.setText("Sửa");
@@ -234,7 +239,7 @@ public class QLTKPanel extends javax.swing.JPanel {
                 btnSuaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 40, 100, 40));
+        jPanel1.add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 100, 40));
 
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/myimage/icons/Properties.png"))); // NOI18N
         btnLamMoi.setText("Làm mới");
@@ -243,7 +248,7 @@ public class QLTKPanel extends javax.swing.JPanel {
                 btnLamMoiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLamMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 100, 100, 40));
+        jPanel1.add(btnLamMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 70, 100, 40));
 
         tbltaikhoan.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 0, 51)));
         tbltaikhoan.setModel(new javax.swing.table.DefaultTableModel(
@@ -297,6 +302,18 @@ public class QLTKPanel extends javax.swing.JPanel {
         jLabel6.setText("Tên tài khoản");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 90, 30));
 
+        timkiem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timkiem1ActionPerformed(evt);
+            }
+        });
+        timkiem1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                timkiem1KeyPressed(evt);
+            }
+        });
+        jPanel1.add(timkiem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 110, 240, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -313,22 +330,114 @@ public class QLTKPanel extends javax.swing.JPanel {
 this.row = tbltaikhoan.getSelectedRow();
         Edit();        // TODO add your handling code here:
     }//GEN-LAST:event_tbltaikhoanMouseClicked
-
+  
+    public boolean checkTrungMa(JTextField txt, StringBuilder sb, String errorMessage) {
+        txt.setBackground(white);
+        if (tkDao.selectById(txt.getText()) == null) {
+            return true;
+        } else {
+            txt.setBackground(Color.red);
+            sb.append(errorMessage).append("\n");
+            txt.requestFocus();
+            return false;
+        }
+    }
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-insert();        // TODO add your handling code here:
+        try {
+            StringBuilder sb = new StringBuilder();
+            checkTrungMa(txt_MaTK, sb, "Mã Tài Khoản Này Đã Tồn Tại Trên Hệ Thống");
+            vld.ValidatorNullJText(txt_MaTK, sb, "Mã Lớp Học Không Được Để Trống");
+            vld.ValidatorNullJText(txt_Tentaikhoan, sb, "Tên Lớp Học Không Được Để Trống");
+            vld.ValidatorNullJText(txt_Matkhau, sb, "Tên Lớp Học Không Được Để Trống");
+
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            insert(); 
+        } catch (Exception e) {
+              MsgBox.showErrorDialog(jPanel1, "Có Lỗi Xảy Ra", "Đã Xảy Ra Lỗi");
+              e.printStackTrace();
+        }
+             // TODO add your handling code here:
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-update();        // TODO add your handling code here:
+        try {
+                        StringBuilder sb = new StringBuilder();
+         
+            vld.ValidatorNullJText(txt_MaTK, sb, "Mã Lớp Học Không Được Để Trống");
+            vld.ValidatorNullJText(txt_Tentaikhoan, sb, "Tên Lớp Học Không Được Để Trống");
+            vld.ValidatorNullJText(txt_Matkhau, sb, "Tên Lớp Học Không Được Để Trống");
+
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            update();
+        } catch (Exception e) {
+        }
+                // TODO add your handling code here:
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-delete();        // TODO add your handling code here:
+        try {
+                        StringBuilder sb = new StringBuilder();
+         
+            vld.ValidatorNullJText(txt_MaTK, sb, "Mã Tài Khoản Không Được Để Trống");
+
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            delete(); 
+        } catch (Exception e) {
+                MsgBox.showErrorDialog(jPanel1, "Lỗi Xảy Ra", "Đã Xảy Ra Lỗi");
+        }
+               // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
 clearForm();        // TODO add your handling code here:
     }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void timkiem1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timkiem1KeyPressed
+          try {
+            DefaultTableModel model = (DefaultTableModel) tbltaikhoan.getModel();
+            model.setRowCount(0);
+            String keyword = timkiem1.getText();
+            List<TaiKhoan> list = tkDao.selectByTenTK(keyword);
+            for (TaiKhoan nh : list) {
+//                   String temp = "";
+//            for (int i = 0; i < tk.getMatKhau().length(); i++) {
+//                if (tk.getMatKhau().length() == temp.length()) {
+//                    temp = "";
+//                } else {
+//                    temp += "*";
+//                }
+//            }
+                model.addRow(new Object[]{
+                    nh.getMaTK(),
+                    nh.getTenTaiKhoan(),
+                    //                    nh.getNgaySinh(),
+                    nh.getMatKhau(),
+                 nh.getVaiTro() == 0 ? "Nhân Viên" : tk.getVaiTro() == 1 ? "Giảng Viên" : "Sinh Viên"
+                    //                    nh.getSDT(),
+                    //                    nh.getDiaChi(),
+
+              
+                });
+
+            }
+
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }      // TODO add your handling code here:
+    }//GEN-LAST:event_timkiem1KeyPressed
+
+    private void timkiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timkiem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timkiem1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -345,6 +454,7 @@ clearForm();        // TODO add your handling code here:
     private javax.swing.JPanel jPanel1;
     private rojeru_san.componentes.RSCalendarBeanInfo rSCalendarBeanInfo1;
     private rojeru_san.complementos.RSTableMetro tbltaikhoan;
+    private textfield.timkiem timkiem1;
     private javax.swing.JTextField txt_MaTK;
     private javax.swing.JPasswordField txt_Matkhau;
     private javax.swing.JTextField txt_Tentaikhoan;

@@ -106,13 +106,16 @@ final String SELECT_BY_ID_MaChuyenNganh = "select * from MonHoc where MaChuyenNg
         String sql="select * from MonHoc where MaChuyenNganh like ?";
         return this.selectBySql(sql, MaCN);
     }
-    public List<MonHoc> selectByHocKy(String MaHK){
-        String sql="select * from MonHoc where HocKy like ?";
-        return this.selectBySql(sql, MaHK);
+    public List<MonHoc> selectByHocKy(String MaHK,String MaCN){
+        String sql="select * from MonHoc where HocKy like ? and MaChuyenNganh like ?";
+        return this.selectBySql(sql, MaHK, MaCN);
     }
         public List<MonHoc> selectByHocKyandmoney(String MaHK, String MaCN){
         String sql="select * from MonHoc where HocKy like ? and MaChuyenNganh = ?";
         return this.selectBySql(sql, MaHK, MaCN);
     }
-    
+           public List<MonHoc> selectByMaMH(String id) {
+           String sql="select * from MonHoc where MaMonHoc like ?";
+        return this.selectBySql(sql, "%"+id+"%");
+    }
 }

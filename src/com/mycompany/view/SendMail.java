@@ -5,12 +5,14 @@
 package com.mycompany.view;
 
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.dao.ChuyenNganhDao;
 import com.mycompany.duan1.dao.LopHocDAO;
 import com.mycompany.duan1.dao.SinhVienDao;
 import com.mycompany.duan1.model.ChuyenNganh;
 import com.mycompany.duan1.model.LopHoc;
 import com.mycompany.duan1.model.SinhVien;
+import static java.awt.Color.red;
 import java.io.File;
 import java.net.URI;
 import java.util.List;
@@ -324,9 +326,31 @@ public class SendMail extends javax.swing.JPanel {
     private void rSButtonHover3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover3ActionPerformed
 tabs.setSelectedIndex(1);     // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover3ActionPerformed
-
+    Validate vld = new Validate();
     private void rSButtonHover4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover4ActionPerformed
-    sendmail();       // TODO add your handling code here:
+        try {
+            StringBuilder sb = new StringBuilder();
+        vld.ValidatorNullJText(txttk, sb, "Tên Tài Khoản Không Được Để Trống");
+            vld.ValidatorNullJText(txtpass, sb, "Mật Khẩu Không Được Để Trống");
+            vld.ValidatorNullJText(txtngnhan, sb, "Tên Người Không Được Để Trống");
+            vld.ValidatorNullJText(txtsubject, sb, "Tiêu Đề Không Được Để Trống");
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+           
+            if(txtmessage.getText().length() == 0){
+                txtmessage.setBackground(red);
+                MsgBox.showErrorDialog(jPanel1, "Tin Nhắn không được rỗng", "Đã Xảy Ra Lỗi");
+                return;
+            }
+          
+        sendmail();  
+        } catch (Exception e) {
+            
+              MsgBox.showErrorDialog(jPanel1, "Có lỗi xảy ra", "Đã Xảy Ra Lỗi");
+        }
+          // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover4ActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed

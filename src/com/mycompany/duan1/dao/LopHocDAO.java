@@ -22,24 +22,28 @@ public class LopHocDAO extends EduSysDAO<LopHoc, String>{
    
     @Override
     public void insert(LopHoc entity) {
-         String sql="INSERT INTO [dbo].[LopHoc] ([MaLopHoc] ,[TenLopHoc],[MaNhanVien],[NgayDangKy]) VALUES(?  ,?,? ,? ,?)";
+         String sql="INSERT INTO [dbo].[LopHoc]([MaLopHoc],[TenLopHoc],[MaNhanVien],[NgayDangKy] ,[MaChuyenNganh],[TrangThai])VALUES(?,?,?,?,?,?)";
         XJdbc.update(sql, 
                 entity.getMaLopHoc(), 
                 entity.getTenLopHoc(), 
-        
                 entity.getMaNhanVien(),
-                entity.getNgayDangKy());
+                entity.getNgayDangKy(),
+                entity.getMaChuyenNganh(),
+                entity.isTrangThai()
+                );
     }
 
     @Override
     public void update(LopHoc entity) {
-          String sql="UPDATE [dbo].[LopHoc] SET [TenLopHoc] = ?,[MaNhanVien] = ?,[NgayDangKy] = ?  WHERE [MaLopHoc] = ?";
+          String sql="UPDATE [dbo].[LopHoc] SET [TenLopHoc] = ?,[MaNhanVien] = ?,[NgayDangKy] = ?,[MaChuyenNganh] = ?,[TrangThai] = ? WHERE [MaLopHoc] = ?";
         XJdbc.update(sql, 
              entity.getTenLopHoc(), 
-   
-                entity.getMaNhanVien(), 
-                entity.getNgayDangKy(),
-                    entity.getMaLopHoc());
+            entity.getMaNhanVien(), 
+                entity.getNgayDangKy() ,
+          entity.getMaChuyenNganh(),
+                entity.isTrangThai(),
+                entity.getMaLopHoc()
+        );
     }
 
     @Override
@@ -75,6 +79,8 @@ public class LopHocDAO extends EduSysDAO<LopHoc, String>{
              
                     entity.setMaNhanVien(rs.getString("MaNhanVien"));
                     entity.setNgayDangKy(rs.getDate("NgayDangKy"));
+                    entity.setMaChuyenNganh(rs.getString("MaChuyenNganh"));
+                    entity.setTrangThai(rs.getBoolean("TrangThai"));
                     list.add(entity);
                 }
             } 
@@ -92,7 +98,10 @@ public class LopHocDAO extends EduSysDAO<LopHoc, String>{
         String sql="select * from LopHoc where MaChuyenNganh like ?";
         return this.selectBySql(sql, MaCN);
     }
-    
+         public List<LopHoc> selectLopHocBy(String MaCN){
+        String sql="select * from LopHoc where MaChuyenNganh like ? or MaLopHoc like ? or TenLopHoc like ? ";
+        return this.selectBySql(sql, MaCN,MaCN,MaCN);
+    }
   
 }
 

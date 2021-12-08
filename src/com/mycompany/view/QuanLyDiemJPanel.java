@@ -6,13 +6,16 @@
 package com.mycompany.view;
 
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.dao.DiemDAO;
 import com.mycompany.duan1.dao.MonHocDao;
 import com.mycompany.duan1.dao.SinhVienDao;
 import com.mycompany.duan1.model.Diem;
 import com.mycompany.duan1.model.MonHoc;
 import com.mycompany.duan1.model.SinhVien;
+import combobox.Combobox;
 import java.awt.Color;
+import static java.awt.Color.red;
 import static java.awt.Color.white;
 import java.awt.Scrollbar;
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.text.MessageFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -65,6 +69,7 @@ void init(){
     fixTable();
 
 }
+
 void fixTable(){
         Scrollbar.getViewport().setBackground(Color.WHITE);
         Scrollbar.setVerticalScrollBar(new ScrollBarCustom());
@@ -521,21 +526,122 @@ void fixTable(){
         );
     }// </editor-fold>//GEN-END:initComponents
 
+      Validate vld = new Validate();
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-      insert();
-    }//GEN-LAST:event_btnThemActionPerformed
+        try {
+            StringBuilder sb = new StringBuilder();
+   
+            vld.checkDiem(txtDiemLab1, sb, "Bạn Nhập Điểm Lab 1 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab2, sb, "Bạn Nhập Điểm Lab 2 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab3, sb, "Bạn Nhập Điểm Lab 3 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab4, sb, "Bạn Nhập Điểm Lab 4 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab5, sb, "Bạn Nhập Điểm Lab 5 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab6, sb, "Bạn Nhập Điểm Lab 6 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab7, sb, "Bạn Nhập Điểm Lab 7 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab8, sb, "Bạn Nhập Điểm Lab 8 Không Hợp Lệ");
+            vld.checkDiem(txtDiemASS1, sb, "Bạn Nhập Điểm Lab Ass1 Không Hợp Lệ");
+            vld.checkDiem(txtDiemASS2, sb, "Bạn Nhập Điểm Lab Ass2 Không Hợp Lệ");
+            vld.checkDiem(txtDoc, sb, "Bạn Nhập Điểm Document Không Hợp Lệ");
+            
+            vld.ValidatorNullJText(txtMaSV, sb, "Mã Sinh Viên Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab1, sb, "Điểm Lab 1 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab2, sb, "Điểm Lab 2 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab3, sb, "Điểm Lab 3 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab4, sb, "Điểm Lab 4 Không Được Để Trống");
+                        vld.ValidatorNullJText(txtDiemLab5, sb, "Điểm Lab 5 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab6, sb, "Điểm Lab 6 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab7, sb, "Điểm Lab 7 Không Được Để Trống");
+                        vld.ValidatorNullJText(txtDiemLab8, sb, "Điểm Lab 8 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemASS1, sb, "Điểm Ass1 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemASS2, sb, "Điểm Ass2 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDoc, sb, "Điểm Doccument Không Được Để Trống");
+              if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+          }
 
+         insert();
+    
+           
+       
+         
+        } catch (Exception e) {
+   MsgBox.showErrorDialog(jPanel1, "Có Lỗi Xảy Ra", "Đã Xảy Ra Lỗi");
+   e.printStackTrace();
+  
+    }//GEN-LAST:event_btnThemActionPerformed
+    }
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
         clear();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-update();
+       StringBuilder sb = new StringBuilder();
+   
+            vld.checkDiem(txtDiemLab1, sb, "Bạn Nhập Điểm Lab 1 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab2, sb, "Bạn Nhập Điểm Lab 2 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab3, sb, "Bạn Nhập Điểm Lab 3 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab4, sb, "Bạn Nhập Điểm Lab 4 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab5, sb, "Bạn Nhập Điểm Lab 5 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab6, sb, "Bạn Nhập Điểm Lab 6 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab7, sb, "Bạn Nhập Điểm Lab 7 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab8, sb, "Bạn Nhập Điểm Lab 8 Không Hợp Lệ");
+            vld.checkDiem(txtDiemASS1, sb, "Bạn Nhập Điểm Lab Ass1 Không Hợp Lệ");
+            vld.checkDiem(txtDiemASS2, sb, "Bạn Nhập Điểm Lab Ass2 Không Hợp Lệ");
+            vld.checkDiem(txtDoc, sb, "Bạn Nhập Điểm Document Không Hợp Lệ");
+            
+            vld.ValidatorNullJText(txtMaSV, sb, "Mã Sinh Viên Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab1, sb, "Điểm Lab 1 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab2, sb, "Điểm Lab 2 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab3, sb, "Điểm Lab 3 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab4, sb, "Điểm Lab 4 Không Được Để Trống");
+                        vld.ValidatorNullJText(txtDiemLab5, sb, "Điểm Lab 5 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab6, sb, "Điểm Lab 6 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab7, sb, "Điểm Lab 7 Không Được Để Trống");
+                        vld.ValidatorNullJText(txtDiemLab8, sb, "Điểm Lab 8 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemASS1, sb, "Điểm Ass1 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemASS2, sb, "Điểm Ass2 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDoc, sb, "Điểm Doccument Không Được Để Trống");
+              if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+          }
+        update();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-delete();
+       StringBuilder sb = new StringBuilder();
+   
+            vld.checkDiem(txtDiemLab1, sb, "Bạn Nhập Điểm Lab 1 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab2, sb, "Bạn Nhập Điểm Lab 2 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab3, sb, "Bạn Nhập Điểm Lab 3 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab4, sb, "Bạn Nhập Điểm Lab 4 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab5, sb, "Bạn Nhập Điểm Lab 5 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab6, sb, "Bạn Nhập Điểm Lab 6 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab7, sb, "Bạn Nhập Điểm Lab 7 Không Hợp Lệ");
+            vld.checkDiem(txtDiemLab8, sb, "Bạn Nhập Điểm Lab 8 Không Hợp Lệ");
+            vld.checkDiem(txtDiemASS1, sb, "Bạn Nhập Điểm Lab Ass1 Không Hợp Lệ");
+            vld.checkDiem(txtDiemASS2, sb, "Bạn Nhập Điểm Lab Ass2 Không Hợp Lệ");
+            vld.checkDiem(txtDoc, sb, "Bạn Nhập Điểm Document Không Hợp Lệ");
+            
+            vld.ValidatorNullJText(txtMaSV, sb, "Mã Sinh Viên Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab1, sb, "Điểm Lab 1 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab2, sb, "Điểm Lab 2 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab3, sb, "Điểm Lab 3 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab4, sb, "Điểm Lab 4 Không Được Để Trống");
+                        vld.ValidatorNullJText(txtDiemLab5, sb, "Điểm Lab 5 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab6, sb, "Điểm Lab 6 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemLab7, sb, "Điểm Lab 7 Không Được Để Trống");
+                        vld.ValidatorNullJText(txtDiemLab8, sb, "Điểm Lab 8 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemASS1, sb, "Điểm Ass1 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiemASS2, sb, "Điểm Ass2 Không Được Để Trống");
+            vld.ValidatorNullJText(txtDoc, sb, "Điểm Doccument Không Được Để Trống");
+              if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+          }
+        delete();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -771,8 +877,14 @@ int i = 1;
          tabs.setSelectedIndex(0);
     }
 
-    void insert() {
+  void insert() {
         Diem model = getModel();
+        for (int i = 0; i < tblDiem1.getRowCount(); i++) {
+            if ((txtMaSV.getText() + cbbMaMonHoc.getSelectedItem().toString()).equals(tblDiem1.getValueAt(i, 1).toString()+tblDiem1.getValueAt(i, 2).toString())){
+                MsgBox.alert(this, "Sinh Viên, môn này đã có điểm");
+                return ;
+            }
+        }
         try {
             diemDAO.insert(model);
             this.clear();

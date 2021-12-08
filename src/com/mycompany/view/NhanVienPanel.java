@@ -6,6 +6,7 @@
 package com.mycompany.view;
 
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.X.XDate;
 import com.mycompany.duan1.X.XImage;
 import com.mycompany.duan1.dao.ChuyenNganhDao;
@@ -16,6 +17,8 @@ import com.mycompany.duan1.model.NhanVien;
 import com.mycompany.duan1.model.SinhVien;
 import com.mycompany.duan1.model.TaiKhoan;
 import java.awt.Color;
+import static java.awt.Color.red;
+import static java.awt.Color.white;
 import java.io.File;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -43,6 +46,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.text.MessageFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author quang
@@ -416,17 +420,91 @@ public class NhanVienPanel extends javax.swing.JPanel {
             edit();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_tblNhanVienMouseClicked
-
+Validate vld = new Validate();
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        insert();        // TODO add your handling code here:
+        try {
+                StringBuilder sb = new StringBuilder();
+        checkTrungMa(txtMaNV2, sb, "Nhân Viên Đã Tồn Tại Trên Hệ Thống");
+        vld.checkMaNV(txtMaNV2, sb, "Mã Nhân Viên chỉ trong khoảng 7 ký tự");
+         vld.ValidatorNullJText(txtMaNV2, sb, "Mã Nhân Viên Không Được Để Trống");
+        vld.ValidatorNullJText(txtHoTen1, sb, "Tên Nhân Viên Không Được Để Trống");
+        vld.ValidatorNullJText(txtSoDT1, sb, "Số Điện Thoại Không Được Để Trống");
+        vld.checkEmail(txtEmail, sb, "Email Không Đúng Định Dạng");
+        vld.checkSDT(txtSoDT1, sb, "Số Điện Thoại Không Đúng Định Dạng");
+          vld.ValidatorNullJText(txtEmail, sb, "Email Không Được Để Trống");
+          vld.ValidatorNullJText(txtSoDT1, sb, "Số Điện Thoại Không Được Để Trống");
+           vld.ValidatorNullJText(txtDiaChi, sb, "Số Điện Thoại Không Được Để Trống");
+       if(sb.length() > 0){
+            MsgBox.showErrorDialog(jPanel1, sb.toString(),"Đã Xảy Ra Lỗi" );
+            return;
+        } if(jdcNgaySinh.getDate()== null){
+            jdcNgaySinh.setBackground(red);
+            vld.ValidatorNullJDate(jdcNgaySinh, sb, "Ngày Sinh Không Được Để Trống");
+             MsgBox.showErrorDialog(jPanel1, sb.toString(),"Ngày Sinh Không Được Để Trống" );
+           
+            return;
+        }
+        
+            insert();
+           
+       
+            
+        } catch (Exception e) {
+     MsgBox.showErrorDialog(this ,"Bạn Chưa Nhập Ngày Sinh","Đã Xảy Ra Lỗi");
+        }
+               // TODO add your handling code here:
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        update();        // TODO add your handling code here:
+            try {
+                StringBuilder sb = new StringBuilder();
+ 
+        vld.ValidatorNullJText(txtHoTen1, sb, "Tên Nhân Viên Không Được Để Trống");
+        vld.ValidatorNullJText(txtSoDT1, sb, "Số Điện Thoại Không Được Để Trống");
+        vld.checkEmail(txtEmail, sb, "Email Không Đúng Định Dạng");
+        vld.checkSDT(txtSoDT1, sb, "Số Điện Thoại Không Đúng Định Dạng");
+          vld.ValidatorNullJText(txtEmail, sb, "Email Không Được Để Trống");
+          vld.ValidatorNullJText(txtSoDT1, sb, "Số Điện Thoại Không Được Để Trống");
+           vld.ValidatorNullJText(txtDiaChi, sb, "Số Điện Thoại Không Được Để Trống");
+       if(sb.length() > 0){
+            MsgBox.showErrorDialog(jPanel1, sb.toString(),"Đã Xảy Ra Lỗi" );
+            return;
+        } if(jdcNgaySinh.getDate() == null){
+            vld.ValidatorNullJDate(jdcNgaySinh, sb, "Ngày Sinh Không Được Để Trống");
+             MsgBox.showErrorDialog(jPanel1, sb.toString(),"Ngày Sinh Không Được Để Trống" );
+             jdcNgaySinh.setBackground(Color.red);
+            return;
+        }
+                int x;
+        x = JOptionPane.showConfirmDialog(this, "bạn có muốn cập nhật không ?" );
+             
+        if(x == JOptionPane.YES_NO_OPTION){
+       update(); 
+       Reset();
+           
+        }
+              
+        } catch (Exception e) {
+                  MsgBox.showErrorDialog(this ,"Bạn Chưa Nhập Ngày Sinh","Đã Xảy Ra Lỗi");
+        }
+            // TODO add your handling code here:
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        delete();        // TODO add your handling code here:
+             StringBuilder sb = new StringBuilder();
+        vld.ValidatorNullJText(txtMaNV2, sb, "Mã Nhân Viên Không Được Để Trống");
+  if(sb.length() > 0){
+            MsgBox.showErrorDialog(jPanel1, sb.toString(),"Đã Xảy Ra Lỗi" );
+            return;
+        }
+          int x;
+        x = JOptionPane.showConfirmDialog(this, "bạn có muốn xóa không ?" );
+             
+        if(x == JOptionPane.YES_NO_OPTION){
+    delete();
+           
+        }
+               // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
@@ -446,6 +524,9 @@ public class NhanVienPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txttimkiemActionPerformed
 
     private void rSButtonHover1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonHover1ActionPerformed
+        if(txttimkiem.getText().length() == 0){
+            load();
+        }
         loadByMa();        // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonHover1ActionPerformed
 
@@ -526,7 +607,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
                     nv.getEmail(),
 //                    nv.getDiaChi(),
 //                    nv.getNgaySinh(),
-                    nv.isGioiTinh() ? "Nam" : "Nữ",
+//                    nv.isGioiTinh() ? "Nam" : "Nữ",
                     nv.getMaChuyenNganh(),
 //                    nv.getHinh(),
                     nv.getMaTaiKhoan()
@@ -578,11 +659,12 @@ public class NhanVienPanel extends javax.swing.JPanel {
                     nv.getTenNhanVien(),
                     nv.getSDT(),
                     nv.getEmail(),
-                    nv.getDiaChi(),
-                    nv.getNgaySinh(),
-                    nv.isGioiTinh() ? "Nam" : "Nữ",
+//                    nv.getDiaChi(),
+//                    nv.getNgaySinh(),
+//                    nv.isGioiTinh() ? "Nam" : "Nữ",
                     nv.getMaChuyenNganh(),
-                    nv.getHinh()
+//                    nv.getHinh()
+                    nv.getMaTaiKhoan()
                 };
                 model.addRow(row);
             }
@@ -648,7 +730,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_MaTK.getModel();
         model.removeAllElements();
         try {
-            model.addElement(tblNhanVien.getValueAt(row, 9));
+            model.addElement(tblNhanVien.getValueAt(row, 5));
 
         } catch (Exception e) {
         }
@@ -663,7 +745,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Xoá thành công");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Xoá thất bại");
+            JOptionPane.showMessageDialog(this, "Nhân Viên Đang Liên Kết Với Bảng Khác");
         }
     }
 
@@ -700,12 +782,20 @@ public class NhanVienPanel extends javax.swing.JPanel {
         model.setDiaChi(txtDiaChi.getText());
         model.setNgaySinh(jdcNgaySinh.getDate());
         model.setGioiTinh(rdoNam.isSelected() ? true : false);
+        model.setMaTaiKhoan(cbb_MaTK.getSelectedItem().toString());
         model.setMaChuyenNganh(cbbmachuyennganh.getSelectedItem().toString());
         model.setHinh(lblhinh.getToolTipText());
         return model;
     }
 
     void Reset() {
+                txtMaNV2.setBackground(Color.WHITE);
+        txtHoTen1.setBackground(Color.WHITE);
+        txtSoDT1.setBackground(Color.WHITE);
+        txtEmail.setBackground(Color.WHITE);
+        txtDiaChi.setBackground(Color.WHITE);
+        jdcNgaySinh.setBackground(Color.WHITE);
+        
         txtMaNV2.setText("");
         txtHoTen1.setText("");
         txtSoDT1.setText("");
@@ -727,6 +817,17 @@ public class NhanVienPanel extends javax.swing.JPanel {
         p.setBackground(Color.WHITE);
         Scrollbar.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         Scrollbar.setBorder(new EmptyBorder(5, 10, 5, 10));
+    }
+    public boolean checkTrungMa(JTextField txt, StringBuilder sb, String errorMessage) {
+        txt.setBackground(white);
+        if (dao.selectById(txt.getText()) == null) {
+            return true;
+        } else {
+            txt.setBackground(Color.red);
+            sb.append(errorMessage).append("\n");
+            txt.requestFocus();
+            return false;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

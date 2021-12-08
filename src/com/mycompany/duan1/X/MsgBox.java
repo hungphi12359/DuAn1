@@ -24,4 +24,7 @@ public class MsgBox {
     public static String prompt(Component parent, String message) {
         return JOptionPane.showInputDialog(parent, message, "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
     }
+        public static void showErrorDialog(Component parent, String content, String Title){
+        JOptionPane.showMessageDialog(parent, content,Title,JOptionPane.ERROR_MESSAGE   );
+    }
 }

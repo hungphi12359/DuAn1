@@ -141,6 +141,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         btn_Xoa = new rojeru_san.complementos.RSButtonHover();
         btnPrint = new rojeru_san.complementos.RSButtonHover();
         btnExel5 = new rojeru_san.complementos.RSButtonHover();
+        cBBMaChuyenNganh1 = new combobox.CBBMaChuyenNganh();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1100, 625));
@@ -387,17 +388,17 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
 
         tblMonHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã MH", "Tên MH", "Học Phí", "Học Kỳ"
+                "Mã MH", "Tên MH", "Học Phí", "Học Kỳ", "Chuyên Ngành"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -470,7 +471,9 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(Scrollbar, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Scrollbar, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                                .addComponent(cBBMaChuyenNganh1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(10, 10, 10)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
@@ -481,9 +484,12 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Scrollbar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(cBBMaChuyenNganh1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Scrollbar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -536,7 +542,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
             String diachi = svDao.selectById(cbbKH.getSelectedItem().toString()).getDiaChi();
             txtDienThoai.setText(sdt);
             txtDiaChi.setText(diachi);
-            Filltable(null);
+            Filltable(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
             fillComboBoxHocKi();
         }
     }//GEN-LAST:event_cbbKHActionPerformed
@@ -558,7 +564,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         hddao.update(hd);
         MsgBox.alert(this, "Đã Thanh Toán Cho Sinh Viên");
         FillTableHoaDon();
-        Filltable(null);
+        Filltable(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
         txtTongTien.setText("");
        
     }//GEN-LAST:event_btnThanhToanActionPerformed
@@ -566,7 +572,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
     private void cbb_ChuyenNganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_ChuyenNganhActionPerformed
         if (cbb_ChuyenNganh.getSelectedItem() != null) {
             fillcomboboxLopHoc();
-            Filltable(null);
+            Filltable(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
             fillComboBoxHocKi();
         }
     }//GEN-LAST:event_cbb_ChuyenNganhActionPerformed
@@ -574,7 +580,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
     private void cbb_LophocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_LophocActionPerformed
         if (cbb_Lophoc.getSelectedItem() != null) {
             fillComboBoxSinhVien();
-            Filltable(null);
+            Filltable(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
             fillComboBoxHocKi();
         }
     }//GEN-LAST:event_cbb_LophocActionPerformed
@@ -583,16 +589,19 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         if (tbl_HoaDon != null) {
             row = tbl_HoaDon.getSelectedRow();
             String MaHK = tbl_HoaDon.getValueAt(row, 3).toString();
-            Filltable(MaHK);
+            String MaCN = tbl_HoaDon.getValueAt(row, 2).toString();
+            Filltable(MaHK,MaCN);
             txtTongTien.setText(tbl_HoaDon.getValueAt(row, 4).toString());
         } else {
-            Filltable(null);
+            Filltable(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
         }
     }//GEN-LAST:event_tbl_HoaDonMouseClicked
 
     private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
-       
-        HoaDon hd = new HoaDon();
+        try {
+            StringBuilder sb = new StringBuilder();
+            
+              HoaDon hd = new HoaDon();
         hd.setNgayTaoHoaDon(XDate.toDate(txtNgayTao.getText(), "dd/MM/yyyy"));
         hd.setMaNhanVien(txt_MaNV.getText());
         hd.setMaSinhVien(cbbKH.getSelectedItem().toString());
@@ -606,9 +615,13 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
 
         MsgBox.alert(this, "Đã Thêm Học Phí Thành Công");
             FillTableHoaDon();
-            Filltable(null);
+            Filltable(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
         fillComboBoxHocKi();
         txtTongTien.setText("");
+        } catch (Exception e) {
+            MsgBox.showErrorDialog(jPanel1, "Bạn Chưa Nhập Dữ Liệu!","Đã Xảy Lỗi");
+        }
+      
     }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
@@ -617,7 +630,7 @@ public class ThanhToanDichVu extends javax.swing.JPanel {
         hddao.delete(id);
         MsgBox.alert(this, "Xoá Thành Công");
         FillTableHoaDon();
-        Filltable(null);
+        Filltable(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
         fillComboBoxHocKi();
         txtTongTien.setText("");
     }//GEN-LAST:event_btn_XoaActionPerformed
@@ -736,17 +749,18 @@ int i = 1;
         }
     }
 
-    void Filltable(String MaHK) {
+    void Filltable(String MaHK,String MaCN) {
         DefaultTableModel model = (DefaultTableModel) tblMonHoc.getModel();
         model.setRowCount(0);
         try {
-            List<MonHoc> list = mhDao.selectByHocKy(MaHK);
+            List<MonHoc> list = mhDao.selectByHocKy(MaHK,MaCN);
             for (MonHoc mh : list) {
                 Object[] row = {
                     mh.getMaMonHoc(),
                     mh.getTenMonHoc(),
                     mh.getHocPhi(),
-                    mh.getHocKy()
+                    mh.getHocKy(),
+                    mh.getMaChuyenNganh()
                 };
                 model.addRow(row);
             }
@@ -767,7 +781,9 @@ int i = 1;
             e.printStackTrace();
         }
     }
-
+void filltableMonHocByMaChuyenNganh(){
+    
+}
     void fillcomboboxLopHoc() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_Lophoc.getModel();
         model.removeAllElements();
@@ -839,6 +855,7 @@ int i = 1;
     private rojeru_san.complementos.RSButtonHover btn_Them;
     private rojeru_san.complementos.RSButtonHover btn_Xoa;
     private javax.swing.ButtonGroup buttonGroup1;
+    private combobox.CBBMaChuyenNganh cBBMaChuyenNganh1;
     private javax.swing.JComboBox<String> cbbKH;
     private javax.swing.JComboBox<String> cbb_ChuyenNganh;
     private javax.swing.JComboBox<String> cbb_Hocky;

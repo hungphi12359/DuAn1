@@ -7,6 +7,8 @@ package com.mycompany.duan1.dao;
 
 import com.mycompany.duan1.X.XJdbc;
 import com.mycompany.duan1.model.Diem;
+import com.mycompany.duan1.model.MonHoc;
+import com.mycompany.duan1.model.SinhVien;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -141,7 +143,10 @@ return list.size() > 0 ? list.get(0) : null;
         return list;
     }
 
-  
+          public List<Diem> selectByMaSVandMaMonHoc(String MaHV, String MaMonHoc) {
+        String sql = "SELECT * FROM DIEM WHERE MaSV LIKE ? and MaMH like ?";
+           return this.selectBySql(sql, MaHV, MaMonHoc);
+    }
 
 
 }

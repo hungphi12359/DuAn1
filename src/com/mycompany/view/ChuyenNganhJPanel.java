@@ -4,9 +4,12 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.dao.ChuyenNganhDao;
 import com.mycompany.duan1.model.ChuyenNganh;
 import java.awt.Color;
+import static java.awt.Color.white;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -30,12 +33,13 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.text.MessageFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author ADMIN
  */
 public class ChuyenNganhJPanel extends javax.swing.JPanel {
-
+ Validate vld = new Validate();
     /**
      * Creates new form ChuyenNganhJPanel
      */
@@ -226,15 +230,68 @@ public class ChuyenNganhJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        update();
-    }//GEN-LAST:event_btnSuaActionPerformed
+        try {
+                          StringBuilder sb = new StringBuilder();
+            checkTrungMa(maChuyenNganh1, sb, "Mã Chuyên Ngành Này Đã Tồn Tại Trên Hệ Thống");
+            vld.ValidatorNullJText(tenChuyenNganh1, sb, "Tên Chuyên Ngành Không Được Để Trống");
+            vld.ValidatorNullJText(maChuyenNganh1, sb, "Mã Chuyên Ngành Không Được Để Trống");
 
+
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+               return;
+        }
+            update();
+        }
+            catch (Exception e) {
+        }
+    
+    }//GEN-LAST:event_btnSuaActionPerformed
+    public boolean checkTrungMa(JTextField txt, StringBuilder sb, String errorMessage) {
+        txt.setBackground(white);
+        if (dao.selectById(txt.getText()) == null) {
+            return true;
+        } else {
+            txt.setBackground(Color.red);
+            sb.append(errorMessage).append("\n");
+            txt.requestFocus();
+            return false;
+        }
+    }
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-insert();
+        try {
+               StringBuilder sb = new StringBuilder();
+            checkTrungMa(maChuyenNganh1, sb, "Mã Chuyên Ngành Này Đã Tồn Tại Trên Hệ Thống");
+            vld.ValidatorNullJText(tenChuyenNganh1, sb, "Tên Chuyên Ngành Không Được Để Trống");
+            vld.ValidatorNullJText(maChuyenNganh1, sb, "Mã Chuyên Ngành Không Được Để Trống");
+
+
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+              insert();
+        } catch (Exception e) {
+        }
+      
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-delete();
+
+        try {
+                           StringBuilder sb = new StringBuilder();
+
+            vld.ValidatorNullJText(maChuyenNganh1, sb, "Mã Chuyên Ngành Không Được Để Trống");
+
+
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+              delete();
+        } catch (Exception e) {
+        }
+      
         // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaActionPerformed
 

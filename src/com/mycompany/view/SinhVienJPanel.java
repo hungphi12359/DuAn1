@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.X.XImage;
 import com.mycompany.duan1.dao.ChuyenNganhDao;
 import com.mycompany.duan1.dao.LopHocDAO;
@@ -15,6 +16,8 @@ import com.mycompany.duan1.model.LopHoc;
 import com.mycompany.duan1.model.SinhVien;
 import com.mycompany.duan1.model.TaiKhoan;
 import java.awt.Color;
+import static java.awt.Color.red;
+import static java.awt.Color.white;
 import java.awt.Font;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -38,18 +41,12 @@ import javax.swing.table.DefaultTableModel;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import javax.swing.JTable;
-    
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import scrollbar.ScrollBarCustom;
-
-
-
-
-
-
 
 /**
  *
@@ -343,7 +340,39 @@ public class SinhVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSeachActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        update();        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        try {
+            vld.ValidatorNullJText(txtMaSinhVien, sb, "Mã Sinh Viên Không Được Để Trống");
+            vld.ValidatorNullJText(txtHoTen, sb, "Tên Sinh Viên Không Được Để Trống");
+            vld.ValidatorNullJText(txtEmail, sb, "Email Không Được Để Trống");
+            vld.ValidatorNullJText(txtSoDienThoai, sb, "Số Điện Thoại Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiaChi, sb, "Số Điện Thoại Không Được Để Trống");
+            vld.ValidatorNullJDate(jdcNgaySinh, sb, "Ngày Sinh Không Hợp Lệ");
+            vld.checkEmail(txtEmail, sb, "Email Không Đúng Định Dạng");
+            vld.checkSDT(txtSoDienThoai, sb, "Số Điện Thoại Không Đúng Định Dạng");
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            if (jdcNgaySinh.getDate() == null) {
+                jdcNgaySinh.setBackground(red);
+                vld.ValidatorNullJDate(jdcNgaySinh, sb, "Ngày Sinh Không Được Để Trống");
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Ngày Sinh Không Được Để Trống");
+
+                return;
+            }
+        } catch (Exception e) {
+            MsgBox.showErrorDialog(this, "Bạn Chưa Nhập Ngày Sinh", "Đã Xảy Ra Lỗi");
+            return;
+        }
+        int x;
+        x = JOptionPane.showConfirmDialog(this, "bạn có muốn cập nhật không ?");
+
+        if (x == JOptionPane.YES_NO_OPTION) {
+            update();
+
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtSeachFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSeachFocusGained
@@ -365,7 +394,23 @@ public class SinhVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        delete();        // TODO add your handling code here:
+        try {
+            StringBuilder sb = new StringBuilder();
+            vld.ValidatorNullJText(txtMaSinhVien, sb, "Mã Sinh Viên Không Được Để Trống");
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            int x;
+            x = JOptionPane.showConfirmDialog(this, "bạn có muốn xóa không ?");
+
+            if (x == JOptionPane.YES_NO_OPTION) {
+                delete();
+            }
+        } catch (Exception e) {
+        }
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
@@ -373,13 +418,51 @@ public class SinhVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cbbmachuyennganhActionPerformed
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
-        insert();        // TODO add your handling code here:
+        try {
+            StringBuilder sb = new StringBuilder();
+            checkTrungMa(txtMaSinhVien, sb, "Sinh Viên Đã Tồn Tại Trên Hệ Thống");
+            vld.ValidatorNullJText(txtMaSinhVien, sb, "Mã Sinh Viên Không Được Để Trống");
+            vld.ValidatorNullJText(txtHoTen, sb, "Tên Sinh Viên Không Được Để Trống");
+            vld.checkEmail(txtEmail, sb, "Email Không Đúng Định Dạng");
+            vld.checkSDT(txtSoDienThoai, sb, "Số Điện Thoại Không Đúng Định Dạng");
+            vld.ValidatorNullJText(txtEmail, sb, "Email Không Được Để Trống");
+            vld.ValidatorNullJText(txtSoDienThoai, sb, "Số Điện Thoại Không Được Để Trống");
+            vld.ValidatorNullJText(txtDiaChi, sb, "Số Điện Thoại Không Được Để Trống");
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            if (jdcNgaySinh.getDate() == null) {
+               
+                vld.ValidatorNullJDate(jdcNgaySinh, sb, "Ngày Sinh Không Được Để Trống");
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Ngày Sinh Không Được Để Trống");
+
+                return;
+            }
+
+            insert();
+        } catch (Exception e) {
+         
+            MsgBox.showErrorDialog(this, "Bạn Chưa Nhập Ngày Sinh", "Đã Xảy Ra Lỗi");
+            return;
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnsubmitActionPerformed
 
     private void txtSeachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeachKeyPressed
-fillTableSelectByMa();        // TODO add your handling code here:
+        fillTableSelectByMa();        // TODO add your handling code here:
     }//GEN-LAST:event_txtSeachKeyPressed
-
+    public boolean checkTrungMa(JTextField txt, StringBuilder sb, String errorMessage) {
+        txt.setBackground(white);
+        if (svdao.selectById(txt.getText()) == null) {
+            return true;
+        } else {
+            txt.setBackground(Color.red);
+            sb.append(errorMessage).append("\n");
+            txt.requestFocus();
+            return false;
+        }
+    }
     private void btnExel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExel1ActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
         FileOutputStream exelFOU = null;
@@ -415,13 +498,13 @@ fillTableSelectByMa();        // TODO add your handling code here:
                 Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {
-                    if(exelBOU != null){
+                    if (exelBOU != null) {
                         exelBOU.close();
                     }
-                    if(exelFOU != null){
+                    if (exelFOU != null) {
                         exelFOU.close();
                     }
-                    if(exelJtableExporter != null){
+                    if (exelJtableExporter != null) {
 
                     }
                 } catch (IOException ex) {
@@ -433,7 +516,7 @@ fillTableSelectByMa();        // TODO add your handling code here:
     }//GEN-LAST:event_btnExel1ActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        MessageFormat header  = new MessageFormat("Item report");
+        MessageFormat header = new MessageFormat("Item report");
 
         try {
             tblStudent.print(JTable.PrintMode.NORMAL, header, null);
@@ -463,7 +546,7 @@ fillTableSelectByMa();        // TODO add your handling code here:
         filltable();
         chonChuyenNganh();
         chonLopHoc();
-    
+
         fixTable();
         fillcomboboxMaTK();
 
@@ -545,14 +628,14 @@ fillTableSelectByMa();        // TODO add your handling code here:
             Object[] row = {
                 sv.getMaSinhVien(),
                 sv.getTenSinhVien(),
-//                sv.getNgaySinh(),
+                //                sv.getNgaySinh(),
                 sv.getEmail(),
-//                sv.getSDT(),
-//                sv.getDiaChi(),
+                //                sv.getSDT(),
+                //                sv.getDiaChi(),
                 sv.isGioiTinh() ? "Nam" : "Nữ",
                 sv.getMaChuyenNganh(),
                 sv.getMaLopHoc(),
-//                sv.getHinh(),
+                //                sv.getHinh(),
                 sv.getMaTK()
             };
             model.addRow(row);
@@ -581,7 +664,7 @@ fillTableSelectByMa();        // TODO add your handling code here:
             JOptionPane.showMessageDialog(this, "Cập Nhật thành công!");
             filltable();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Cập Nhật  thất bại!");
+
             e.printStackTrace();
         }
     }
@@ -595,12 +678,21 @@ fillTableSelectByMa();        // TODO add your handling code here:
             JOptionPane.showMessageDialog(this, "Xóa thành công!");
             filltable();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Xóa Thất Bại!");
+            JOptionPane.showMessageDialog(this, "Sinh Viên Đang Liên Kết Với 1 Bảng Khác Nên Không Thể Xóa");
         }
 
     }
 
     void clearForm() {
+        txtMaSinhVien.setBackground(Color.WHITE);
+        txtHoTen.setBackground(Color.WHITE);
+        jdcNgaySinh.setBackground(Color.WHITE);
+        txtEmail.setBackground(Color.WHITE);
+        txtSoDienThoai.setBackground(Color.WHITE);
+        txtDiaChi.setBackground(Color.WHITE);
+        rdonu.setBackground(Color.WHITE);
+        rdonam.setBackground(Color.WHITE);
+
         txtMaSinhVien.setText("");
         txtHoTen.setText("");
         jdcNgaySinh.setDate(null);
@@ -615,6 +707,7 @@ fillTableSelectByMa();        // TODO add your handling code here:
     }
     ChuyenNganhDao cndao = new ChuyenNganhDao();
     LopHocDAO lhdao = new LopHocDAO();
+    Validate vld = new Validate();
 
     void chonChuyenNganh() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbbmachuyennganh.getModel();
@@ -672,14 +765,14 @@ fillTableSelectByMa();        // TODO add your handling code here:
                 model.addRow(new Object[]{
                     nh.getMaSinhVien(),
                     nh.getTenSinhVien(),
-                    nh.getNgaySinh(),
+//                    nh.getNgaySinh(),
                     nh.getEmail(),
-                    nh.getSDT(),
-                    nh.getDiaChi(),
+//                    nh.getSDT(),
+//                    nh.getDiaChi(),
                     nh.isGioiTinh() ? "Nam" : "Nữ",
                     nh.getMaChuyenNganh(),
                     nh.getMaLopHoc(),
-                    nh.getHinh(),});
+                    nh.getMaTK()});
 
             }
 
@@ -724,7 +817,7 @@ fillTableSelectByMa();        // TODO add your handling code here:
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_Mataikhoan.getModel();
         model.removeAllElements();
         try {
-            model.addElement(tblStudent.getValueAt(row, 10));
+            model.addElement(tblStudent.getValueAt(row, 6));
 
         } catch (Exception e) {
         }

@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.dao.ChuyenNganhDao;
 import com.mycompany.duan1.dao.HocKyDao;
 import com.mycompany.duan1.dao.MonHocDao;
@@ -14,6 +15,8 @@ import com.mycompany.duan1.model.HocKy;
 import com.mycompany.duan1.model.MonHoc;
 import com.mycompany.duan1.model.NhanVien;
 import java.awt.Color;
+import static java.awt.Color.red;
+import static java.awt.Color.white;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -38,11 +41,14 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.text.MessageFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author ADMIN
  */
 public class MonHocJPanel extends javax.swing.JPanel {
+
     ChuyenNganhDao cndao = new ChuyenNganhDao();
     MonHocDao mhDao = new MonHocDao();
     NhanVienDao nvDao = new NhanVienDao();
@@ -86,6 +92,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
         txtMaHocKy = new combobox.MaHocKy();
         btnExel5 = new rojeru_san.complementos.RSButtonHover();
         btnPrint = new rojeru_san.complementos.RSButtonHover();
+        timkiem1 = new textfield.timkiem();
 
         setMaximumSize(new java.awt.Dimension(1100, 625));
         setName(""); // NOI18N
@@ -203,7 +210,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
         });
         jPanel2.add(cbbmachuyennganh, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 180, -1));
         jPanel2.add(cbb_Manhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 180, -1));
-        jPanel2.add(txtMaHocKy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 180, -1));
+        jPanel2.add(txtMaHocKy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 180, -1));
 
         btnExel5.setBackground(new java.awt.Color(204, 0, 51));
         btnExel5.setText("Exel");
@@ -222,6 +229,18 @@ public class MonHocJPanel extends javax.swing.JPanel {
             }
         });
         jPanel2.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 540, 140, 50));
+
+        timkiem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timkiem1ActionPerformed(evt);
+            }
+        });
+        timkiem1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                timkiem1KeyPressed(evt);
+            }
+        });
+        jPanel2.add(timkiem1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 560, 180, -1));
 
         javax.swing.GroupLayout jpnMonHocLayout = new javax.swing.GroupLayout(jpnMonHoc);
         jpnMonHoc.setLayout(jpnMonHocLayout);
@@ -245,12 +264,12 @@ public class MonHocJPanel extends javax.swing.JPanel {
 
     private void tblMonHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonHocMouseClicked
         try {
-            
+
             row = tblMonHoc.getSelectedRow();
             if (row >= 0) {
                 String id = (String) tblMonHoc.getValueAt(row, 0);
                 MonHoc mh = mhDao.selectById(id);
-             
+
                 if (mh != null) {
                     cbbmachuyennganh.setSelectedItem(mh.getMaChuyenNganh());
                     txtTenMonHoc.setText(mh.getTenMonHoc());
@@ -262,9 +281,9 @@ public class MonHocJPanel extends javax.swing.JPanel {
                     jdcNgayKetThuc.setDate(mh.getNgayKetThuc());
                     txtMaHocKy.setSelectedItem(mh.getHocKy());
                 }
-             
+
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
             e.printStackTrace();
@@ -283,22 +302,17 @@ public class MonHocJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnmoiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        StringBuilder sb = new StringBuilder();
-        if (txtMaMonHoc.getText().equals("")) {
-            sb.append("Mã MH không được để trống");
-            
-            txtMaMonHoc.setBackground(Color.red);
-        } else {
-            txtMaMonHoc.setBackground(Color.white);
-        }
-        if (sb.length() > 0) {
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-        
-        try {
-            
-            mhDao.delete(txtMaMonHoc.getText());
+  try {
+                        StringBuilder sb = new StringBuilder();
+
+            vld.ValidatorNullJText(txtMaMonHoc, sb, "Mã Môn Học Không Được Để Trống");
+            int x;
+            x = JOptionPane.showConfirmDialog(this, "bạn có muốn xóa không ?");
+
+            if (x == JOptionPane.YES_NO_OPTION) {
+               mhDao.delete(txtMaMonHoc.getText());
+            }
+     
             JOptionPane.showMessageDialog(this, "Dữ liệu đã được xóa");
             Filltable();
         } catch (Exception e) {
@@ -308,23 +322,27 @@ public class MonHocJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
-        StringBuilder sb = new StringBuilder();
-        if (txtMaMonHoc.getText().equals("")) {
-            sb.append("Mã MH không được để trống");
-            
-            txtMaMonHoc.setBackground(Color.red);
-        } else {
-            txtMaMonHoc.setBackground(Color.white);
-        }
-        if (sb.length() > 0) {
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-        
-        try {
+    try {
+                        StringBuilder sb = new StringBuilder();
+
+            vld.ValidatorNullJText(txtMaMonHoc, sb, "Mã Môn Học Không Được Để Trống");
+            vld.ValidatorNullJText(txtTenMonHoc, sb, "Tên Môn Học Không Được Để Trống");
+            vld.ValidatorNullJText(txtHocPhi, sb, "Học Phí Môn Học Không Được Để Trống");
+            vld.checkHocPhi(txtHocPhi, sb, "Học Phí Không Hợp Lệ");
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel2, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            if (jdcNgayBatDau.getDate() == null || jdcNgayKetThuc.getDate() == null) {
+                jdcNgayBatDau.setBackground(red);
+                jdcNgayKetThuc.setBackground(red);
+                   MsgBox.showErrorDialog(this, "Ngày Bắt Đầu Và Ngày Kết Thúc Không Được Trống", "Đã Xảy Ra Lỗi");
+                return;
+            }
+
             MonHoc monHoc = new MonHoc();
             monHoc.setMaMonHoc(txtMaMonHoc.getText());
-            
+
             monHoc.setTenMonHoc(txtTenMonHoc.getText());
             monHoc.setNgayBatDau(jdcNgayBatDau.getDate());
             monHoc.setNgayKetThuc(jdcNgayKetThuc.getDate());
@@ -332,9 +350,15 @@ public class MonHocJPanel extends javax.swing.JPanel {
             monHoc.setMaNhanVien(cbb_Manhanvien.getSelectedItem().toString());
             monHoc.setHocPhi(Float.parseFloat(txtHocPhi.getText()));
             monHoc.setHocKy(txtMaHocKy.getSelectedItem().toString());
-            
+
             MonHocDao dao = new MonHocDao();
-            dao.update(monHoc);
+                        int x;
+            x = JOptionPane.showConfirmDialog(this, "bạn có muốn cập nhật không ?");
+
+            if (x == JOptionPane.YES_NO_OPTION) {
+              dao.update(monHoc);
+            }
+           
             JOptionPane.showMessageDialog(this, "Dữ liệu đã được chỉnh sửa");
             Filltable();
         } catch (Exception e) {
@@ -342,25 +366,40 @@ public class MonHocJPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }            // TODO add your handling code here:
     }//GEN-LAST:event_btnupdateActionPerformed
-
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        StringBuilder sb = new StringBuilder();
-        if (txtMaMonHoc.getText().equals("")) {
-            sb.append("Mã MH không được để trống");
-            
-            txtMaMonHoc.setBackground(Color.red);
+    public boolean checkTrungMa(JTextField txt, StringBuilder sb, String errorMessage) {
+        txt.setBackground(white);
+        if (mhDao.selectById(txt.getText()) == null) {
+            return true;
         } else {
-            txtMaMonHoc.setBackground(Color.white);
+            txt.setBackground(Color.red);
+            sb.append(errorMessage).append("\n");
+            txt.requestFocus();
+            return false;
         }
-        if (sb.length() > 0) {
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-        
+    }
+    Validate vld = new Validate();
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
+            StringBuilder sb = new StringBuilder();
+            vld.checkHocPhi(txtHocPhi, sb, "Học Phí Không Hợp Lệ");
+            checkTrungMa(txtMaMonHoc, sb, "Bạn Nhập Trùng Mã Môn Học Đã Tồn Tại Trên Hệ Thống");
+            vld.ValidatorNullJText(txtMaMonHoc, sb, "Mã Môn Học Không Được Để Trống");
+            vld.ValidatorNullJText(txtTenMonHoc, sb, "Tên Môn Học Không Được Để Trống");
+            vld.ValidatorNullJText(txtHocPhi, sb, "Học Phí Môn Học Không Được Để Trống");
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel2, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+            if (jdcNgayBatDau.getDate() == null || jdcNgayKetThuc.getDate() == null) {
+                jdcNgayBatDau.setBackground(red);
+                jdcNgayKetThuc.setBackground(red);
+                   MsgBox.showErrorDialog(this, "Ngày Bắt Đầu Và Ngày Kết Thúc Không Được Trống", "Đã Xảy Ra Lỗi");
+                return;
+            }
+
             MonHoc monHoc = new MonHoc();
             monHoc.setMaMonHoc(txtMaMonHoc.getText());
-            
+
             monHoc.setTenMonHoc(txtTenMonHoc.getText());
             monHoc.setNgayBatDau(jdcNgayBatDau.getDate());
             monHoc.setNgayKetThuc(jdcNgayKetThuc.getDate());
@@ -368,14 +407,14 @@ public class MonHocJPanel extends javax.swing.JPanel {
             monHoc.setMaNhanVien(cbb_Manhanvien.getSelectedItem().toString());
             monHoc.setHocPhi(Float.parseFloat(txtHocPhi.getText()));
             monHoc.setHocKy(txtMaHocKy.getSelectedItem().toString());
-            
+
             mhDao.insert(monHoc);
             JOptionPane.showMessageDialog(this, "Đã lưu");
             Filltable();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: " + e.getMessage());
-            e.printStackTrace();
-        } 
+          MsgBox.showErrorDialog(this, "Lỗi", "Đã Xảy Ra Lỗi");
+            return;
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void cbbmachuyennganhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbmachuyennganhActionPerformed
@@ -418,13 +457,13 @@ public class MonHocJPanel extends javax.swing.JPanel {
                 Logger.getLogger(SinhVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {
-                    if(exelBOU != null){
+                    if (exelBOU != null) {
                         exelBOU.close();
                     }
-                    if(exelFOU != null){
+                    if (exelFOU != null) {
                         exelFOU.close();
                     }
-                    if(exelJtableExporter != null){
+                    if (exelJtableExporter != null) {
 
                     }
                 } catch (IOException ex) {
@@ -436,7 +475,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExel5ActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        MessageFormat header  = new MessageFormat("Item report");
+        MessageFormat header = new MessageFormat("Item report");
 
         try {
             tblMonHoc.print(JTable.PrintMode.NORMAL, header, null);
@@ -447,6 +486,40 @@ public class MonHocJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void timkiem1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timkiem1KeyPressed
+        try {
+            DefaultTableModel model = (DefaultTableModel) tblMonHoc.getModel();
+            model.setRowCount(0);
+            String keyword = timkiem1.getText();
+            List<MonHoc> list = mhDao.selectByMaMH(keyword);
+            for (MonHoc nh : list) {
+                model.addRow(new Object[]{
+                    nh.getMaMonHoc(),
+                    nh.getTenMonHoc(),
+                    //                    nh.getNgaySinh(),
+                    nh.getNgayBatDau(),
+                    nh.getNgayKetThuc(),
+                    //                    nh.getSDT(),
+                    //                    nh.getDiaChi(),
+
+                    nh.getMaChuyenNganh(),
+                    nh.getMaNhanVien(),
+                    nh.getHocPhi(),
+                    nh.getHocKy()
+                });
+
+            }
+
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }
+
+    }//GEN-LAST:event_timkiem1KeyPressed
+
+    private void timkiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timkiem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timkiem1ActionPerformed
     void Filltable() {
         DefaultTableModel model = (DefaultTableModel) tblMonHoc.getModel();
         model.setRowCount(0);
@@ -487,6 +560,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
         }
 
     }
+
     void fillComboBoxNhanVien() {
         try {
             DefaultComboBoxModel model = (DefaultComboBoxModel) cbb_Manhanvien.getModel();
@@ -506,6 +580,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
         }
 
     }
+
     void fillComboBoxHocKy() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) txtMaHocKy.getModel();
         model.removeAllElements();
@@ -537,6 +612,7 @@ public class MonHocJPanel extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser jdcNgayKetThuc;
     private javax.swing.JPanel jpnMonHoc;
     private rojeru_san.complementos.RSTableMetro tblMonHoc;
+    private textfield.timkiem timkiem1;
     private textfield.HocPhi txtHocPhi;
     private combobox.MaHocKy txtMaHocKy;
     private textfield.MaMonHoc txtMaMonHoc;

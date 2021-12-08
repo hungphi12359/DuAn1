@@ -10,6 +10,8 @@ import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
 import com.mycompany.duan1.X.Auth;
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
+import com.mycompany.duan1.X.XDate;
 import com.mycompany.duan1.X.XImage;
 import com.mycompany.duan1.dao.TaiKhoanDao;
 import com.mycompany.duan1.model.TaiKhoan;
@@ -269,12 +271,20 @@ public class DangNhap extends javax.swing.JDialog {
         }
     }
 
-    void Login() {
+    void Login() {  
+        StringBuilder sb = new StringBuilder();
+         Validate.ValidatorNullJText(txtdangnhap, sb, "Tên Đăng Nhập Không Được Trống");
+         Validate.ValidatorNullJpass(txtmatkhau, sb, "Mật Khẩu Không Được Để Trống");
+          if(sb.length() > 0){
+            MsgBox.showErrorDialog(jPanel1, sb.toString(), "Lỗi Đăng Nhập");
+            return;
+        }
         String TenTK = txtdangnhap.getText();
         String MK = new String(txtmatkhau.getPassword());
         TaiKhoan tk = dao.selectByTenDangNhap(TenTK);
         System.out.println();;
         if (tk == null) {
+           
             MsgBox.alert(this, "Sai tên đăng nhập");
             txtdangnhap.requestFocus();
         } else {

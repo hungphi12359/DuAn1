@@ -77,7 +77,7 @@ public class TaiKhoanDao extends EduSysDAO<TaiKhoan, String>{
     public TaiKhoan selectByTenDangNhap(String Ten) {
         String sql = "SELECT * FROM TaiKhoan WHERE TenDangNhap = ?";
         List<TaiKhoan> list = selectBySql(sql, Ten);
-        return list.size() > 0 ? list.get(0):null ;
+        return list.size() > 0 ? list.get(0) : null;
     }
   
     public List<TaiKhoan> selectByMaSV() {
@@ -91,5 +91,9 @@ public class TaiKhoanDao extends EduSysDAO<TaiKhoan, String>{
      public List<TaiKhoan> selectById2(String id) {
                      String sql="SELECT * FROM TaiKhoan LEFT JOIN SinhVien ON TaiKhoan.MaTaiKhoan = SinhVien.MaTaiKhoan where   TaiKhoan.VaiTro  = 2 AND SinhVien.MaTaiKhoan = ?";
          return selectBySql(sql, id);
+    }
+         public List<TaiKhoan> selectByTenTK(String id) {
+           String sql="SELECT * FROM TaiKhoan WHERE TenDangNhap like ?";
+        return this.selectBySql(sql, "%"+id+"%");
     }
 }

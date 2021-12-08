@@ -28,12 +28,14 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String> {
                 entity.isGioiTinh(),
                 entity.getMaChuyenNganh(),
                 entity.getMaLopHoc(),
-                entity.getHinh());
+                entity.getHinh(),
+        entity.getMaTK()
+        );
     }
 
     @Override
     public void update(SinhVien entity) {
-        String sql = "UPDATE SinhVien SET TenSinhVien= ?, NgaySinh=?, Email=?,SDT=?, DiaChi=?, GioiTinh= ?,MaChuyenNganh=?, MaLopHoc= ?, Hinh = ? MaTaiKhoan = ? WHERE MaSinhVien = ?";
+        String sql = "UPDATE [dbo].[SinhVien] SET  [TenSinhVien] = ?,[NgaySinh] = ?,[Email] = ?,[SDT] = ? ,[DiaChi] = ?,[GioiTinh] = ?,[MaChuyenNganh] = ?,[MaLopHoc] = ?,[Hinh] = ?,[MaTaiKhoan] = ? WHERE [MaSinhVien] = ?";
         XJdbc.update(sql,
                 entity.getTenSinhVien(),
                 entity.getNgaySinh(),
@@ -45,7 +47,8 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String> {
                 entity.getMaLopHoc(),
                 entity.getHinh(),
                 entity.getMaTK(),
-                entity.getMaSinhVien());
+                entity.getMaSinhVien()
+        );
     }
 
     @Override
@@ -128,4 +131,8 @@ public class SinhVienDao extends EduSysDAO<SinhVien, String> {
         String sql = "  select * from SinhVien where MaLopHoc like ?";
         return selectBySql(sql, id);
     }
+
+
+    
+    
 }

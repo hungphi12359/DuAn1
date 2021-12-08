@@ -6,8 +6,10 @@ package com.mycompany.view;
 
 import com.mycompany.duan1.X.Auth;
 import com.mycompany.duan1.X.MsgBox;
+import com.mycompany.duan1.X.Validate;
 import com.mycompany.duan1.dao.TaiKhoanDao;
 import java.awt.Color;
+import static java.awt.Color.red;
 
 /**
  *
@@ -163,9 +165,24 @@ public class ChinhSuaThongTin extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    Validate vld = new Validate();
     private void btn_LuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LuuActionPerformed
-        DoiMatKhau();
+        try {
+               StringBuilder sb = new StringBuilder();
+       
+            vld.ValidatorNullJText(txt_MKcu, sb, "Mật Khẩu Cũ Không Được Để Trống");
+            vld.ValidatorNullJText(txt_MKmoi, sb, "Mật Khẩu Mới Không Được Để Trống");
+            vld.ValidatorNullJText(txt_MKmoi2, sb, "Mật Khẩu Xác Nhận Không Được Để Trống");
+
+            if (sb.length() > 0) {
+                MsgBox.showErrorDialog(jPanel1, sb.toString(), "Đã Xảy Ra Lỗi");
+                return;
+            }
+             DoiMatKhau();
+        } catch (Exception e) {
+                 MsgBox.showErrorDialog(jPanel1, "Có Lỗi Xảy Ra", "Đã Xảy Ra Lỗi");
+        }
+       
     }//GEN-LAST:event_btn_LuuActionPerformed
 
 
